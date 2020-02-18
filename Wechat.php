@@ -3,8 +3,9 @@
  * 获取mysql连接
  * $db 为库名
  */
-function mysqlConnect($db = 'yun'){
-	$conn=mysql_connect('rm-8vb431shd233813u6.mysql.zhangbei.rds.aliyuncs.com','mumway','Mumway1234!@#$');
+function mysqlConnect($db = 'yun_online'){
+//	$conn=mysql_connect('rm-8vb431shd233813u6.mysql.zhangbei.rds.aliyuncs.com','mumway','Mumway1234!@#$');
+	$conn=mysql_connect('39.98.241.29','root','h.y.m.m.KXC@22');
 	mysql_query("set names 'utf8'");
 	mysql_select_db($db);
 	return $conn;
@@ -23,8 +24,8 @@ function mysqlConnect($db = 'yun'){
 class Wechat {
     
     //高级功能-》开发者模式-》获取母婴护理服务号
-    private $app_id = 'wxcd720e416bcaaa0d';
-    private $app_secret = 'e5ebc693eeb62f3ab03253297a5a41e7';
+    private $app_id = 'wx2eb3f16fda2a411f';
+    private $app_secret = 'beb1c65c192b6d7d5ed25f91d9ba254d';
 // 	private $app_id = 'wxbfaa1d17ea7b5920';
 // 	private $app_secret = 'a304d186b2ed04a29a97f8b888b68e96';
  
