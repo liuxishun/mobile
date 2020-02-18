@@ -100,15 +100,15 @@ class ClassAction extends BaseAction {
     
     //微信取证课详情
     public function quzhengxinxi(){
-//    	if(!$_GET['vt']){
-//    		$url = $_SERVER['REQUEST_URI'];
-//    		if(strpos($url,"?") !== false){
-//                $url =  substr($url, 0, strpos($url,"?"));//微信分享进来的，需获取openid
-//            }
-//            $url .= '/vt/1';
-//    		header("Location: http://test.fanqieguanjia.com/toa.php?url=$url");
-//    		die;
-//    	}
+    	if(!$_GET['vt']){
+    		$url = $_SERVER['REQUEST_URI'];
+    		if(strpos($url,"?") !== false){
+                $url =  substr($url, 0, strpos($url,"?"));//微信分享进来的，需获取openid
+            }
+            $url .= '/vt/1';
+    		header("Location: http://test.fanqieguanjia.com/toa.php?url=$url");
+    		die;
+    	}
 
         $openid = $_GET["openid"];
     	$classid = intval($_GET["id"]);
@@ -411,11 +411,10 @@ class ClassAction extends BaseAction {
     
     //我的
     public function wode(){
-//    	if(!$_GET['openid']){
-//    		header("Location: http://test.fanqieguanjia.com/toa.php?url=/index.php/class/wode");
-//    		die;
-//    	}
-        $_GET['openid'] = 'olwOsjhoYLBeacdYKTNW_1H-MbTg';
+    	if(!$_GET['openid']){
+    		header("Location: http://test.fanqieguanjia.com/toa.php?url=/index.php/class/wode");
+    		die;
+    	}
     	$arr = M('weixin','user_')->where("openid='{$_GET['openid']}'")->find();
     	$this->assign('arr',$arr);
     	$this->assign('openid',$_GET['openid']);
