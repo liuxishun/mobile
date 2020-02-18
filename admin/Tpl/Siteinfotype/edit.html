@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>文章分类编辑</b></span>
+		</div>
+
+        <div class="con_box">
+			<form method="post" action="__SELF__" id="form" name="form">
+				<table class="add_table">
+					<tr>
+						<th>名称：</th>
+						<td><input type="text" name="info[name]" class="add_input" value="{$arr.name}"/></td>
+					</tr>	
+					<tr>
+						<th>位置（分组）：</th>
+						<td>
+                            <input type="text" name="info[position]" class="add_input" value="{$arr.position}"/> （非必填，字母和数字组合）
+							<select class="slt-input" data-name="info[position]">
+                                <option value="" >选择常用</option>
+                                <option value="news" >动态[news]</option>
+                                <option value="note" >公告[note]</option>
+                                <option value="foot" >页尾[foot]</option>
+                                <option value="bottom" >页脚[bottom]</option>
+                            </select>
+                        </td>
+					</tr>
+					<tr>
+						<th>排序：</th>
+						<td><input type="text" name="info[sort]" class="add_input" value="{$arr.sort}"/></td>
+					</tr>					
+                    <tr>
+						<th>是否显示：</th>
+						<td><label><input type="radio" name="info[is_display]" value="1" <?php if($arr['is_display']==1) echo 'checked'; ?> />是</label> &nbsp; <label><input type="radio" name="info[is_display]" value="0" <?php if($arr['is_display']!=1) echo 'checked'; ?> />否</label></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>
+							<input type="hidden" name="id" value="{$arr.id}"/>
+							<input type="hidden" name="listurl" value="{$listurl}"/>
+							<a href="javascript:;" onclick="document.form.submit();"class="add_yes"></a>
+							<a href="__URL__/lists" class="add_no"></a>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>

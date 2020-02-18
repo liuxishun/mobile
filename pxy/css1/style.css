@@ -1,0 +1,286 @@
+@import url(public.css);
+.clearfloat:after {
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height: 0; }
+
+.clearfloat {
+  zoom: 1; }
+
+.MaxCon {
+  width: 750px;
+  position: relative;
+  background-color: #f2f2f2; }
+
+#headerCon {
+  width: 750px;
+  height: 80px;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+  z-index: 999; }
+  #headerCon a.returnHome {
+    display: block;
+    width: 80px;
+    height: 80px;
+    font-size: 24px;
+    color: #666;
+    text-align: center;
+    line-height: 80px;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    z-index: 1; }
+
+div.ImgModoCon {
+  width: 100%;
+  margin-bottom: 30px;
+  position: relative; }
+  div.ImgModoCon > img {
+    width: 100%; }
+
+footer#footerCon {
+  width: 750px;
+  height: 110px;
+  border-top: 1px solid #9b9b9b;
+  background-color: #fff;
+  position: fixed;
+  bottom: -1px;
+  left: 0; }
+  footer#footerCon a {
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 108px;
+    height: 100%;
+    font-size: 26px; }
+  footer#footerCon a.one {
+    width: 200px;
+    color: #4e4e4e; }
+  footer#footerCon a.one:nth-child(1) {
+    border-right: 1px solid #9b9b9b; }
+  footer#footerCon a.two {
+    width: 350px;
+    background-color: #f23030;
+    color: #fff; }
+
+ul.formCon {
+  position: absolute;
+  top: 370px;
+  left: 0;
+  width: 100%;
+  padding: 0 30px; }
+  ul.formCon > li {
+    width: 100%;
+    height: 82px;
+    margin-top: 29px; }
+    ul.formCon > li select, ul.formCon > li input {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      font-size: 30px;
+      color: #666;
+      border-top: 1px solid #cfcfcf;
+      border-left: 1px solid #cfcfcf;
+      border-right: 0px solid #cfcfcf;
+      border-bottom: 0px solid #cfcfcf;
+      padding-left: 40px;
+      padding-right: 40px;
+      background-color: #f8f8f8; }
+    ul.formCon > li input {
+      border: 1px solid #a3d2e0; }
+    ul.formCon > li span.font {
+      font-size: 34px;
+      color: #666;
+      font-weight: bold;
+      line-height: 80px; }
+    ul.formCon > li button {
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      border: 0;
+      background-color: #828ffc;
+      color: #fff;
+      font-size: 38px;
+      broder: 1px soldi #c5cbfe; }
+    ul.formCon > li div.describe {
+      text-align: center;
+      font-size: 30px;
+      color: #954f61; }
+
+ul.AuntList {
+  position: absolute;
+  top: 255px;
+  left: 0; }
+  ul.AuntList > li {
+    position: relative; }
+    ul.AuntList > li > a {
+      position: absolute;
+      bottom: 20px;
+      right: 47px;
+      display: block;
+      width: 305px;
+      height: 70px;
+      background-color: #ff8e7e;
+      border-radius: 8px;
+      font-size: 30px;
+      text-align: center;
+      line-height: 70px;
+      color: #fff; }
+
+div.btnCon {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  width: 100%;
+  padding: 0 30px; }
+  div.btnCon > a {
+    display: block;
+    width: 100%;
+    height: 95px;
+    border-radius: 8px;
+    background-color: #0082a9;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    line-height: 95px;
+    position: relative; }
+    div.btnCon > a img {
+      position: absolute;
+      top: 10px;
+      right: 80px; }
+
+div.FiexdCon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 180px 20px 0;
+  z-index: 9999;
+  display: none; }
+  div.FiexdCon .FiexdFormCon {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 14px;
+    font-size: 30px; }
+    div.FiexdCon .FiexdFormCon div.head {
+      width: 100%;
+      height: 100px;
+      background-color: #0082a9;
+      text-align: center;
+      line-height: 100px;
+      color: #fff;
+      border-radius: 14px 14px 0 0; }
+    div.FiexdCon .FiexdFormCon ul.for {
+      padding: 0 35px 35px; }
+      div.FiexdCon .FiexdFormCon ul.for > li {
+        margin-top: 30px; }
+        div.FiexdCon .FiexdFormCon ul.for > li > input,
+        div.FiexdCon .FiexdFormCon ul.for > li select {
+          width: 100%;
+          height: 90px;
+          border-radius: 6px;
+          border: 1px solid #e1e1e1;
+          font-size: 30px;
+          color: #666;
+          padding: 0 20px; }
+        div.FiexdCon .FiexdFormCon ul.for > li button {
+          width: 100%;
+          height: 90px;
+          font-size: 30px;
+          color: #fff;
+          background-color: #ff8e7e;
+          border-radius: 6px;
+          border: 0; }
+
+footer#footerCon {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  z-index: 99; }
+  footer#footerCon > ul {
+    width: 100%;
+    float: left;
+    zoom: 1;
+    border-top: 1px solid #e1e1e1; }
+    footer#footerCon > ul:after {
+      display: block;
+      clear: both;
+      content: "";
+      visibility: hidden;
+      height: 0; }
+    footer#footerCon > ul > li {
+      width: 33.3%;
+      float: left;
+      border-right: 1px solid #e1e1e1;
+      text-align: center; }
+      footer#footerCon > ul > li > a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 100px;
+        color: #666;
+        font-size: 30px; }
+      footer#footerCon > ul > li > a.red {
+        background-color: #f23030;
+        color: #fff; }
+    footer#footerCon > ul > li:nth-child(4) {
+      border-right: 0px solid #e1e1e1; }
+
+.gifCno {
+  position: absolute;
+  top: 152px;
+  left: 300px; }
+
+.formConSt2 {
+  position: absolute;
+  width: 100%;
+  top: 250px;
+  left: 0;
+  padding: 0 106px; }
+  .formConSt2 > li {
+    margin-top: 10px; }
+    .formConSt2 > li > input,
+    .formConSt2 > li select {
+      width: 100%;
+      height: 90px;
+      border-radius: 6px;
+      border: 1px solid #e1e1e1;
+      font-size: 30px;
+      color: #666;
+      padding: 0 20px; }
+  .formConSt2 .btnSty2 {
+    height: 80px;
+    background-image: url(../images/botton.png);
+    background-repeat: no-repeat;
+    background-position: center center; }
+
+.rollCon {
+  position: absolute;
+  top: 860px;
+  left: 70px;
+  right: 70px;
+  height: 200px;
+  overflow: hidden;
+  font-size: 26px; }
+  .rollCon div.con {
+    width: 100%;
+    border-top: 1px dashed #ff4071; }
+    .rollCon div.con > div {
+      line-height: 66px;
+      border-bottom: 1px dashed #ff4071;
+      color: #333;
+      text-align: center; }
+      .rollCon div.con > div span {
+        color: #fc9fa4; }
+
+/*# sourceMappingURL=style.css.map */

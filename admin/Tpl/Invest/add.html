@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>测评表添加</b></span>
+		</div>
+		<div class="con_box">
+		<form action='__URL__/add' method='POST' id='form'>
+			<table class="add_table" id='table'>
+				<tr>
+						<th>卷名：</th>
+						<td><input type="text" name='t_name' class="add_input"/></td>
+				</tr>
+
+				
+                <tr>
+						<th></th>
+						<td style="padding-top:25px;">
+                        <input type="button" value="添加题目" class='add'/><br />
+						<input type="button" class="add_yes" value="" id='tijiao'/>
+							
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/html" id="tpl_item">
+<tr class="tr-#k#">
+        <th>&nbsp;</th>
+        <td><hr style="width:300px;float:left;" /></td>
+</tr>
+<tr class="tr-#k#">
+        <th>题目名：</th>
+        <td><input type="text" name="sub[#k#][name]" class="add_input"/> &nbsp;<a href='javascript:void(0)' onclick="$('.tr-#k#').remove()">删除</a></td>
+</tr>
+<tr class="tr-#k#">
+    <th>操作类型：</th>
+    <td>
+        <label><input type="radio" name="sub[#k#][choice_mode]" value="0" checked>单选</label>&nbsp;
+        <label><input type="radio" name="sub[#k#][choice_mode]" value="1">多选</label>&nbsp;
+        <label><input type="radio" name="sub[#k#][choice_mode]" value="2">填写</label>&nbsp;
+    </td>
+</tr>
+<tr class="tr-#k#">
+    <th></th>
+    <td>
+        <input type="button" value="添加题项" class='sub-add' data-k="#k#" />
+    </td>
+</tr>
+</script>
+<script type="text/html" id="tpl_sub_item">
+<tr class="tr-#k#">
+    <th>题项：</th>
+    <td>
+    <input type="text" class="add_input" value="" name="sub[#k#][item][]">
+    &nbsp;<a href="javascript:;" onclick="$(this).parents('tr').eq(0).remove()">删除</a>
+    </td>
+</tr>
+</script>
+
+	<script type="text/javascript">
+		
+var COUNT=0;
+$('.add').click(function(){
+	var table=$('#table');
+	var length=$("#table tr").length;
+    var html=$('#tpl_item').html();
+	$(html.replace(/#k#/g, COUNT)).insertBefore($("#table tr:eq("+(length-1)+")"));
+	COUNT++;
+});
+
+$('.sub-add').live('click', function(){
+    var html=$('#tpl_sub_item').html();
+    var k=$(this).data('k');
+    var tr=$(this).parents('tr').eq(0);
+    $(html.replace(/#k#/g, k)).insertBefore(tr);
+});
+
+$('#tijiao').click(function(){
+	document.getElementById('form').submit();
+});
+	</script>
+</body>
+</html>

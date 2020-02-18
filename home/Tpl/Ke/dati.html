@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/dati/css/style.css">
+        <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+    <script src="__PUBLIC__/ke/dati/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+		$(function(){
+			$('.exam_foot_p1 a:first').css('borderRight','1px solid #fff');
+			$('.exam_foot_p1 a:last').css('borderLeft','1px solid #fff');
+			
+			$('.exam_foot_d1_a2').click(function(e) {
+                $('.topic_out').show();
+            });
+			$('.exam_foot_d1_a3').click(function(e) {
+                $('.topic_out').show();
+            });
+			$('.exam_foot_d1_a4').click(function(e) {
+                $('.topic_out').show();
+            });
+			$('.topic_out2').click(function(e) {
+                $('.topic_out').hide();
+            });
+			$('.assignment2_p3_a').click(function(e) {
+                $('.assignment2_out').hide();
+            });
+		})
+	
+    </script>
+    
+</head>
+
+<body style="background:#f5f5f5 url(__PUBLIC__/ke/dati/img/{$bpic}) no-repeat center 300px; height:100%;">
+<section class="section">
+	<foreach item="li" key="k" name="list">
+    <div class="answer" id="k{$k+1}"  style="display: none;">
+        <P class="type_p1"><span>{$li.tit}</span></P>
+        <div class="dati">
+            <P class="dati_p1">{$k+1}：{$li.title}</P>
+            <div class="dati_d1">
+                <foreach item="da" name="li[daan]">
+                <P class="dati_p2"><label><input type="checkbox" name="{$k+1}" value="{$da.da}"><i tt="{$da.ta}">{$da.ta}</i><span>{$da.ti}</span></label></P>
+                </foreach>
+            </div>
+        </div>
+     </div>
+     </foreach>
+</section>
+<!----------------------底部------------------------------>
+<footer class="exam_foot">
+	<P class="exam_foot_p1"><a href="javascrpt:;" onclick="shang()">上一题</a><a href="javascrpt:;" onclick="xia()">下一题</a></P>
+    <div class="exam_foot_d1">
+    	<a class="exam_foot_d1_a1" href="javascrpt:;" onclick="add()">交卷</a>
+    	<a class="exam_foot_d1_a2 jidui" href="javascrpt:;" onclick="datika()">0</a>
+    	<a class="exam_foot_d1_a3 jicuo" href="javascrpt:;" onclick="datika()">0</a>
+    	<a class="exam_foot_d1_a4" href="javascrpt:;" onclick="datika()"><i class="yida">0</i>/{$count}</a>
+    </div>
+</footer>
+
+<!----------------------题目查看------------------------------>
+<div class="topic_out">
+	<div class="topic_out1">
+    	<div class="topic_out2"></div>
+    	<div class="topic">
+        	<div class="exam_foot_d1">
+                <a class="exam_foot_d1_a1" href="javascrpt:;" onclick="add()">交卷</a>
+		    	<a class="exam_foot_d1_a2 jidui" href="javascrpt:;" onclick="datika()">0</a>
+		    	<a class="exam_foot_d1_a3 jicuo" href="javascrpt:;" onclick="datika()">0</a>
+		    	<a class="exam_foot_d1_a4" href="javascrpt:;" onclick="datika()"><i class="yida">0</i>/{$count}</a>
+            </div>
+            <div class="topic_d1">
+            	<!-- <a class="dui" href="javascrpt:;">1</a><a class="cuo" href="javascrpt:;">2</a><a href="#">100</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!----------------------交卷弹框------------------------------>
+<div class="assignment1_out">
+	<div class="assignment1">
+    	<P class="assignment1_p1">温馨提示</P>
+        <P class="assignment1_p2">您已回答了<span class="yida">0</span>道题（共<span>{$count}</span>题）</P>
+        <P class="assignment1_p3">考试得分<span class="defen">0</span>分</P>
+    </div>
+</div>
+
+<!----------------------中途交卷弹框------------------------------>
+<div class="assignment2_out">
+	<div class="assignment2">
+    	<P class="assignment1_p1">温馨提示</P>
+        <P class="assignment2_p2">您已回答了<span class="yida">0</span>道题（共<span>{$count}</span>题），<br>考试得分<span class="defen">0</span>，确定交卷吗？</P>
+        <P class="assignment2_p3"><a class="assignment2_p3_a" href="javascript:$(this).hide();">继续答题</a><a href="javascrpt:;" onclick="addsub();">交卷</a></P>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript">
+var inx = 1;
+$('#k'+inx).show();
+var count = {$count};
+var jidui = 0;//计数做对的题
+var jicuo = 0;//计数做错的题
+function ches(){
+	jidui = 0;
+	jicuo = 0;
+	for(var i = 1;i<=count;i++){
+		var da = 0;//判断是否答题
+		var dui = 0;//判断是否做对
+		$("[name="+i+"]").each(function(){
+			if($(this).attr("checked")){
+				da = 1;
+				if($(this).val() == 0){
+					dui = 1;
+				}
+			}else{
+				if($(this).val() == 1){
+					dui = 1;
+				}
+			}
+		});
+		
+		if(da==1 && dui==0){
+			jidui++;//是否做对
+		}
+		if(da==1 && dui==1){
+			jicuo++;//是否做错
+		}
+		if(da==1){
+			$("[name="+i+"]").each(function(){
+				if($(this).val() == 1){
+					$(this).next().addClass('dati_p2_i1').html('√');
+				}
+			});
+		}
+	}
+	$('.jidui').text(jidui);
+	$('.jicuo').text(jicuo);
+	$('.yida').text(jidui+jicuo);
+}
+
+//上一提
+function shang(){
+	ches();
+	if(inx == 1){
+		inx=2;
+		alert('已经是第一道题！');
+	}
+	$('.answer').hide();
+	inx--;
+	$('#k'+inx).show();
+	
+}
+//下一提
+function xia(){
+	ches();
+	if(inx == count){
+		inx = count-1;
+		alert('已经是最后一道题,是否交卷！');
+	}
+	$('.answer').hide();
+	inx++;
+	$('#k'+inx).show();
+}
+//答题卡
+function datika() {
+	jishu = 0;//计数做对的题
+	var ht = '';
+	for(var i = 1;i<=count;i++){
+		var da = 0;//判断是否答题
+		var dui = 0;//判断是否做对
+		$("[name="+i+"]").each(function(){
+			if($(this).attr("checked")){
+				da = 1;
+				if($(this).val() == 0){
+					dui = 1;
+				}
+			}else{
+				if($(this).val() == 1){
+					dui = 1;
+				}
+			}
+		    });
+  		if(da==1 && dui==0){
+			ht += '<a class="dui" href="javascrpt:;" onclick="timu('+i+')">'+i+'</a>';
+  		}else if(da==1 && dui==1){
+  			ht += '<a class="cuo" href="javascrpt:;" onclick="timu('+i+')">'+i+'</a>';
+		}else{
+			ht += '<a href="javascrpt:;" onclick="timu('+i+')">'+i+'</a>';
+		}
+	}
+	$('.topic_d1').html(ht);
+	//$('.answer').hide();
+	$('.topic_out').show();
+}
+//选择
+function timu(v){
+	inx = v;
+	$('.topic_out').hide();
+	$('.assignment1_out').hide();
+	$('.assignment2_out').hide();
+	$('.answer').hide();
+	$('#k'+v).show();
+}
+var fen = 100;
+//提交试卷
+function add(v){
+	ches();
+	var fenz = parseInt(100/count);
+	if(jidui != count){
+		fen = jidui * fenz;
+	}
+	$('.defen').html(fen);
+	if((count-jidui-jicuo) > 0){
+		$('.assignment2_out').show();
+	}else{
+		//if (confirm("你确定提交吗？")) {
+		addsub();
+	}
+	
+	
+}
+		
+function addsub(){
+	if (confirm("你确定提交吗？")) {
+		var ul = '__URL__/datiadd/cid/{$cid}/type/{$type}/fen/'+fen+'/uid/{$openid}';
+		$.get(ul,function(dt){
+			if(dt == 0){
+				alert("提交失败！");
+			}else{
+				$('.assignment2_out').hide();
+				$('.assignment1_out').show();
+			}
+		});
+	}
+}
+$('.dati_p2 i').click(function(e) {
+	//$(this).removeAttr("checked");
+	//$(this).find('input').attr("checked");undefined
+	if($(this).hasClass('dati_p2_i1') || $(this).hasClass('dati_p2_i2')){
+		$(this).removeClass('dati_p2_i1').removeClass('dati_p2_i2');
+		$(this).html($(this).attr('tt'));
+	}else{
+		var iu = $(this).prev().val();
+		if(iu == 1){
+			$(this).addClass('dati_p2_i1').html('√');
+		}else{
+			$(this).addClass('dati_p2_i2').html('X');
+		}
+		
+	}
+	
+    
+});
+</script>
+</html>

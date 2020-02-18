@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<include file="Inc:inc_head" />
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>月子期健康档案管理</b></span>
+		</div>
+		<div class="web_tit">
+		    <script type="text/javascript">
+			var searchURL='__ACTION__';
+			var searchIDs="m_name".split('|');
+			</script>
+            <input type="hidden" id="export" value="" >
+			姓名：<input type="text" id="m_name" value="{$para.m_name}" size="8" >
+			<input type="button" value="搜索" onclick="doSearch()" />
+            <!--<input type="button" value="导出" onclick="$('#export').val(1);doSearch()" />-->
+            <input type="button" value="重置" onclick="doReset()" />
+		</div>
+
+		
+
+        <div class="con_box">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="50">编号</th>
+            <th width="100">姓名</th>
+            <th width="100">出生日期</th>
+            <th width="100">联系电话</th>
+			<th width="100">职业</th>
+            <th width="150">基本操作</th>
+          </tr>
+
+          <volist name="list" id="val" key="k">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$k}</td>
+                  
+                    <!--<td>{$val.account}</td>-->
+                    <td>{$val.m_name}</td>
+					<td>
+						{$val.m_birthday}
+					</td>
+					<td>{$val.m_contact_number}</td>
+					<td>{$val.m_profession}</td>
+					<td>
+						<a href="__URL__/edit/id/{$val.id}">编辑</a> |
+						<!--  <a href="__URL__/delete/id/{$val.id}">删除</a>-->
+						<a href="__URL__/delete/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>"  class="link-del">删除</a>
+					</td>
+				</tr>
+		 </volist>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中" id='delete'/>&nbsp; <input type="button"   value="新增" id='new_add'/></div>
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+
+ </div>
+
+</div>
+</div>  
+<script type="text/javascript">
+document.getElementById('new_add').onclick=function(){
+	window.location.href='__URL__/add';
+}
+document.getElementById('quanxuan').onclick=function(){
+	var check=document.getElementsByName("checkboxes[]");
+	for(i=0;i<check.length;i++){
+		check[i].checked=obj.checked;
+	}
+}
+document.getElementById('delete').onclick=function(){
+	var check=document.getElementsByName("checkboxes[]");
+	var arr='';
+	for(i=0;i<check.length;i++){
+		if(check[i].checked){
+			arr+=check[i].value+',';
+		}
+	}
+	if(arr==''){
+		alert('请先选择需要删除的信息');
+		return;
+	}
+	arr=arr.substring(0,arr.length-1);
+	if(confirm('确定删除选中信息？')){
+		//form.submit();
+		$.ajax({
+			type:'POST',
+			data:{
+				id:arr
+			},
+			url:'__URL__/delete',
+			success:function(data){
+				window.location.reload();
+			}
+		});
+	}
+}
+
+</script>    
+</body>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/wode/css/style.css">
+        <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+    <script src="__PUBLIC__/ke/wode/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+		$(function(){
+			$('.top_choice li:last').css('borderRight',0);
+			$('.fun_ul li:last').css('borderBottom',0);
+			
+			 $(".wdfs_ul1").each(function(){
+				$(this).find('li').last().css('borderBottom',0);		
+			 })
+			
+		});
+
+    </script>
+    
+</head>
+
+<body style="background-color: #f3f3f3;">
+    <section class="section">
+        <ul class="fun_ul">
+        	<li><a href="#">
+            	<img class="fun_ul_img1" src="{$user.headimgurl}" onerror="this.src='__PUBLIC__/ke/wode/img/img4.jpg'">
+                <div class="fun_ul_d1">
+                	<P class="fun_ul_d1_p1">{$user.nickname}<span>已消费：{$user.jine}元</span></P>
+                    <P class="fun_ul_d1_p2">{$user.addtime}  成为粉丝</P>
+                </div></a>
+                <P class="fun_ul_d2_p2" style="top:28px;"><a href="__URL__/bansongquan?openid={$openid}&sopenid={$sopenid}">送 券</a></P>
+            </li>
+        </ul>
+		<P class="wdfs">本月</P>
+        <ul class="wdfs_ul1">
+        <foreach name="list" item="li">
+        	<li><a href="#">
+            	<p class="wdfs_ul1_p1"><span>{$li.XQ}</span><br>{$li.DATE}</p>
+                <p class="wdfs_ul1_p2 bg1">月嫂</p>
+                <div class="wdfs_ul1_d">
+                	<P class="wdfs_ul1_d_p1">+{$li.MONEY}</P>
+                    <p class="wdfs_ul1_d_p2">购买了《{$li.PAYCONTENT}》线上课程</p>
+                </div>
+            </a></li>
+        </foreach>
+        <!-- 
+        	<li><a href="#">
+            	<p class="wdfs_ul1_p1"><span>周三</span><br>09-07</p>
+                <p class="wdfs_ul1_p2 bg1">月嫂</p>
+                <div class="wdfs_ul1_d">
+                	<P class="wdfs_ul1_d_p1">+1680</P>
+                    <p class="wdfs_ul1_d_p2">购买了《精英母婴护理师》线上课程</p>
+                </div>
+            </a></li>
+            <li><a href="#">
+            	<p class="wdfs_ul1_p1"><span>周三</span><br>2016-09-07</p>
+                <p class="wdfs_ul1_p2 bg2">育儿</p>
+                <div class="wdfs_ul1_d">
+                	<P class="wdfs_ul1_d_p1">+1680</P>
+                    <p class="wdfs_ul1_d_p2">购买了《精英母婴护理师》线上课程</p>
+                </div>
+            </a></li>
+            <li><a href="#">
+            	<p class="wdfs_ul1_p1"><span>周三</span><br>09-07</p>
+                <p class="wdfs_ul1_p2 bg3">直播</p>
+                <div class="wdfs_ul1_d">
+                	<P class="wdfs_ul1_d_p1">+1680</P>
+                    <p class="wdfs_ul1_d_p2">购买了《精英母婴护理师》线上课程</p>
+                </div>
+            </a></li>
+             -->
+        </ul>
+    </section>
+</body>
+</html>

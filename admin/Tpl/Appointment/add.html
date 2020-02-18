@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>签约编辑</b></span>
+		</div>
+
+        <div class="con_box">
+			<form method="post" action="__SELF__" id="form" name="form">
+				<div id="data_area">
+                    
+                </div>
+
+                <table class="add_table">
+					<tr>
+						<th>预约日期：</th>
+						<td><?php echo date('Y-m-d H:i', $arr['plan_date']); ?></td>
+					</tr>
+                    <tr>
+						<th>联系人姓名：</th>
+						<td>{$arr.username}</td>
+					</tr>
+
+                    <tr>
+						<th>联系人电话：</th>
+						<td>{$arr.tel}</td>
+					</tr>
+                    
+                    <tr>
+						<th>备注：</th>
+						<td>
+                            {$arr.memo}
+                        </td>
+					</tr>
+
+                    <tr>
+						<th>预约阿姨：</th>
+						<td>
+                            <?php
+                            $hw_rows = M('houseworker')->where("id IN (". $arr['hw_ids'] .")")->select();
+                            ?>
+                            <foreach name="hw_rows" item="row">
+                            <a href="__APP__/Houseworker/edit/id/{$row.id}" target="_blank">{$row.title}</a>
+                            </foreach>
+                        </td>
+					</tr>
+
+                    <tr>
+						<th>签约阿姨：</th>
+						<td>
+                            <?php
+                            $hw_row = M('houseworker')->where(array('id'=>$arr['hw_id']))->find();
+                            if($hw_row){
+                            ?>
+                            <a href="__APP__/Houseworker/edit/id/{$hw_row.id}" target="_blank">{$hw_row.title}</a>
+                            <?php } ?>
+                        </td>
+					</tr>
+
+                    <tr>
+						<th>面试方式：</th>
+						<td>
+                            {$arr.meet_type}
+                        </td>
+					</tr>
+                    <tr>
+						<th>服务地址：</th>
+						<td>
+                            {$arr.address}
+                        </td>
+					</tr>
+                    <tr>
+						<th>门牌号：</th>
+						<td>
+                            {$arr.street}
+                        </td>
+					</tr>
+
+                    <tr>
+						<th>状态：</th>
+						<td>
+                            <select name="info[status]">
+                                <option value="">请选择</option>
+                                <?php
+                                    $status_arr = D('Member')->appointment_status_arr;
+                                ?>
+                                <foreach name="status_arr" item="item" key="k">
+                                    <option value="{$k}" <?php if($arr['status'].''===$k.'')echo 'selected'; ?>>{$item}</option>
+                                </foreach>
+                            </select>
+                        </td>
+					</tr>
+
+                    
+					<tr>
+						<th></th>
+						<td>
+							<input type="hidden" name="id" value="{$arr.id}"/>
+							<input type="hidden" name="listurl" value="{$listurl}"/>
+							<a href="javascript:;" onclick="doSave();"class="add_yes"></a>
+							<a href="__URL__/lists" class="add_no"></a>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+function doSave(){
+    var txts = $('[data-name]'), dw=$('#data_area'), keys, key, n;
+    dw.html(''), txts.each(function(){
+        keys=$(this).val().split('\n'), n=$(this).attr('data-name')
+        for(var i=0, l=keys.length;i<l;i++){
+            key=$.trim(keys[i]), key&&(dw.append('<input type="hidden" name="'+n+'" value="'+key+'">'));
+        }
+    });
+    $('[id^=tt]').each(function(){
+        updateVal($(this).attr('id'));
+    });
+    document.form.submit();
+}
+</script>
+
+</body>
+
+</html>

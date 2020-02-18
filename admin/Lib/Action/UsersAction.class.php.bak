@@ -1,0 +1,78 @@
+<?php
+// 本类由系统自动生成，仅供测试用途
+class UsersAction extends Action{
+	private $key = 'abcdefghigklmn123456789';
+	private $errorMessage = '';
+	private $USERMODEL = 'user_model';
+	
+	
+	static $error = '系统异常';
+	static $telError = '用户名不存在';
+	static $loginError = '密码错误';
+	static $loginStatusError = '账号已被禁用，请联系客服';
+	static $regTelError = '用户名不存在存在';
+	static $regSuccess = '注册成功';
+	static $loginSuccess = '注册成功';
+	static $regError = '注册失败';
+	static $perfactMessageSuccess = '信息完善成功';
+	static $perfactMessageErrors = '信息完善失败';
+	static $perfactMessageError = '请完善信息';
+	static $false='修改失败';
+
+	/**
+	 *  登录接口 /Index/memberLogin
+	 * 	方式：POST
+	 *  发送参数：
+	 *  	tel 手机号
+	 *  	password 无加密密码
+	 *  返回参数
+	 *  	1 => uid 用户唯一标示
+	 *
+	 * */
+	public function memberLogin(){
+		//$_POST['DengLuUserName']="13355667788";
+		//$_POST['Denglupassword']="328178aa681ce9a046c1d6ebd28387e7";
+		//$data['DengLuUserName']=$_REQUEST['DengLuUserName'];
+		//$data['Denglupassword']=$_REQUEST['Denglupassword'];
+		//echo $this->successMessage('1','草熬成浓啊',$data);die;
+		$db = D('User');
+		if($_REQUEST){
+			if(!$db->validate_tel($_REQUEST['DengLuUserName'])){
+				echo $this->errorMessage('-2',self::$telError);
+			}else{
+				$result = $db->validate($_REQUEST);
+				//print_r($result);die;
+				
+				if($result[0]['status'] == 0){
+					echo $this->successMessage('0',self::$loginStatusError);exit();
+				}
+				if($result){
+					
+					echo $this->successMessage('1',self::$loginSuccess,$result[0]['id']);
+				}else{
+					echo $this->errorMessage('0',self::$loginError);
+				}
+			}
+		}else{
+			echo $this->errorMessage('-1',self::$error);
+		}
+	}
+
+
+
+	private function successMessage($code,$message,$data){
+		$message = array(
+				'code'=>$code,
+				'message'=>$message,
+				'data'=>$data
+		);
+		return json_encode(array('result'=>$message));
+	}
+	private function errorMessage($code,$message){
+		$message = array(
+			'code'=>$code,
+			'message'=>$message
+		);
+		return json_encode(array('result'=>$message));
+	}
+}

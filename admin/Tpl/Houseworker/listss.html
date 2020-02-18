@@ -1,0 +1,82 @@
+	
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/index.css">
+	<div  id="tihuan">
+
+
+				<ul class="index_con_nav_right_Ti">
+
+				<foreach   name='list' item="val">
+					<li>
+						<div>
+							<div class="index_con_nav_right_Ti_left">
+								<img src='<?php  if($val["pic"]=="")
+								{
+                                 echo "__PUBLIC__/index/images/abc_5.png";
+
+								}else
+								{
+								echo $val["pic"];
+								}
+							
+								?>' style="width:73px;height:106px;">
+						
+							<p>{$val.id}</p>
+								<input type="checkbox" class="checkbox_1">
+							</div>
+							<div class="index_con_nav_right_Ti_right">
+								<h4><a href="__APP__/houseworker/xiangqing/id/{$val.id}"  >{$val.title}</a></h4>
+								<p>
+                   <!--{$val.minzu}-->
+                    <?php $age_data = D('Common')->getAgeDataFromDate($val['birthday']); echo $age_data['age']? $age_data['age'].'岁' : ''; ?>
+                    {$age_data.shuxiang}
+                    {$age_data.xingzuo}</p>
+								<a href="#" class="a_1"><img src="__PUBLIC__/index/images/zbcss01.png">{$val.cellphone}</a><br/>
+								<span class="span_1" ><?php echo M('hwlevel')->where(array('id'=>$val['hwlevel_id']))->getField('name'); ?></span>  
+								<span class="span_2"></span><br/>
+									<span>&nbsp;</span><br/>
+								<p><?php echo $val['area_ids']? D('admin://Area')->getAreanames($val['area_ids']) : ''; ?></p>
+
+					            <a href="__URL__/edit/id/{$val.id}/tabid/1/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">图片</a>|
+								<a href="__URL__/edit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a>|
+								<a href="__URL__/del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a>
+						
+							</div>
+						</div>
+					</li>
+					</foreach>
+
+
+
+
+
+					
+					<div class="clear"></div>
+				</ul>
+				
+
+
+
+
+
+
+
+				
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+	
+	
+		
+	
+<div class="index_option">
+		
+		<center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php
+    $Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+    ?>
+<include file="Inc:inc_xpage" />
+</center>
+
+
+	</div>
+	</div>

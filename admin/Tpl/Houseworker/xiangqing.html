@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<?php 
+	$no_style = 1;
+	$include = array('filespace');
+?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/index.css">
+</head>
+<body>
+	<!--<div class="header_nva">
+		<img src="images/abc_01.png">
+		<ul class="header_nva_list" id="list_1">
+			<li><a href="#" class="active_3">用户中心</a></li>
+			<li><a href="#">用户中心</a></li>
+			<li><a href="#">用户中心</a></li>
+			<li><a href="#">用户中心</a></li>
+			
+		</ul >
+		<ul class="header_nva_list2">
+			<li>你好，程敏</li>
+			<li><a href="#">企业邮箱</a><span>(200)</span>|</li>
+			<li><a href="#">免费注册</a>|</li>
+			<li><a href="#">退出</a></li>
+		</ul>
+	</div>
+		<div class="index_con">
+			<div class="index_con_nav">
+				<ul class="index_con_nav_list" id="list_2">
+					<li> <a href="#" class="active_1" > 首页</a></li>
+					<li> <a href="#"> 家政员</a></li>
+					<li> <a href="#"> 家政员</a></li>
+					<li> <a href="#"> 家政员</a></li>
+					<li> <a href="#"> 家政员</a></li>
+					<li> <a href="#"> 家政员</a></li>
+					<li> <a href="#"> 家政员</a></li>
+					<li> <a href="#"> 家政员</a></li>
+					<li> <a href="#"> 家政员</a></li>
+					<li> <a href="#"> 家政员</a></li>
+					<li> <a href="#"> 家政员</a></li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+			-->
+			<div class="index_con_nav_right">
+				<ul class="index_2con_nav_tlist" id="list_f">
+					<li class="activeF">我不知道</li>
+					<li>我不知道</li>
+					<li>我不知道</li>
+					<li>我不知道</li>
+					<li>我不知道</li>
+					<div class="clear"></div>
+				</ul>
+				<h3 class="index_3_right_dead">
+				
+				{$arr[0].title} 
+					<span><?php echo M('hwlevel')->where(array('id'=>$arr['0']['hwlevel_id']))->getField('name'); ?></span>
+					<i>新人</i>ID：
+					<span>0031884</span>
+				</h3>
+				<div  class="index_3_right_con">
+					<div class="index_3_right_img">
+						<img src='<?php  if($arr["pic"]=="")
+								{
+                                 echo "__PUBLIC__/index/images/abc_5.png";
+
+								}else
+								{
+								echo $val["pic"];
+								}
+							
+								?>'>
+						<a href="#">更换照片</a>
+					</div>
+					<div class="index_3_right_word">
+					
+                    
+						<h4>
+							<span> <?php $age_data = D('Common')->getAgeDataFromDate($arr['0']['birthday']); echo $age_data['age']? $age_data['age'].'岁' : ''; ?>&nbsp</span>
+							<span>{$age_data.shuxiang}&nbsp</span>
+							<span>{$age_data.xingzuo}&nbsp</span>
+							<span>黑龙江人&nbsp</span>
+							<span>{$arr[0].minzu}&nbsp</span>
+							<span>初中学历&nbsp</span>
+							<span>已婚</span>
+						</h4>
+						<h5>{$arr.cellphone}</h5>
+						<h6>
+							身高：
+							<span>163</span>厘米 
+							体重：
+							<span>63</span>公斤 
+							血型：
+							<span>O</span>
+						</h6>
+						<p>身份证号：<span>{$arr[0].idcard}</span></p>
+						<p>户籍所在地：<span>{$arr[0].adress_num}</span></p>
+					
+						<p>工作经验：<span>{$arr[0].experence_year}</span></p>
+						<p>参考工资：<span class="colorA"><i>3500</i>元/月</span></p>
+					
+						
+
+
+
+
+
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="index_3_right_cuowucon">
+					<p>该家政员还没有照片，请及时上传<a href="#">[上传照片]</a></p>
+					<p>该家政员还没有照片，请及时上传<a href="#">[上传照片]</a></p>
+					<p>该家政员还没有照片，请及时上传<a href="#">[上传照片]</a></p>
+					<p>该家政员还没有照片，请及时上传<a href="#">[上传照片]</a></p>
+					<p>该家政员还没有照片，请及时上传<a href="#">[上传照片]</a></p>
+					<p>该家政员还没有照片，请及时上传<a href="#">[上传照片]</a></p>
+					<p>该家政员还没有照片，请及时上传<a href="#">[上传照片]</a></p>
+					
+				</div>
+
+				<div class="index_3_right_cuowucon">
+					<p>该家政员资料尚未通过审核，请谨慎推荐！</p>
+					
+					
+				</div>
+				<ul class="index_3_right_navcon_list">
+					<li>浏览</li>
+					<li>浏览</li>
+					<li>浏览</li>
+					<li>浏览</li>
+					<li>浏览</li>
+					<li>浏览</li>
+					<div class="clear"></div>
+				</ul>
+
+				<ul class="index_3_right_navcon_list2">
+					<li><a href='#bank' style='color:#666666'>个人信息</a></li>
+					<li><a href='#tra' style='color:#666666'>培训记录</a></li>
+					<li><a href='#tixing' style='color:#666666'>提醒</a></li>
+					<li><a href='#shouzhi' style='color:#666666'>收支记录</a></li>
+					<li><a href='#hetong' style='color:#666666'>合同跟踪记录</a></li>
+					<li><a href='#genzhong' style='color:#666666'>跟踪记录</a></li>
+					<li><a href='#pingjia' style='color:#666666'>评价</a></li>
+					<li><a href='#xiugai' style='color:#666666'>修改记录</li>
+					<div class="clear" style='color:#666666'></div>
+
+				</ul>
+           
+             
+
+
+
+
+				
+				<div class="index_3_right_xianlist"  id='#bank'>
+					<ul class="index_3_right_xianlist_ls1">
+						<li class="active">银行卡</li>
+						<li><a data-art="1" href="__URL__/bank_add/id/{$arr[0].id}" id="show_1"> 添加</a></li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="index_3_right_xianlist_ls2">
+						<li class="borderleft">户名</li>
+						<li>开户行</li>
+						<li>账号</li>
+						<li>网点</li>
+						<li>操作</li>
+						<div class="clear"></div>
+
+					</ul>
+
+
+                  <foreach name="arr2" item="v2">
+					<ul class="index_3_right_xianlist_ls3">
+						<li class="borderleft">{$v2.bank_username}</li>
+						<li>{$v2.band_name}</li>
+						<li>{$v2.bank_id}</li>
+						<li>{$v2.branches}</li>
+						<li class="alian"><a data-art="1" href="__URL__/bank_edit/id/{$v2.id}/houser_id/{$arr[0].id}">编辑</a>|<a href="__URL__/bank_del/id/{$v2.id}/houser_id/{$arr[0].id}" class="link-del">删除</a></li>
+						<div class="clear"></div>
+					</ul>
+
+					</foreach>
+				</div>
+
+
+
+
+
+
+
+
+				<div class="index_3_right_xianlist">
+					<ul class="index_3_right_xianlist_ls1 ">
+						<li class="active">家庭情况</li>
+						<li><a data-art="1" href="__URL__/family_add/id/{$arr[0].id}" id="show_2"> 添加</a></li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="index_3_right_xianlist_ls2 index_3_right_xianlist_ls6">
+						<li class="borderleft">姓名</li>
+						<li>关系</li>
+						<li>联系电话</li>
+						<li>所在单位</li>
+						<li>职业</li>
+						<li>操作</li>
+						<div class="clear"></div>
+
+					</ul>
+                <foreach name='arr3' item='v3'>
+					<ul class="index_3_right_xianlist_ls3 index_3_right_xianlist_ls6">
+						<li class="borderleft">{$v3.f_name}</li>
+						<li>{$v3.condition}</li>
+						<li>{$v3.tel}</li>
+						<li>{$v3.f_unit}</li>
+						<li>{$v3.work}</li>
+						<li class="alian"><a data-art="1" href="__URL__/family_edit/id/{$v3.id}/houser_id/{$arr[0].id}">编辑</a>|<a href="__URL__/family_del/id/{$v3.id}/houser_id/{$arr[0].id}" class="link-del">删除</a></li>
+						<div class="clear"></div>
+				</ul>
+					</foreach>
+				</div>
+
+
+
+
+				<div class="index_3_right_xianlist">
+					<ul class="index_3_right_xianlist_ls1">
+						<li class="active">工作经历</li>
+						<li><a data-art="1" href="__URL__/work_add/id/{$arr[0].id}" id="show_2">  添加</a></li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="index_3_right_xianlist_ls2">
+						<li class="borderleft">起止时间</li>
+						<li>工作地点</li>
+						<li>工作内容</li>
+						<li>工资</li>
+						<li>操作</li>
+						<div class="clear"></div>
+
+					</ul>
+					<foreach name='arr4' item='v4'>
+
+					<ul class="index_3_right_xianlist_ls3">
+						<li class="borderleft">{$v4.start_time}-{$v4.end_time}</li>
+						<li>{$v4.work_adress}</li>
+						<li>{$v4.work_content}</li>
+						<li>{$v4.work_money}</li>
+						<li class="alian"><a data-art="1" href="__URL__/work_edit/id/{$v4.id}/houser_id/{$arr[0].id}">编辑</a>|<a href="__URL__/work_del/id/{$v4.id}/houser_id/{$arr[0].id}" class="link-del">删除</a></li>
+						<div class="clear"></div>
+					</ul>
+					</foreach>
+				</div>
+
+
+				<div class="index_distan">
+					<div class="index_distan1" id="xian_4">
+						<form class="index_distan1_form">
+							<ul>
+								<li><span>证件名称；</span><input type="text"></li>
+								<li><span>编号；</span><input type="text"></li>
+								<li><span>上传证书；</span><input type="file"></li>
+					
+							</ul>
+							<div class="index_distan1_formbotton">
+								<a class="a1" href="javascript:void(0)">确认</a>
+								<a class="a2" href="javascript:void(0)" id="hied_4">取消</a>
+							</div>
+						</form>
+					</div>
+				</div>
+
+
+			<div class="index_3_right_xianlist">
+					<ul class="index_3_right_xianlist_ls1">
+						<li class="active">证书及配件</li>
+						<li><a href="javascript:void(0)" id="show_4"> 添加</a></li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="index_3_right_xianlist_ls2">
+						<li class="borderleft">证件/证书</li>
+						<li>编号</li>
+						<li>证书图标</li>
+						<li>证书图片</li>
+						<li>操作</li>
+						<div class="clear"></div>
+
+					</ul>
+
+					<ul class="index_3_right_xianlist_ls3">
+						<li class="borderleft">户名</li>
+						<li>不知道</li>
+						<li>212312556456</li>
+						<li>不知道</li>
+						<li class="alian"><a href="#">编辑</a>|<a href="#">删除</a></li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+
+
+
+
+				
+
+              <div class="index_3_right_xianlist" id='tra'>
+					<ul class="index_3_right_xianlist_ls1">
+						<li class="active">培训记录</li>
+						<li><a data-art="1" href="__URL__/add_1/id/{$arr[0].id}" id="show_5"> 添加</a></li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="index_3_right_xianlist_ls2 index_3_right_xianlist_ls8">
+						<li class="borderleft">时间</li>
+						<li>培训地点</li>
+						<li>培训类型</li>
+						<li>培训项目</li>
+						<li>培训老师</li>
+						<li>评分</li>
+						<li>评价</li>
+						
+						<li>操作</li>
+						<div class="clear"></div>
+
+					</ul>
+
+<foreach name='arr1' item='v1'>
+					<ul class="index_3_right_xianlist_ls3 index_3_right_xianlist_ls8">
+						<li class="borderleft"><?php  echo $v1['start_time']?>/<?php echo $v1['end_time']?></li>
+						<li>{$v1.training_adress}</li>
+						<li>{$v1.tra_type}</li>
+						<li>{$v1.tra_name}</li>
+						<li>{$v1.tra_tea}</li>
+						<li>{$v1.score}</li>
+						<li>{$v1.evealuation}</li>
+
+						<li class="alian"><a data-art="1" href="__URL__/tra_edit/id/{$v1.id}/houser_id/{$arr[0].id}">编辑</a>|<a href="__URL__/tra_del/id/{$v1.id}/houser_id/{$arr[0].id}" class="link-del" >删除</a></li>
+						<div class="clear"></div>
+					</ul>
+					</foreach>
+				</div>
+
+
+
+			
+	
+		
+              <div class="index_3_right_xianlist" id='tixing'>
+					<ul class="index_3_right_xianlist_ls1">
+						<li class="active">提醒</li>
+						<li><a data-art="1" href="__URL__/tixing_add/id/{$arr[0].id}" id="show_6"> 添加</a></li>
+						<div class="clear"></div>
+					</ul>
+			
+					<ul class="index_3_right_xianlist_ls2">
+						<li class="borderleft">提醒时间</li>
+						<li>提醒事项</li>
+						
+						<div class="clear"></div>
+
+					</ul>
+					<!--<?php print_r($arr5)?>-->
+                          <foreach name='arr5' item='v5'>
+					<ul class="index_3_right_xianlist_ls3">
+						<li class="borderleft">{$v5.r_time}</li>
+						<li>{$v5.r_matters}</li>
+						
+						<div class="clear"></div>
+					</ul>
+					</foreach>
+				</div>
+
+			
+	
+		 <div class="index_3_right_xianlist" id='shouzhi'>
+					<ul class="index_3_right_xianlist_ls1">
+						<li class="active">收支记录</li>
+						<li><a data-art="1" href="__URL__/shouzhi_add/id/{$arr[0].id}" id="show_6"> 添加</a> </li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="index_3_right_xianlist_ls2 index_3_right_xianlist_ls11">
+						<li class="borderleft">ID</li>
+						<li>项目</li>
+						<li>付(收)款人</li>
+						<li>经办人</li>
+						<li>登记人</li>
+						<li>金额</li>
+						<li>付款方式</li>
+						<li>付款时间</li>
+						<li>收据编号</li>
+                       <li>状态</li>
+						<li>操作</li>
+						<div class="clear"></div>
+
+					</ul>
+					<foreach name='arr8' item='v8'>
+
+					<ul class="index_3_right_xianlist_ls3 index_3_right_xianlist_ls11">
+						<li class="borderleft">{$v8.id}</li>
+						<li>{$v8.project}</li>
+						<li>{$v8.pay_peo}</li>
+						<li>{$v8.agent}</li>
+						<li>{$v8.registars}</li>
+						<li>{$v8.money}</li>
+						<li>{$v8.pay_type}</li>
+						<li>{$v8.pay_time}</li>
+						<li>{$v8.pay_id}</li>
+						<li>{$v8.status}</li>
+						<li class="alian"><a  data-art="1" href="__URL__/shouzhi_edit/id/{$v8.id}/houser_id/{$arr[0].id}">编辑</a>|<a href="#">删除</a></li>
+						<div class="clear"></div>
+					</ul>
+					</foreach>
+				</div>
+
+
+
+				<div class="index_distan">
+					<div class="index_distan1" id="xian_8">
+						<form class="index_distan1_form">
+							<ul>
+								<li><span>类别；</span><input type="text"></li>
+								<li><span>类别；</span><input type="text"></li>
+								<li><span>类别；</span><i>???</i></li>
+								<li><span>类别；</span><input type="text"></li>
+							</ul>
+							<div class="index_distan1_formbotton">
+								<a class="a1" href="javascript:void(0)">确认</a>
+								<a class="a2" href="javascript:void(0)" id="hied_8">取消</a>
+							</div>
+						</form>
+					</div>
+				</div>
+
+ <div class="index_3_right_xianlist" id='hetong'>
+					<ul class="index_3_right_xianlist_ls1">
+						<li class="active">合同</li>
+						<li><a data-art="1" href="__URL__/contract_add/id/{$arr[0].id}" id="show_6"> 添加</a></li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="index_3_right_xianlist_ls2 index_3_right_xianlist_ls11">
+						<li class="borderleft">合同编号</li>
+						<li>雇主</li>
+						<li>家政员</li>
+						<li>工作</li>
+						
+						<li>起止日期</li>
+						<li>工资</li>
+						<li>发工资日</li>
+						<li>工作天数</li>
+						<li>目前状态</li>
+						<li>经纪人</li>
+						<li>操作</li>
+						<div class="clear"></div>
+
+					</ul>
+
+					<foreach name='arr6' item='v6'>
+
+					<ul class="index_3_right_xianlist_ls3 index_3_right_xianlist_ls11">
+						<li class="borderleft">{$v6.contract_id}</li>
+						<li>{$v6.employers}</li>
+						<li>{$v6.work_member}</li>
+						<li>{$v6.work}</li>
+						<li>{$v6.comment}</li>
+						<li>{$v6.wage}</li>
+						<li>{$v6.f_wage}</li>
+						<li>{$v6.workday}</li>
+						<li>{$v6.status}</li>
+						<li>{$v6.agent}</li>
+						<li class="alian"><a data-art="1" href="__URL__/contract_edit/id/{$v6.id}/houser_id/{$arr[0].id}">编辑</a>||<a href="__URL__/contract_del/id/{$v6.id}/houser_id/{$arr[0].id}" class="link-del">删除</a></li>
+						<div class="clear"></div>
+					</ul>
+					</foreach>
+				</div>
+				
+
+				<div class="index_distan">
+					<div class="index_distan1" id="xian_9">
+						<form class="index_distan1_form">
+							<ul>
+								<li><span>类别；</span><input type="text"></li>
+								<li><span>类别；</span><input type="text"></li>
+								<li><span>类别；</span><i>???</i></li>
+								<li><span>类别；</span><input type="text"></li>
+							</ul>
+							<div class="index_distan1_formbotton">
+								<a class="a1" href="javascript:void(0)">确认</a>
+								<a class="a2" href="javascript:void(0)" id="hied_9">取消</a>
+							</div>
+						</form>
+					</div>
+				</div>
+        <div class="index_3_right_xianlist" id='genzong'>
+					<ul class="index_3_right_xianlist_ls1 ">
+						<li class="active">跟踪记录</li>
+						<li><a href="javascript:void(0)" id="show_9"> 添加</a></li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="index_3_right_xianlist_ls2 index_3_right_xianlist_ls7">
+						<li class="borderleft">时间</li>
+						<li>类别</li>
+						<li>雇主</li>
+						<li>家政员</li>
+						<li>内容</li>
+						<li>登记人</li>
+						
+						<li>操作</li>
+						<div class="clear"></div>
+
+					</ul>
+
+					<ul class="index_3_right_xianlist_ls3 index_3_right_xianlist_ls7">
+						<li class="borderleft">户名</li>
+						<li>不知道</li>
+						<li>212312556456</li>
+						<li>不知道</li>
+						<li>内容</li>
+						<li>登记人</li>
+						<li class="alian"><a href="#">编辑</a>|<a href="#">删除</a></li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+
+
+				<div class="index_distan">
+					<div class="index_distan1" id="xian_10">
+						<form class="index_distan1_form">
+							<ul>
+								<li><span>类别；</span><input type="text"></li>
+								<li><span>类别；</span><input type="text"></li>
+								<li><span>类别；</span><i>???</i></li>
+								<li><span>类别；</span><input type="text"></li>
+							</ul>
+							<div class="index_distan1_formbotton">
+								<a class="a1" href="javascript:void(0)">确认</a>
+								<a class="a2" href="javascript:void(0)" id="hied_10">取消</a>
+							</div>
+						</form>
+					</div>
+				</div>
+
+
+
+
+
+
+				 <div class="index_3_right_xianlist"  id='pingjia'>
+					<ul class="index_3_right_xianlist_ls1">
+						<li class="active">评价</li>
+						<li></li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="index_3_right_xianlist_ls2 index_3_right_xianlist_ls8">
+					
+						<li class="borderleft">编号</li>
+						<li>雇主</li>
+						<li>服务时间</li>
+						<li>婴儿护理</li>
+						<li>产妇护理</li>
+						<li>与家人相处</li>
+						<li>月子餐口味</li>
+						<!--<li>评价时间</li>-->
+					
+						<li>操作</li>
+						<div class="clear"></div>
+
+					</ul>
+                        <foreach name='arr9' item='v9'>
+					   <ul class="index_3_right_xianlist_ls3  index_3_right_xianlist_ls8">
+					
+						<li class="borderleft">{$v9.id}</li>
+						<li>{$v9.boss}</li>                          
+						<li>{$v9.work_time}</li>
+						<li>{$v9.yehuli}颗星</li>
+						<li>{$v9.chhuli}颗星</li>
+						<li>{$v9.jrxiangchu}颗星</li>
+						<li>{$v9.yzckouwei}颗星</li>
+						<!--<li>{$v9.addtime}</li>-->
+
+
+						<li class="alian">
+						<!--<a data-art="1" href="__APP__/pinglun/more/id/{$v9.id}">编辑</a>-->|
+						<a href="__APP__/pinglun/delete/id/{$v9.id}" class="link-del">删除</a></li>
+						<div class="clear"></div>
+					    </ul>
+
+					</foreach>
+				</div>
+
+	<div class="index_distan">
+					<div class="index_distan1" id="xian_11">
+						<form class="index_distan1_form">
+							<ul>
+								<li><span>类别；</span><input type="text"></li>
+								<li><span>类别；</span><input type="text"></li>
+								<li><span>类别；</span><i>???</i></li>
+								<li><span>类别；</span><input type="text"></li>
+							</ul>
+							<div class="index_distan1_formbotton">
+								<a class="a1" href="javascript:void(0)">确认</a>
+								<a class="a2" href="javascript:void(0)" id="hied_11">取消</a>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="index_3_right_xianlist"  id='xiugai'>
+					<ul class="index_3_right_xianlist_ls1">
+						<li class="active">修改记录</li>
+						<li><a href="javascript:void(0)" id="show_11"> 添加</a></li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="index_3_right_xianlist_ls2 index_3_right_xianlist_ls8">
+						<li class="borderleft">时间</li>
+						<li>修改记录</li>
+						<li>修改前</li>
+						<li>修改后</li>
+						<li>提交人</li> 
+						<li>审核</li>
+						<li>审核人</li>
+						<li>操作</li>
+						<div class="clear"></div>
+
+					</ul>
+
+					<ul class="index_3_right_xianlist_ls3 index_3_right_xianlist_ls8">
+						<li class="borderleft">78978978978</li>
+						<li>不知道</li>
+						<li>212312556456</li>
+						<li>不知道</li>
+						<li>提交人</li>
+						<li>审核</li>
+						<li>审核人</li>
+						<li class="alian"><a href="#">编辑</a>|<a href="#">删除</a></li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+
+
+				<div class="index_3_right_xianlist">
+					<ul class="index_3_right_xianlist_ls1">
+						<li class="active">状态</li>
+						<li></li>
+						<div class="clear"></div>
+					</ul>
+					<ul class="index_3_right_xianlist_ls2 index_3_right_xianlist_ls9">
+						<li class="borderleft">
+						<input  type="radio"   name="in" value='1'onchange="upda_st(<?php echo $arr[0]['id']; ?>,1)" <?php  if($arr[0]['status']==1) echo "checked" ?>  onchange >新人</li>
+						<li><input style="width:20px;height:10px;" type="radio" onchange="upda_st(<?php echo $arr[0]['id']; ?>,2)" name="in" value="2" class="inputB"  <?php  if($arr[0]['status']==2) echo "checked" ?>/>培训&nbsp;</li>
+						<li><input style="width:20px;height:10px;" type="radio" onchange="upda_st(<?php echo $arr[0]['id']; ?>,3)" name="in" value="3" class="inputB" <?php  if($arr[0]['status']==3) echo "checked" ?> />待岗&nbsp;</li>
+						<li><input  style="width:20px;height:10px;" type="radio" onchange="upda_st(<?php echo $arr[0]['id']; ?>,4)" name="in" value="4" class="inputB" <?php  if($arr[0]['status']==4) echo "checked" ?> />优先&nbsp;</li>
+						<li><input style="width:20px;height:10px;" type="radio" onchange="upda_st(<?php echo $arr[0]['id']; ?>,5)"name="in" value="5" class="inputB" <?php  if($arr[0]['status']==5) echo "checked" ?> />在岗&nbsp;</li>
+						<li><input style="width:20px;height:10px;" type="radio" onchange="upda_st(<?php echo $arr[0]['id']; ?>,6)"name="in" value="6" class="inputB"  <?php  if($arr[0]['status']==6) echo "checked" ?>/>休假&nbsp;</li>
+						<li><input style="width:20px;height:10px;" type="radio" onchange="upda_st(<?php echo $arr[0]['id']; ?>,7)" name="in" value="7" class="inputB" <?php  if( $arr[0]['status']==7) echo "checked" ?>/>转行&nbsp;</li>						
+						<li><input style="width:20px;height:10px;" type="radio" onchange="upda_st(<?php echo $arr[0]['id']; ?>,8)" name="in" value="8" class="inputB" <?php  if($arr[0]['status']==8) echo "checked" ?> />失联&nbsp;</li>
+						<li><input  style="width:20px;height:10px;" type="radio" onchange="upda_st(<?php echo $arr[0]['id']; ?>,9)" name="in" value="9" class="inputB" <?php  if($arr[0]['status']==9) echo "checked" ?> />黑名单&nbsp; </li>
+						
+						<div class="clear"></div>
+
+					</ul>
+
+					
+				</div>
+
+
+
+
+
+			</div>
+
+			<div class="clear"></div>
+		</div>
+		
+	
+	
+		
+	</div>
+	
+	<div class=" index_footer">
+	<p>北京icp备09018459 京公网备 11010502011199</p>
+	<p>Copyright  © 2012-2015 北京嘉乐家政服务有限公司 版权所有</p>
+		
+	</div>
+
+	<script type="text/javascript" src="__PUBLIC__/index/js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/index/js/index_1.js"></script>
+	
+</body>
+</html>
+<script type="text/javascript">	
+$('[data-art=1]').bind('click', function(){
+	art.dialog.open($(this).attr('href'), {id:'art_pop_art', title: '添加', width:570, height:'auto', lock:true});
+	return false;
+});
+function closeArt(){
+	art.dialog.list['art_pop_art'].close();
+	location.reload();
+}
+
+function   sel()
+{
+	var px_type=$('#px_type').val();
+
+	   if(px_type=="认证培训")
+	   	{
+	   $('#renzhen').show();
+	   $('#shanggang').hide();
+	   }
+	   if(px_type=="上岗培训")
+	   {
+	   	$('#shanggang').show();
+	   	$('#renzhen').hide();
+	   }
+
+}
+function   upda_st(id,val)
+{
+  if(confirm("确定修改？")){
+			   $.ajax({
+			   url:"__URL__/up_status",
+			   type:'post',
+			   data:{"status":val,"id":id},
+			   success:function(e){
+				   if(e==1)
+				   {
+					   alert("修改成功");
+					   }else{
+					   alert("修改失败");
+						}
+			       } 
+			   })          
+ 
+      }
+}
+</script>

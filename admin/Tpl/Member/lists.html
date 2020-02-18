@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>会员列表</b></span>
+		</div>
+		<div class="web_tit">
+		    <script type="text/javascript">
+			var searchURL='__ACTION__';
+			var searchIDs="truename|mobile|export|mum_type".split('|');
+			</script>
+            <input type="hidden" id="export" value="" >
+			姓名：<input type="text" id="truename" value="{$para.truename}" size="8" >
+            手机号：<input type="text" id="mobile" value="{$para.mobile}" size="8" >
+            用户类型：<select id="mum_type">
+            	<option value=""></option>
+            	<?php 
+            		$mum_types = explode('|', "孕妇|宝妈|无");
+            	?>
+            	<?php foreach ($mum_types as $v): ?>
+            		<option value="{$v}" <?php if($para['mum_type']==$v)echo 'selected'; ?>>{$v}</option>
+            	<?php endforeach ?>
+            </select>
+            <!--  地区：
+             <div id="sel_area" style="display:inline;">
+                <input type="hidden" id="area_id" name="info[area_ids]" />
+             </div> -->
+			<input type="button" value="搜索" onclick="doSearch()" />
+            <!--<input type="button" value="导出" onclick="$('#export').val(1);doSearch()" />-->
+            <input type="button" value="重置" onclick="doReset()" />
+		</div>
+<script>
+$(function(){
+    renderSels('<?php echo $para['area_id'] ?>', {id:'sel_area', name:'info[area_ids]', url:'__APP__/ajax/getAreacode&id=', lbls:'请选择,请选择'}, 0);
+});
+</script>
+		
+
+        <div class="con_box">
+        <form action="__URL__/del" method="POST" id="sub">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="80">编号</th>
+            <th width="80">手机</th>
+            <th>姓名</th>
+            <!--<th width="80">余额</th>-->
+            <th>用户类型</th>
+            <th>类型数据</th>
+            <th width="150">状态</th>
+			<th width="180">添加时间</th>
+            <th width="200">基本操作</th>
+          </tr>
+
+          <foreach name="list" item="val">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+                    <td>{$val.mobile}</td>
+					<td class="td_left">
+					<?php 
+						echo $val['truename'];
+					?>
+					</td>
+                    <!--<td>{$val.account}</td>-->
+                    <td>
+                    	{$val.mum_type}
+                    </td>
+                    <td class="td_left">
+                    	<?php if ($val['mum_type']=='孕妇'){ ?>
+                    	预产期：{$val.pre_born}
+                    	<?php }else if($val['mum_type']=='宝妈'){ ?>
+                    	宝宝生日：{$val.baby_birth} {$val.baby_sex}
+                    	<?php } ?>
+                    </td>
+					<td>
+						<script>showRW({api:'__URL__/is_normal/id/<?php echo $val['id']; ?>/is_normal/', v:'<?php echo $val['status']; ?>', vs:[1, 0]})</script>
+					</td>
+					<td><?php echo date('Y-m-d H:i:s', $val['addtime']); ?></td>
+					<td>
+						<a href="__URL__/edit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a> |
+						<a href="__URL__/del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a>
+					</td>
+				</tr>
+		 </foreach>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"></div>
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+          </form>
+ </div>
+
+</div>
+</div>      
+</body>
+</html>

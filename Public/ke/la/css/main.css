@@ -1,0 +1,79 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	font-family: "Microsoft YaHei";
+}
+    
+html,
+body {
+	-webkit-user-select: none;
+}
+    
+body {
+	font-family: "Microsoft YaHei";
+	background:#f3f3f3;
+	-webkit-text-size-adjust: 100%; //关闭自动调整字体
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+	
+	
+
+}
+
+body -webkit-scrollbar {
+	width: 0;
+}
+
+body {
+	position: relative;
+}
+
+img {
+	border: none;
+	vertical-align: bottom;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+.clear {
+	clear: both;
+}
+
+.outer {
+	zoom: 1;
+}
+
+input[type="submit"],input[type="reset"],input[type="button"],button { -webkit-appearance: none; }
+::-webkit-input-placeholder { /* WebKit browsers */ 
+color: #646464; 
+} 
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color: #646464; 
+} 
+::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+color: #646464; 
+} 
+:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+color: #646464; 
+}  
+
+/*==for IE6/7 Maxthon2==*/
+/**************************header*******************************/
+
+/**************************section*******************************/
+section{
+	width: 640px;
+	overflow:hidden;
+}
+.con2,.con3{ display:none;}
+
+/**************************footer*******************************/

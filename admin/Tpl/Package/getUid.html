@@ -1,0 +1,45 @@
+<link href="http://weixin.pooway.com/yy_admin/static/css/admin_style.css" type="text/css" rel="stylesheet" />
+<script src="http://weixin.pooway.com/yy_admin/static/js/jquery-1.8.0.js"></script>
+<script type="text/javascript">
+var CFG_baseurl = 'http://weixin.pooway.com/yy_admin/';
+</script><link href="http://weixin.pooway.com/yy_admin/static/swfupload/css/swfupload.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/swfupload.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/js/swfupload.queue.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/js/fileprogress.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/js/handlers.js"></script>
+<style type="text/css">
+.userlist{width:780px; margin:0 auto; margin-top:20px;}
+.userlist li{ width:80px; float:left; text-align:center; margin:5px; background-color:#CCCCCC; height:26px; line-height:26px}
+.userlist .sel{ background-color:#FF9933}
+.userlist li a{ color:#000000; text-decoration:none}
+.userlist li a:visited{ color:#66FF00}
+</style>
+<body>
+<div class="userlist">
+<form name="user" method="get">
+<ul>昵称：<input type="text" name="nickname" value="<?php echo $nickname;?>" /><input type="submit" name="get" value="查找" /></ul></ul>
+</form>
+<ul>
+<?php
+foreach($arr2 as $v) {
+	echo '<li><a href="javascript:;" dataid="'.$v['id'].'">'.$v['mobile'].'</a></li>';
+}
+?>
+</ul></div>
+<div class="pagefy mt_10 cl" style="clear:both">
+    <?php
+        $baseurl = 'getUid?nickname='.$nickname;
+        include(dirname(__FILE__) . '/../inc_xpage.php');
+    ?>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('.userlist a').click(function(){
+		var name = $(this).html();
+		var uid = $(this).attr('dataid');
+		parent.setUid(uid,name);
+		parent.art.dialog.list['art_uid'].close();
+	});
+})
+</script>
+</body>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+<body>
+<div class="right">
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>用户权限组修改</b></span>
+		</div>
+
+        <div class="con_box">
+			<form method="post" action="__SELF__" id="form" name="form">
+				<table  class="add_table">
+					<tr>
+						<th>用户名：</th>
+						<td>{$username}</td>
+					</tr>
+					<tr>
+						<th>角&nbsp;&nbsp;色：</th>
+						<td>
+						    <select name="role_id">
+								<option value="">请选择</option>
+								<foreach name="rlist" item="val">
+								<option value="{$val.id}" <?php if($val['check_role'])echo 'selected'; ?>>{$val.name}</option>
+								</foreach>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>
+							<input type="hidden" name="id" value="{$userid}" />
+							<input type="hidden" name="listurl" value="{$listurl}"/>
+							<input type="submit" value="" class="add_yes">
+							<a href="__URL__/lists" class="add_no"></a>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

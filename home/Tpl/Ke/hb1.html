@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<title></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+<script type="text/javascript">
+    var phoneWidth = parseInt(window.screen.width);
+    var phoneScale = phoneWidth / 640;
+    var ua = navigator.userAgent;
+    if (/Android (\d+\.\d+)/.test(ua)) {
+        var version = parseFloat(RegExp.$1);
+        if (version > 2.3) {
+            document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+        } else {
+            document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+        }
+    } else {
+        document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+    }
+</script>
+<script src="__PUBLIC__/ke/wode/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var H = $(window).height();
+        $("body").height(H);
+		$('.container_p3 img').click(function(e) {
+            $('.ale').show();
+        });
+		$('.close11 img').click(function(e) {
+            $('.ale').hide();
+        });
+    })
+
+</script>
+<style type="text/css">
+body,div,p,input,h1,h2,h3,h4,ul,li,ol,dl,dd,dt,a,img,button{ padding:0; margin:0; border:0; list-style:none;}
+
+body{width:640px; height:100%; overflow:hidden; background-size:cover; font-family:"微软雅黑"; }
+input[type="submit"],input[type="reset"],input[type="button"],button { -webkit-appearance: none; }
+
+::-webkit-input-placeholder { /* WebKit browsers */
+　　color:#999;
+　　}
+　　:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+　　color:#999;
+　　}
+　　::-moz-placeholder { /* Mozilla Firefox 19+ */
+　　color:#999;
+　　}
+　　:-ms-input-placeholder { /* Internet Explorer 10+ */
+　　color:#999;
+　　}
+	.container_p1{ text-align:center; margin-top:422px;}
+	.container_p1 img{ width:80px; height:80px; border-radius:9px;}
+	.container_p2{ text-align:center; color:#950c19; font-size:24px; margin-top:20px;}
+	.container_p3{ text-align:center; margin-top:285px;}
+</style>
+</head>
+<body style="background:#e50112 url(__PUBLIC__/ke/wode/images/hhr.png) no-repeat top center;">
+<div class="container">
+	<P class="container_p1"><img src="{$arr.headimgurl}"></P>
+    <P class="container_p2">{$arr.nickname}发来的红包</P>
+    <P class="container_p3"><img src="__PUBLIC__/ke/wode/images/an_03.png"></P>
+<div>
+<!-------------------输入弹框-------------------------------->
+<div class="ale" style="position:fixed; background:rgba(0,0,0,0.8); top:0; left:0; right:0; bottom:0; z-index:9999; display:none;">
+    <div style=" width:451px; height:520px; margin:35% auto 0; overflow:hidden; position:relative;">
+        <img src="__PUBLIC__/ke/wode/images/hhr_ale.png" style="widtn:100%;">
+        <P class="close11" style="text-align:right; width:100%; margin:20px; position:absolute; top:0; left:0;"><img style="width:52px; height:52px; padding-right:40px;" src="__PUBLIC__/ke/wode/images/cuo.png"></P>
+    </div>
+    
+</div>
+
+</body>
+</html>

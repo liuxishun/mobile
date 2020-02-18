@@ -1,0 +1,16 @@
+<xml>
+      <sign>B86BBBF70A919CF57ABB169D3307F662</sign> 
+      <mch_billno>1287611701201711274211934956</mch_billno> 
+      <mch_id>1287611701</mch_id> 
+      <wxappid>wxbfaa1d17ea7b5920</wxappid> 
+      <send_name><![CDATA[好孕妈妈]]></send_name> 
+      <re_openid>oO3bqskjHwNg6qG_8MPIWsFzTMXU</re_openid> 
+      <total_amount>101</total_amount> 
+      <min_value>101</min_value> 
+      <max_value>101</max_value> 
+      <total_num>1</total_num> 
+      <wishing><![CDATA[好孕妈妈奖励给您的红包]]></wishing> 
+      <client_ip><![CDATA[127.0.0.1]]></client_ip> 
+      <act_name><![CDATA[好孕妈妈奖励红包]]></act_name> 
+      <remark><![CDATA[好孕妈妈奖励红包]]></remark>       
+      <nonce_str>756C63FFE11A52E2694BC965A0BBD29F</nonce_str><nick_name><![CDATA[好孕妈妈有限公司]]></nick_name></xml>

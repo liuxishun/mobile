@@ -1,0 +1,90 @@
+/*字体初始化*/
+@media only screen and (max-width: 340px) and (min-width: 320px) {
+  html {
+    font-size: 10px;
+  }
+
+  .div{
+    width: 200px;
+  }
+}
+@media only screen and (max-width: 380px) and (min-width: 340px) {
+  html {
+    font-size: 11px;
+  }
+  .div{
+    width: 400px;
+  }
+
+}
+@media only screen and (max-width: 410px) and (min-width: 380px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 440px) and (min-width: 410px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 470px) and (min-width: 440px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 500px) and (min-width: 470px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  html {
+    font-size: 16px;
+  }
+}
+/*全局样式*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+/*初始化html,body*/
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family:  "Microsoft YaHei",Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  position: relative;
+}
+img {
+  border: none;
+  vertical-align: bottom;
+}
+a {
+  color: #666;
+  text-decoration: none;
+}
+input[type=button],
+input[type=submit] {
+  -webkit-appearance: none;
+  outline: none;
+}
+/*清除浮动*/
+.clear {
+  clear: both;
+}
+/*隐藏元素*/
+.hide {
+  display: none;
+}
+
+ul li{
+  list-style: none;
+}

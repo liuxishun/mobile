@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/laydate/laydate.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>月子期健康档案编辑</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__URL__/save" method='post' id='form'>
+			<table class="add_table" id='table'>
+			<?php foreach($maternal as $key=>$value){?>
+			<input type='hidden' value='<?php echo ($value["id"]); ?>' name='id'/></td>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>一般信息：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>头像：</th>
+						<td>
+						<input type="text" name="m_head_pic" class="add_input" data-preview="1" value="<?php echo ($value["m_head_pic"]); ?>" /> 
+						<a href="javascript:;" onclick="myfilespace({dirName:'maternal',clickFn:'m_head_pic', extraFileUploadParams:{width:600, height:600, forcecut:0}})">浏览</a>
+						</td>
+				</tr>
+				<tr>
+						<th>姓名：</th>
+						<td><input type="text" name="m_name" class="add_input" value='<?php echo ($value["m_name"]); ?>'/></td>
+						
+				</tr>
+				<tr>
+						<th>年龄：</th>
+						<td><select name='m_age'></select></td>
+						
+				</tr>
+				<tr>
+						<th>民族：</th>
+						<td><select name='m_nation'></select></td>
+						
+				</tr>
+				<tr>
+						<th>职业：</th>
+						<td><input type="text" name="m_profession" class="add_input" value='<?php echo ($value["m_profession"]); ?>'/>
+						
+				</tr>
+				<tr>
+						<th>文化程度：</th>
+						<td><select name='m_edu_degree'></select></td>
+						
+				</tr>
+				<tr>
+						<th>联系电话：</th>
+						<td><input type="text" name="m_contact_number" class="add_input" value='<?php echo ($value["m_contact_number"]); ?>'/>
+						
+				</tr>
+				<tr>
+						<th>出生日期：</th>
+						<td><input type="text" name="m_birthday" class="add_input" value='<?php echo ($value["m_birthday"]); ?>' id='m_birthday'/></td>
+						
+				</tr>
+				<tr>
+						<th>地区：</th>
+						<td>
+						<div id="sel_area" style="display:inline;">
+                		<input type="hidden"  name="area_ids" />
+             			</div>
+						<script type="text/javascript">
+					$(function(){
+    				renderSels('<?php echo ($value['area_ids']); ?>', {id:'sel_area', name:'area_ids', url:'__APP__/ajax/getAreacode&id=', lbls:'请选择,请选择'}, 0);
+					});
+						</script>
+						</td>
+						
+				</tr>
+				<tr>
+						<th>详细地址：</th>
+						<td><input type="text" name="m_address" class="add_input" value='<?php echo ($value["m_address"]); ?>'/>
+						
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>产妇基本状况：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>身高：</th>
+						<td><select name='m_height'></select>&nbsp;CM</td>
+						
+				</tr>
+				<tr>
+						<th>血压：</th>
+						<td><input type="text" name="m_blood_pressure" class="add_input" value='<?php echo ($value["maternal_infos"]["m_blood_pressure"]); ?>'/>
+						
+				</tr>
+				<tr>
+						<th>孕前体重：</th>
+						<td><input type="text" name="m_before_pregnant_weight" class="add_input" value='<?php echo ($value["maternal_infos"]["m_before_pregnant_weight"]); ?>'/>
+						
+				</tr>
+				<tr>
+						<th>产前体重：</th>
+						<td><input type="text" name="m_before_birth_weight" class="add_input" value='<?php echo ($value["maternal_infos"]["m_before_birth_weight"]); ?>'/>
+						
+				</tr>
+				<tr>
+						<th>目前体重：</th>
+						<td><input type="text" name="m_current_weight" class="add_input" value='<?php echo ($value["maternal_infos"]["m_current_weight"]); ?>'/>
+						
+				</tr>
+				<tr>
+						<th>生产日期：</th>
+						<td><input type="text" name="m_birth_date" class="add_input" value='<?php echo ($value["maternal_infos"]["m_birth_date"]); ?>' id='m_birth_date'/>
+						
+				</tr>
+				<tr>
+						<th>分娩方式：</th>
+						<td>
+							<?php if($value['maternal_infos']['m_deliver']==1):?>
+							<input type='radio' value='1' name='m_deliver' checked/>自然顺产&nbsp;
+							<input type='radio' value='0' name='m_deliver'/>剖宫产
+							<?php else:?>
+							<input type='radio' value='1' name='m_deliver'/>自然顺产&nbsp;
+							<input type='radio' value='0' name='m_deliver' checked/>剖宫产
+							<?php endif?>
+						</td>
+						
+				</tr>
+				<tr>
+						<th>孕期是否患过慢性病：</th>
+						<td>
+							<?php if($value['maternal_infos']['m_suffer_sick']==0):?>
+							<input type='radio' value='0' name='m_suffer_sick' checked/>无&nbsp;
+							<input type='radio' value='1' name='m_suffer_sick'/>妊娠期糖尿病&nbsp;
+							<input type='radio' value='2' name='m_suffer_sick'/>妊高症&nbsp;
+							<input type='radio' value='3' name='m_suffer_sick'/>孕期贫血&nbsp;
+							<input type='radio' value='4' name='m_suffer_sick'/>其他
+							<?php elseif($value['maternal_infos']['m_suffer_sick']==1):?>
+							<input type='radio' value='0' name='m_suffer_sick'/>无&nbsp;
+							<input type='radio' value='1' name='m_suffer_sick' checked/>妊娠期糖尿病&nbsp;
+							<input type='radio' value='2' name='m_suffer_sick'/>妊高症&nbsp;
+							<input type='radio' value='3' name='m_suffer_sick'/>孕期贫血&nbsp;
+							<input type='radio' value='4' name='m_suffer_sick'/>其他
+							<?php elseif($value['maternal_infos']['m_suffer_sick']==2):?>
+							<input type='radio' value='0' name='m_suffer_sick'/>无&nbsp;
+							<input type='radio' value='1' name='m_suffer_sick'/>妊娠期糖尿病&nbsp;
+							<input type='radio' value='2' name='m_suffer_sick' checked/>妊高症&nbsp;
+							<input type='radio' value='3' name='m_suffer_sick'/>孕期贫血&nbsp;
+							<input type='radio' value='4' name='m_suffer_sick'/>其他
+							<?php elseif($value['maternal_infos']['m_suffer_sick']==3):?>
+							<input type='radio' value='0' name='m_suffer_sick'/>无&nbsp;
+							<input type='radio' value='1' name='m_suffer_sick'/>妊娠期糖尿病&nbsp;
+							<input type='radio' value='2' name='m_suffer_sick'/>妊高症&nbsp;
+							<input type='radio' value='3' name='m_suffer_sick' checked/>孕期贫血&nbsp;
+							<input type='radio' value='4' name='m_suffer_sick'/>其他
+							<?php else:?>
+							<input type='radio' value='0' name='m_suffer_sick'/>无&nbsp;
+							<input type='radio' value='1' name='m_suffer_sick'/>妊娠期糖尿病&nbsp;
+							<input type='radio' value='2' name='m_suffer_sick'/>妊高症&nbsp;
+							<input type='radio' value='3' name='m_suffer_sick'/>孕期贫血&nbsp;
+							<input type='radio' value='4' name='m_suffer_sick' checked/>其他
+							<?php endif?>
+						</td>
+						
+				</tr>
+				<tr>
+						<th>药物应用史：</th>
+						<td><input type="text" name="m_medicine_history" class="add_input" value='<?php echo ($value["maternal_infos"]["m_medicine_history"]); ?>'/>
+						
+				</tr>
+				<tr>
+						<th>过敏史：</th>
+						<td><input type="text" name="m_sensitive_history" class="add_input" value='<?php echo ($value["maternal_infos"]["m_sensitive_history"]); ?>'/>
+						
+				</tr>
+				<tr>
+						<th>服用营养补充剂：</th>
+						<td><input type="text" name="m_take_supply" class="add_input" value='<?php echo ($value["maternal_infos"]["m_take_supply"]); ?>'/>
+						
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>产妇身体状况：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>母乳分泌情况：</th>
+						<td>
+						
+							<?php if($value['maternal_physical_conditions']['m_breast_excret']==1):?>
+							<input type='radio' value='1' name='m_breast_excret' checked/>正常&nbsp;
+							<input type='radio' value='0' name='m_breast_excret'/>少
+							<?php else:?>
+							<input type='radio' value='1' name='m_breast_excret'/>正常&nbsp;
+							<input type='radio' value='0' name='m_breast_excret' checked/>少
+							<?php endif?>
+						</td>
+						
+				</tr>
+				<tr>
+						<th>乳腺炎/乳涨：</th>
+						<td>
+							<?php if($value['maternal_physical_conditions']['m_mastitis']==1):?>
+							<input type='radio' value='1' name='m_mastitis' checked/>有&nbsp;
+							<input type='radio' value='0' name='m_mastitis'/>多
+							<?php else:?>
+							<input type='radio' value='1' name='m_mastitis'/>有&nbsp;
+							<input type='radio' value='0' name='m_mastitis' checked/>多
+							<?php endif?>
+						</td>
+				</tr>
+				<tr>
+						<th>产后出血量：</th>
+						<td>
+							<?php if($value['maternal_physical_conditions']['m_bleed']==1):?>
+							<input type='radio' value='1' name='m_bleed' checked/>正常&nbsp;
+							<input type='radio' value='0' name='m_bleed'/>无
+							<?php else:?>
+							<input type='radio' value='1' name='m_bleed'/>正常&nbsp;
+							<input type='radio' value='0' name='m_bleed' checked/>无
+							<?php endif?>
+						</td>
+				</tr>
+				<tr>
+						<th>褥汗：</th>
+						<td>
+							<?php if($value['maternal_physical_conditions']['m_puerperal']==1):?>
+							<input type='radio' value='1' name='m_puerperal' checked/>有&nbsp;
+							<input type='radio' value='0' name='m_puerperal'/>无
+							<?php else:?>
+							<input type='radio' value='1' name='m_puerperal'/>有&nbsp;
+							<input type='radio' value='0' name='m_puerperal' checked/>无
+							<?php endif?>
+						</td>
+						
+				</tr>
+				<tr>
+						<th>下肢浮肿：</th>
+						<td>
+							<?php if($value['maternal_physical_conditions']['m_edema']==1):?>
+							<input type='radio' value='1' name='m_edema' checked/>有&nbsp;
+							<input type='radio' value='0' name='m_edema'/>无
+							<?php else:?>
+							<input type='radio' value='1' name='m_edema'/>有&nbsp;
+							<input type='radio' value='0' name='m_edema' checked/>无
+							<?php endif?>
+						</td>
+						
+				</tr>
+				<tr>
+						<th>口渴：</th>
+						<td>
+							<?php if($value['maternal_physical_conditions']['m_thirsty']==1):?>
+							<input type='radio' value='1' name='m_thirsty' checked/>有&nbsp;
+							<input type='radio' value='0' name='m_thirsty'/>无
+							<?php else:?>
+							<input type='radio' value='1' name='m_thirsty'/>有&nbsp;
+							<input type='radio' value='0' name='m_thirsty' checked/>无
+							<?php endif?>
+						</td>
+						
+				</tr>
+				<tr>
+						<th>恶露：</th>
+						<td>
+							<?php if($value['maternal_physical_conditions']['m_lochia']==0):?>
+							<input type='radio' value='0' name='m_lochia' checked/>血性恶露&nbsp;
+							<input type='radio' value='1' name='m_lochia'/>浆液恶露&nbsp;
+							<input type='radio' value='2' name='m_lochia'/>白色恶露&nbsp;
+							<input type='radio' value='3' name='m_lochia'/>臭味
+							<?php elseif($value['maternal_physical_conditions']['m_lochia']==1):?>
+							<input type='radio' value='0' name='m_lochia'/>血性恶露&nbsp;
+							<input type='radio' value='1' name='m_lochia' checked/>浆液恶露&nbsp;
+							<input type='radio' value='2' name='m_lochia'/>白色恶露&nbsp;
+							<input type='radio' value='3' name='m_lochia'/>臭味
+							<?php elseif($value['maternal_physical_conditions']['m_lochia']==2):?>
+							<input type='radio' value='0' name='m_lochia'/>血性恶露&nbsp;
+							<input type='radio' value='1' name='m_lochia'/>浆液恶露&nbsp;
+							<input type='radio' value='2' name='m_lochia' checked/>白色恶露&nbsp;
+							<input type='radio' value='3' name='m_lochia'/>臭味
+							<?php else:?>
+							<input type='radio' value='0' name='m_lochia'/>血性恶露&nbsp;
+							<input type='radio' value='1' name='m_lochia'/>浆液恶露&nbsp;
+							<input type='radio' value='2' name='m_lochia'/>白色恶露&nbsp;
+							<input type='radio' value='3' name='m_lochia' checked/>臭味
+							<?php endif?>
+						</td>
+						
+				</tr>
+				<tr>
+						<th>乳头皲裂：</th>
+						<td>
+							<?php if($value['maternal_physical_conditions']['m_chap']==1):?>
+							<input type='radio' value='1' name='m_chap' checked/>有&nbsp;
+							<input type='radio' value='0' name='m_chap'/>无
+							<?php else:?>
+							<input type='radio' value='1' name='m_chap'/>有&nbsp;
+							<input type='radio' value='0' name='m_chap' checked/>无
+							<?php endif?>
+						</td>
+						
+				</tr>
+				<tr>
+						<th>便秘/痔疮：</th>
+						<td>
+							<?php if($value['maternal_physical_conditions']['m_constipation']==1):?>
+							<input type='radio' value='1' name='m_constipation' checked/>有&nbsp;
+							<input type='radio' value='0' name='m_constipation'/>无
+							<?php else:?>
+							<input type='radio' value='1' name='m_constipation'/>有&nbsp;
+							<input type='radio' value='0' name='m_constipation' checked/>无
+							<?php endif?>
+						</td>
+				</tr>
+				<tr>
+						<th>小便：</th>
+						<td>
+						<?php if($value['maternal_physical_conditions']['m_urine'] == 2):?>
+							<label><input type='radio' value='0' name='m_urine'/>正常</label>&nbsp;
+							<label><input type='radio' value='1' name='m_urine'/>尿潴留</label>&nbsp;
+							<label><input type='radio' value='2' name='m_urine' checked/>溢尿</label>
+						<?php elseif($value['maternal_physical_conditions']['m_urine'] == 1):?>
+							<label><input type='radio' value='0' name='m_urine'/>正常</label>&nbsp;
+							<label><input type='radio' value='1' name='m_urine' checked/>尿潴留</label>&nbsp;
+							<label><input type='radio' value='2' name='m_urine'/>溢尿</label>
+						<?php else:?>
+							<label><input type='radio' value='0' name='m_urine' checked/>正常</label>&nbsp;
+							<label><input type='radio' value='1' name='m_urine'/>尿潴留</label>&nbsp;
+							<label><input type='radio' value='2' name='m_urine'/>溢尿</label>
+						<?php endif?>	
+						
+						
+						
+				</tr>
+				<input type='hidden'  name='baby_id'/>
+				<input type='hidden'  name='baby_weight'/>
+				<input type='hidden'  name='baby_height'/>
+				<input type='hidden'  name='baby_icterus'/>
+				<input type='hidden'  name='baby_feed_type'/>
+				<input type='hidden'  name='baby_take_yikexin'/>
+				<?php foreach($value['baby_baseinfos'] as $baby_baseinfo=>$baby_baseinfos){?>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>宝宝基本情况：</h3></th>
+					<td><input type='hidden' value='<?php echo ($baby_baseinfos["id"]); ?>' name='id_<?php echo ($baby_baseinfo); ?>'/>
+					<a href='__URL__/deleteChildItem/id/<?php echo ($baby_baseinfos["id"]); ?>' class="link-del">[删除]</a></td>
+				</tr>
+				<tr>
+						<th>宝宝出生体重：</th>
+						<td><input type="text" id="baby_weight_<?php echo ($baby_baseinfo); ?>" value='<?php echo ($baby_baseinfos["baby_weight"]); ?>' class="add_input"/>
+						
+				</tr>
+				<tr>
+						<th>宝宝出生身长：</th>
+						<td><select name='baby_height_<?php echo ($baby_baseinfo); ?>'></select>&nbsp;CM
+						<input type='hidden' value='<?php echo ($baby_baseinfos["baby_height"]); ?>' id='baby_height_hidden_<?php echo ($baby_baseinfo); ?>'/>
+						</td>
+						
+				</tr>
+				<tr>
+					<th>黄疸：</th>
+						<td>
+						
+							<?php if($baby_baseinfos['baby_icterus']==1):?>
+							<input type='radio' value='1' name='baby_icterus_<?php echo ($baby_baseinfo); ?>' checked/>正常&nbsp;
+							<input type='radio' value='0' name='baby_icterus_<?php echo ($baby_baseinfo); ?>'/>多
+							<?php else:?>
+							<input type='radio' value='1' name='baby_icterus_<?php echo ($baby_baseinfo); ?>'/>正常&nbsp;
+							<input type='radio' value='0' name='baby_icterus_<?php echo ($baby_baseinfo); ?>' checked/>多
+							<?php endif?>
+						</td>
+						
+				</tr>
+				<tr>
+						<th>喂养方式：</th>
+						<td>
+						
+							<?php if($baby_baseinfos['baby_feed_type']==0):?>
+							<input type='radio' value='0' name='baby_feed_type_<?php echo ($baby_baseinfo); ?>' checked/>纯母乳&nbsp;
+							<input type='radio' value='1' name='baby_feed_type_<?php echo ($baby_baseinfo); ?>'/>混合&nbsp;
+							<input type='radio' value='2' name='baby_feed_type_<?php echo ($baby_baseinfo); ?>'/>人工
+							<?php elseif($baby_baseinfos['baby_feed_type']==1):?>
+							<input type='radio' value='0' name='baby_feed_type_<?php echo ($baby_baseinfo); ?>'/>纯母乳&nbsp;
+							<input type='radio' value='1' name='baby_feed_type_<?php echo ($baby_baseinfo); ?>' checked/>混合&nbsp;
+							<input type='radio' value='2' name='baby_feed_type_<?php echo ($baby_baseinfo); ?>'/>人工
+							<?php else:?>
+							<input type='radio' value='0' name='baby_feed_type_<?php echo ($baby_baseinfo); ?>'/>纯母乳&nbsp;
+							<input type='radio' value='1' name='baby_feed_type_<?php echo ($baby_baseinfo); ?>'/>混合&nbsp;
+							<input type='radio' value='2' name='baby_feed_type_<?php echo ($baby_baseinfo); ?>' checked/>人工
+							<?php endif?>
+						</td>
+						
+						
+				</tr>
+				<tr>
+						<th>是否服用伊可新：</th>
+						<td>
+						
+							<?php if($baby_baseinfos['baby_take_yikexin']==1):?>
+							<input type='radio' value='1' name='baby_take_yikexin_<?php echo ($baby_baseinfo); ?>' checked/>有&nbsp;
+							<input type='radio' value='0' name='baby_take_yikexin_<?php echo ($baby_baseinfo); ?>'/>无
+							<?php else:?>
+							<input type='radio' value='1' name='baby_take_yikexin_<?php echo ($baby_baseinfo); ?>'/>有&nbsp;
+							<input type='radio' value='0' name='baby_take_yikexin_<?php echo ($baby_baseinfo); ?>' checked/>无
+							<?php endif?>
+						</td>
+						
+				</tr>
+				<?php } ?>
+	<?php } ?>
+	<tr>
+						<th></th>
+						<td>
+						<input type="button" value="增加一项" id='add'/><br/>
+							<input type="button" class="add_yes" value="" id='tijiao'/>
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+					</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+var baby_count=0;
+$(function(){
+	var age=80;
+	var m_age='{$maternal[0].m_age}';
+	var m_age_select=$('select[name=m_age]');
+	//m_age_select.append("<option value=''>请选择</option");
+	for(var i=10;i<age+10;i++){
+		if(m_age==i){
+			m_age_select.append('<option value='+i+' selected>'+i+'</option');
+		}else{
+			m_age_select.append('<option value='+i+'>'+i+'</option');
+		}
+	}
+	var nation=["汉族", "壮族", "满族", "回族", "苗族", "维吾尔族", "土家族", "彝族", "蒙古族", "藏族", "布依族", "侗族", "瑶族", "朝鲜族", "白族", "哈尼族",
+	            "哈萨克族", "黎族", "傣族", "畲族", "傈僳族", "仡佬族", "东乡族", "高山族", "拉祜族", "水族", "佤族", "纳西族", "羌族", "土族", "仫佬族", "锡伯族",
+	            "柯尔克孜族", "达斡尔族", "景颇族", "毛南族", "撒拉族", "布朗族", "塔吉克族", "阿昌族", "普米族", "鄂温克族", "怒族", "京族", "基诺族", "德昂族", "保安族",
+	            "俄罗斯族", "裕固族", "乌孜别克族", "门巴族", "鄂伦春族", "独龙族", "塔塔尔族", "赫哲族", "珞巴族"];
+	var m_nation='{$maternal[0].m_nation}';
+	var m_nation_select=$('select[name=m_nation]');
+	//m_age_select.append("<option value=''>请选择</option");
+	for(var i=0;i<nation.length;i++){
+		if(m_nation==nation[i]){
+			m_nation_select.append('<option value='+nation[i]+' selected>'+nation[i]+'</option');
+		}else{
+			m_nation_select.append('<option value='+nation[i]+'>'+nation[i]+'</option');
+		}
+	}
+	var edu=['小学以下','初中','高中','大学'];
+	var edu_degree='{$maternal[0].m_edu_degree}';
+	var edu_degree_select=$('select[name=m_edu_degree]');
+	//m_age_select.append("<option value=''>请选择</option");
+	for(var i=0;i<edu.length;i++){
+		if(edu_degree==edu[i]){
+			edu_degree_select.append('<option value='+edu[i]+' selected>'+edu[i]+'</option');
+		}else{
+			edu_degree_select.append('<option value='+edu[i]+'>'+edu[i]+'</option');
+		}
+	}
+	var m_height_select=$('select[name=m_height]');
+	var height='{$maternal[0].maternal_infos.m_height}';
+	for(var i=130;i<260;i++){
+		if(height==i){
+			m_height_select.append('<option value='+i+' selected>'+i+'</option');
+		}else{
+			m_height_select.append('<option value='+i+'>'+i+'</option');
+		}
+	}
+	baby_count='<?php echo count($maternal[0]['baby_baseinfos']); ?>';
+	
+	for(var i=0;i<baby_count;i++){
+		var baby_height_select=$('select[name=baby_height_'+i+']');
+		var baby_height=document.getElementById('baby_height_hidden_'+i).value;
+		for(var j=20;j<100;j++){
+			if(baby_height==j){
+				baby_height_select.append('<option value='+j+' selected>'+j+'</option');
+			}else{
+				baby_height_select.append('<option value='+j+'>'+j+'</option');
+			}
+		}
+	}
+	var today=new Date();
+	var max=today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
+	var min=(today.getFullYear()-100)+"-"+(today.getMonth()+1)+"-"+today.getDate();
+	var m_birthday_start=document.getElementById('m_birthday').value;
+	var m_birth_date_start=document.getElementById('m_birth_date').value;
+	laydate({
+			elem:'#m_birthday', //需显示日期的元素选择器
+	        event:'click', //触发事件
+	        format:'YYYY-MM-DD', //日期格式
+	        istime:false, //是否开启时间选择
+	        isclear:true, //是否显示清空
+	        istoday:true, //是否显示今天
+	        issure:true, //是否显示确认
+	        festival:true,//是否显示节日
+	        min:min, //最小日期
+	        max:max, //最大日期
+	       	start:m_birthday_start,    //开始日期
+	        fixed:false, //是否固定在可视区域
+	        zIndex:99999999, //css z-index
+	        //choose:function(dates){ //选择好日期的回调
+	        //	
+	       // }
+	});
+	laydate({
+		elem:'#m_birth_date', //需显示日期的元素选择器
+        event:'click', //触发事件
+        format:'YYYY-MM-DD', //日期格式
+        istime:false, //是否开启时间选择
+        isclear:true, //是否显示清空
+        istoday:true, //是否显示今天
+        issure:true, //是否显示确认
+        festival:true,//是否显示节日
+        min:min, //最小日期
+        max:max, //最大日期
+       	start:m_birth_date_start,    //开始日期
+        fixed:false, //是否固定在可视区域
+        zIndex:99999999, //css z-index
+        //choose:function(dates){ //选择好日期的回调
+        //	
+       // }
+});
+	document.getElementById('add').onclick=function(){
+		baby_count++;
+		var table=document.getElementById('table');
+		var tr=table.insertRow(table.rows.length-1);
+		tr.style.background='none repeat scroll 0 0 #F0F0F0';
+		tr.innerHTML="<th><h3>宝宝基本情况：</h3></th><td><a href='javascript:void(0)' id='delete_"+(baby_count-1)+"'>[删除]</a></td>";
+		var baby_weigth=table.insertRow(table.rows.length-1);
+		baby_weigth.innerHTML="<th>宝宝出生体重：</th><td><input type='text' id='baby_weight_"+(baby_count-1)+"' class='add_input'/></td>";
+		var baby_height=table.insertRow(table.rows.length-1);
+		baby_height.innerHTML="<th>宝宝出生身长：</th><td><select name='baby_height_"+(baby_count-1)+"'></select>&nbsp;CM</td>";
+		var hd=table.insertRow(table.rows.length-1);
+		hd.innerHTML="<th>黄疸：</th><td><input type='radio' value='1' name='baby_icterus_"+(baby_count-1)+"' checked/>正常&nbsp;<input type='radio' value='0' name='baby_icterus_"+(baby_count-1)+"'/>多</td>";
+		var fs=table.insertRow(table.rows.length-1);
+		fs.innerHTML="<th>喂养方式：</th><td><input type='radio' value='0' name='baby_feed_type_"+(baby_count-1)+"' checked/>纯母乳&nbsp;<input type='radio' value='1' name='baby_feed_type_"+(baby_count-1)+"'/>混合&nbsp;<input type='radio' value='2' name='baby_feed_type_"+(baby_count-1)+"'/>人工 </td>";
+		var ykx=table.insertRow(table.rows.length-1);
+		ykx.innerHTML="<th>是否服用伊可新：</th><td><input type='radio' value='1' name='baby_take_yikexin_"+(baby_count-1)+"' checked/>有&nbsp;<input type='radio' value='0' name='baby_take_yikexin_"+(baby_count-1)+"'/>无</td>";
+		var baby_height_select=$('select[name=baby_height_'+(baby_count-1)+']');
+		var baby_height_=50;
+		for(var j=20;j<100;j++){
+			if(baby_height_==j){
+				baby_height_select.append('<option value='+j+' selected>'+j+'</option');
+			}else{
+				baby_height_select.append('<option value='+j+'>'+j+'</option');
+			}
+		}
+		var a=document.getElementById('delete_'+(baby_count-1));
+		a.onclick=function(){
+			table.deleteRow(tr.rowIndex);
+			table.deleteRow(baby_weigth.rowIndex);
+			table.deleteRow(baby_height.rowIndex);
+			table.deleteRow(hd.rowIndex);
+			table.deleteRow(fs.rowIndex);
+			table.deleteRow(ykx.rowIndex);
+		}
+	};
+	document.getElementById('tijiao').onclick=function(){
+		var ids='';
+		for(var i=0;i<baby_count;i++){
+			var id=document.getElementsByName('id_'+i);
+			if(id&&typeof(id)!='undefined'){
+		for(var j=0;j<id.length;j++){
+	
+				if(typeof(id[j])!='undefined'){
+					ids+=id[j].value+',';
+				}
+		}
+		}
+		}
+		if(ids.length>0){
+		ids=ids.substring(0,ids.length-1);
+		}
+	
+		//alert('child_type_names='+child_type_names+'--->'+'child_type_ids='+child_type_ids);
+		var baby_weight='';
+		for(var i=0;i<baby_count;i++){
+			var choice_mode=document.getElementById('baby_weight_'+i);
+			if(choice_mode&&typeof(choice_mode)!='undefined'){
+			baby_weight+=choice_mode.value+',';
+			}
+			
+		}
+		if(baby_weight!=''){
+			baby_weight=baby_weight.substring(0,baby_weight.length-1);
+		}
+		var baby_height='';
+		for(var i=0;i<baby_count;i++){
+			var choice_mode=document.getElementsByName('baby_height_'+i);
+			if(choice_mode&&typeof(choice_mode)!='undefined'){
+			for(var j=0;j<choice_mode.length;j++){
+				baby_height+=choice_mode[j].value+',';
+			}
+			}
+		}
+		if(baby_height!=''){
+			baby_height=baby_height.substring(0,baby_height.length-1);
+		}
+		document.getElementsByName('baby_id')[0].value=ids;
+		document.getElementsByName('baby_weight')[0].value=baby_weight;
+		document.getElementsByName('baby_height')[0].value=baby_height;
+		document.getElementsByName('baby_feed_type')[0].value=getCheckValue('baby_feed_type');
+		document.getElementsByName('baby_take_yikexin')[0].value=getCheckValue('baby_take_yikexin');
+		document.getElementsByName('baby_icterus')[0].value=getCheckValue('baby_icterus');
+		$('#form').submit();
+	}
+});
+function getCheckValue(name){
+	var values='';
+	for(var i=0;i<baby_count;i++){
+		var choice_mode=document.getElementsByName(name+'_'+i);
+		if(choice_mode&&typeof(choice_mode)!='undefined'){
+		for(var j=0;j<choice_mode.length;j++){
+			if(choice_mode[j].checked==true){
+				values+=choice_mode[j].value+',';
+				break;
+			}
+		}
+		}
+	}
+	if(values!=''){
+		values=values.substring(0,values.length-1);
+	}
+	return values;
+}
+</script>
+</html>

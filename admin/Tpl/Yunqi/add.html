@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>食物发布</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__SELF__" method='POST' id='form'>
+			<table class="add_table" id='table'>
+			     <tr>
+						<th>所属周期：</th>
+						<td>						
+						   <select name="info[y_day]">
+						  <?php   for($i=1;$i<=280;$i++)
+						  {?>
+						 	<option value="<?php echo $i?>" <?php   if($list['y_day']==$i) echo 'selected'?>>第<?php echo $i ?>天
+						   <?php }
+						   ?>
+						</select>
+
+						</td>
+				</tr>
+				
+				<tr>
+						<th>  孕期描述：</th>
+						<td>
+						<textarea name='info[y_desc]'   id='c_type_name' style='width:250px;height:100px'>{$list.y_desc}</textarea>
+						
+						</td>
+				</tr>
+				
+					<tr>
+						<th></th>
+						<td>
+						<input type="hidden" name="id" value="{$list.id}">
+							<input type="submit" class="add_yes" value=""/>
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+					</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+	
+	function Addtype(){
+		var c_type_name=document.getElementById('c_type_name');
+		if(c_type_name.value.replace(/( )/g,'')==''){
+			alert('孕期描述不能为空！');
+			return;
+		}
+		
+	}
+</script>
+</html>

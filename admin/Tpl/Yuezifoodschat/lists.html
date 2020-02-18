@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>月子营养咨询列表</b></span>
+		</div>
+		
+		
+
+        <div class="con_box">
+        <form action="__URL__/del" method="POST" id="sub">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="80">编号</th>
+            <th>用户</th>
+			<th>内容</th>
+			<th width="180">添加日期</th>
+            <th width="180">基本操作</th>
+          </tr>
+
+          <foreach name="list" item="val">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+					<td class="td_left">
+						{$val.mobile} - {$val.truename} - {$val.nickname}
+					</td>
+					<td class="td_left">
+						<?php if ($val['is_new']): ?>
+							<font style="color:red;">新</font>
+						<?php endif ?>
+						{$val.content}
+					</td>
+					<td><?php echo date('Y-m-d H:i:s', $val['addtime']); ?></td>
+					<td>
+						<a href="__URL__/mlists/mid/{$val.mid}/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" target="_blank">查看</a>
+					</td>
+				</tr>
+		 </foreach>
+          </table>
+		 <!--  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"></div> -->
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+          </form>
+ </div>
+
+</div>
+</div>      
+</body>
+</html>

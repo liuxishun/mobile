@@ -1,0 +1,50 @@
+﻿body, div, ul, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td { padding:0;margin:0; }
+ul,li{ list-style: none;list-style-type:none;}
+
+.page {position: absolute;bottom: 0;left: 0;bottom: 0;right: 0;width: 100%;height: 100%;overflow: hidden;}
+
+
+.datePlugin{ width:100%; position:fixed; bottom:0; z-index:99999; height:100%; display:none;}
+.datescroll div{float: left; margin-top: 70px;}
+.datescroll_datetime div{float: left;margin-left: 10%;padding-right: 22px;}
+
+
+/*增加手指滑动触摸面积*/
+.dateheader{width: 100%;height: 50px;background: #79C12F;text-align: center;color: #fff;line-height: 50px;font-size: 20px;}
+
+.setcancle ul{
+    text-align: center;
+    line-height: 30px;
+    margin:1px auto;
+    font-size: 20px;
+	padding:20px 0;
+}
+.setcancle ul li{
+    border-radius: 4px;
+    float: left;
+    width: 40%;
+    height: 30px;
+    list-style-type: none;
+	
+}
+.yearwrapper{ width:100%;}
+.yearwrapper ul{ width:100%;}
+.yearwrapper ul li{ text-align:center; line-height:40px; width:100%; color:#999; font-size:16px;}
+.yearwrapper ul li.cur{ border-bottom:1px solid #ccc;  border-top:1px solid #ccc; color:#323232;}
+.dateconfirm{
+    position: absolute; 
+	font-size:20px; 
+	color:#00b4ff;
+    right:0px;
+}
+.datecancle{
+     position: absolute;
+	font-size:20px; 
+	color:#323232;
+    left:0px;
+    width: 40%;
+}
+.dateshadow{position: absolute;width: 100%;height: 100%;top:0;left:0;background: #000; filter:alpha(Opacity=50);-moz-opacity:0.5;opacity: 0.5; z-index:9999;}
+.datePage{font-size: 20px; position:absolute; bottom:0; left:0; vertical-align:middle; width:100%; height:300px; background: #FFFFFF;z-index:9999999; padding-bottom:20px;}
+
+.dateFooter{width:100%;background: #fff;height: 50px;top: 0px;position: absolute;}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>添加建议</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__URL__/saveItem" method='POST' id='form'>
+			<table class="add_table" id='table'>
+				<tr>
+						<th>建议描述：</th>
+						<td><input type="text" name="s_desc" class="add_input"/>
+				</tr>
+				<tr>
+						<th>所处周期：</th>
+					<td>
+						第&nbsp;<input type='text' name='p_id' />&nbsp;周
+						</td>
+				</tr>
+				<tr>
+						<th>是否启用：</th>
+						<td>
+						<input type='radio' value='1' name='enable_status' id='enable' checked/>
+						<label for="enable">启用</label>&nbsp;
+						<input type='radio' value='0' name='enable_status' id='disable'/>
+						<label for="disable">冻结</label>
+						</td>
+				</tr>
+				<input type='hidden' name='s_nutrients'/>
+					<tr>
+						<th></th>
+						<td>
+						<input type="button" value="添加描述" id='add'/><br/>
+							<input type="button" class="add_yes" value="" id='tijiao'/>
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+					</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+	document.getElementById('add').onclick=function(){
+		var table=document.getElementById('table');
+		var tr=table.insertRow(table.rows.length-1);
+		tr.innerHTML="<th>营养描述：</th><td><input type='text' name='s_nutrient' class='add_input'/>&nbsp;<a href='javascript:void(0)' onclick='deleteItem(this)'>删除</a>";
+	}
+	document.getElementById('tijiao').onclick=function(){
+		var sc_name=document.getElementsByName('s_nutrients')[0];
+		var s_child_names=document.getElementsByName('s_nutrient');
+		var sc_names='';
+		for(var i=0;i<s_child_names.length;i++){
+			if(s_child_names[i].value!=''){
+			sc_names+=s_child_names[i].value+',';
+			}
+		}
+		if(sc_names!=''){
+			sc_names=sc_names.substring(0,sc_names.length-1);
+		}
+		sc_name.value=sc_names;
+		document.getElementById('form').submit();
+	}
+	function deleteItem(a){
+		var table=document.getElementById('table');
+		table.deleteRow(a.parentNode.parentNode.rowIndex);
+	}
+</script>
+</html>

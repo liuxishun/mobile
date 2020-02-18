@@ -1,0 +1,108 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>好孕妈妈</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/css/zhibo.css">
+	<script src="__PUBLIC__/ke/js/jquery-1.8.2.min.js"></script>
+    <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+ <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+	<script type="text/javascript">
+		$(function(){
+			$('.top_choice li:last').css('borderRight',0);
+			$('.choose_con>li:last a').css('borderRight',0);
+			if("<?php echo ($isShow); ?>"==1){
+				$('.wodid').hide();
+			}else{
+				$('.wodid').show();
+			}
+			$('.wodid').hide();
+		});
+		
+    </script>
+</head>
+<body style="background-color: #f3f3f3;">
+	<div class="weihu" style="display:none; position:fixed; top:25%; left:50%; width:400px; z-index:9999; margin-left:-200px; padding:30px; background:#fff; border-radius:15px;">
+    	<P style="font-size:26px; color:#999; line-height:50px; text-align:right;"><span class="weihu_span" onclick="javascript:$('.weihu').hide();">×</span></P>
+        <P style="font-size:30px; color:red; line-height:50px; text-align:center;">服务器正在维护当中...<br>敬请谅解</P>
+    </div>
+    <div class="wodid" style="display:none;position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.3); z-index:9999; ">   
+	    <p style="text-algin:center; padding:20% 30px 0; width:100%;">
+			<img style=" width:100%;" alt="" src="__PUBLIC__/ke/img/lingquan.png">        
+	    </p>
+	</div> 
+	<header id="header">
+        <div id="choose">
+        	<ul class="choose_con">
+            	<li class="current"><a>技能进阶</a></li>
+            </ul>
+        </div>
+    </header>	
+    
+    <section class="section">
+    	<ul class="live">
+			<?php if(is_array($list)): foreach($list as $key=>$v): ?><li>
+        	<a href="__URL__/zhibo1/openid/<?php echo ($openid); ?>/id/<?php echo ($v["id"]); ?>">
+				<img src="http://my.mumway.com/<?php echo ($v["pic"]); ?>" onerror="javascript:this.src='/<?php echo ($v["pic"]); ?>';"></a>
+				<div class="live_d1">
+				<P class="live_p1"><span class="live_p1_s1"><?php echo ($v["leibie"]); ?></span><span class="live_p1_s2">专用直播间</span></P>
+				<a href="__URL__/zhibo1/openid/<?php echo ($openid); ?>/id/<?php echo ($v["id"]); ?>"><P class="live_p2"><span>主题：</span><?php echo ($v["title"]); ?></P></a>
+				<?php $now=time();$Stime=strtotime($v["start_time"]);$Etime=strtotime($v["end_time"]);?>
+				<P class="live_p3"><span class="live_p3_s1"><?php echo date("Y-m-d H:i",$Stime);?> - <?php echo date("H:i",$Etime);?></span>
+				<?php if($now>$Etime){?>
+				<span style="background-color:#ccc;" class="live_p3_s2">历史直播</span>
+				<?php }else{?>
+				<span class="live_p3_s2">加入直播</span>
+				<?php }?>
+				</P>
+				</div>
+            
+			</li><?php endforeach; endif; ?>
+        </ul>
+        <script type="text/javascript">
+	        var page = 0;//分页
+	    	function toufen(){
+	    		page++;
+	    		var ul = '__URL__/jy_zhibo2/page/'+page+'/openid/<?php echo ($openid); ?>';
+	    		$.get(ul,function(e){
+	    			$(".live").append(e);
+	    		})
+	    	}
+        </script>
+        <P id="geng" style="font-size:26px; text-align:center; line-height:80px; color:#666;" onclick="toufen()">点击查看更多</P>
+    </section>
+   <!--  <P class="dhzx" style="position:fixed; right:0; top:200px; z-index:9999;"><a href="tel:15001328927"><img style="width:68px; height:210px;" src="/Public/ke/img/zixun2.png" ></a></P> -->
+</body>
+</html>

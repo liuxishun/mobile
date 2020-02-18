@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<include file="Inc:inc_head" />
+
+</head>
+<body>
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>指标列表</b></span>
+		</div>
+		<div class="web_tit">
+		    <script type="text/javascript">
+			var searchURL='__ACTION__';
+			var searchIDs="tian|mum_type".split('|');
+			</script>
+            <input type="hidden" id="export" value="" >
+			周期：<input type="text" id="tian" value="{$para.tian}" size="8" >
+			频道：<select id="mum_type" style="font-size:12px">
+				<option value="">--请选择--</option>
+				<?php
+                	$mum_types = D('admin://Member')->mum_type;
+                ?>
+				<foreach name="mum_types" item="val">
+					<option value="{$val}" <?php if($val==$para['mum_type']) echo 'selected'; ?>>{$val}</option>
+				</foreach>
+			 </select>
+
+			<input type="button" value="搜索" onclick="doSearch()" />
+            <!--<input type="button" value="导出" onclick="$('#export').val(1);doSearch()" />-->
+            <input type="button" value="重置" onclick="doReset()" />
+		</div>
+
+		
+
+        <div class="con_box">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="50">ID</th>
+			<th width="100">频道</th>
+            <th width="100">周期</th>
+            <th>早餐</th>
+            <th>午餐</th>
+            <th>晚餐</th>
+            <th width="150">基本操作</th>
+          </tr>
+
+          <volist name="list" id="val" key="k">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+                  	
+                  	<td>{$val.mum_type}</td>
+                    <td>{$val.tian}</td>
+					<td class="td_left">
+						{$val.zaocan}<br />
+						加餐：{$val.zaojia}<br />
+						描述：{$val.zaocandesc}
+					</td>
+					<td class="td_left">
+						{$val.wucan}<br />
+						加餐：{$val.wujia}<br />
+						描述：{$val.wucandesc}
+					</td>
+					<td class="td_left">
+						{$val.wancan}<br />
+						加餐：{$val.wanjia}<br />
+						描述：{$val.wancandesc}
+					</td>
+					<td>
+						<a href="__URL__/infoEdit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a> |
+						<a href="__URL__/delete/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>"  class="link-del">删除</a>
+					</td>
+				</tr>
+		 </volist>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"/></div>
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+
+ </div>
+
+</div>
+</div>  
+ 
+</body>
+</body>
+</html>

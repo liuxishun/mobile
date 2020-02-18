@@ -1,0 +1,13 @@
+<script src="__PUBLIC__/editor/kindeditor.js"></script>
+<script src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script>
+	KindEditor.ready(function(K){
+	K.create('#<?php echo $editor_id; ?>', {
+	uploadJson: '__APP__/index/upload_json',
+	fileManagerJson: '__APP__/index/file_manager_json',
+    extraFileUploadParams:{"PHPSESSID":'<?php echo session_id(); ?>'},
+	allowFileManager: true,
+	afterBlur: function(){this.sync();}
+});
+});
+</script>

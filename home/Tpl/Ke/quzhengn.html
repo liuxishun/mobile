@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>好孕妈妈</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/css/style.css">
+    <script type='text/javascript'>
+	      var _vds = _vds || [];
+	      window._vds = _vds;
+	      (function(){
+	        _vds.push(['setAccountId', '87405247014f637f']);
+	        (function() {
+	          var vds = document.createElement('script');
+	          vds.type='text/javascript';
+	          vds.async = true;
+	          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+	          var s = document.getElementsByTagName('script')[0];
+	          s.parentNode.insertBefore(vds, s);
+	        })();
+	      })();
+	</script>
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+    <script src="__PUBLIC__/ke/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+		$(function(){
+			$('.top_choice li:last').css('borderRight',0);
+			$('.choose_con>li:last a').css('borderRight',0);
+			$('.choose_con>li').click(function(e) {
+                $(this).addClass('current').siblings().removeClass('current');
+            });
+			
+		});
+
+    </script>
+    
+</head>
+
+<body style="background-color: #f3f3f3;">
+    <header id="header">
+        <div id="choose">
+        	<ul class="choose_con">
+            	<li><a href="__ROOT__/index.php/ke/jy_zhibo/openid/{$openid }">技能进阶</a></li>
+                <li><a href="__ROOT__/index.php/ke/jinxiu/openid/{$openid }">金牌进修</a></li>
+                <li class="current"><a href="__ROOT__/index.php/ke/quzheng/openid/{$openid }">在线考证</a></li>
+                <li><a href="__ROOT__/index.php/ke/mianshou/openid/{$openid }">面授特训</a></li>
+            </ul>
+        </div>
+    </header>
+
+	<div class="bgg"></div>
+    <section class="section">
+        <ul class="list-item">
+        <foreach name="list" item="li">
+        	<li>
+	                <a href="__URL__/quzheng1/CLASS_ID/{$li.CLASS_ID}/openid/{$openid }" class="a">
+	                    <img src="http://m.mumway.com:8088/JYYS/{$li.IMAGE}" class="img" />
+	                    <div class="info">
+	                        <h3>{$li.TITLE}</h3>
+	                        <p>{$li.INTRODUCTION}</p>
+	                        <span class="new-price">{$li.PRICE}<if condition="strpos($li.PRICE, '元')">元</if></span>
+	                        <span class="button">{$li.NUMBER_BOUGHT}人已购买</span>
+	                    </div>
+	                </a>
+	         </li>
+        </foreach>
+        </ul>
+
+    </section>
+	<footer>
+        <ul>
+            <li class="current"><a href="__ROOT__/index.php/ke/jy_zhibo/openid/{$openid }"><div><i class="iconfont">&#xe601;</i></div><span>学习</span></a></li>
+            <li class="fuli">
+                <a href="__ROOT__/fuli/fuli.php?openid={$openid }"><div><i class="iconfont">&#xe602;</i></div><span>福利</span></a>
+            </li>
+            <li><a href="__URL__/wode?openid={$openid }"><div><i class="iconfont">&#xe600;</i></div><span>我的</span></a></li>
+            <div class="clear"></div>
+        </ul>
+    </footer>
+	<!--<P class="dhzx" style="position:fixed; right:0; top:200px; z-index:9999;"><a href="tel:15001328927
+"><img style="width:68px; height:210px;" src="http://m.mumway.com/Public/ke/img/zixun2.png" ></a></P>--></body>
+</html>

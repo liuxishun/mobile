@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>食物发布</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__URL__/saveItem" method='POST' id='form'>
+			<table class="add_table" id='table'>
+				<tr>
+						<th>所处周期：</th>
+						<td>
+						第&nbsp;<input type='text' name='info[p_id]' />&nbsp;周
+						</td>
+				</tr>
+				<tr>
+				<input type='hidden' id='f_name' name='f_id'/>
+						<th>选择推荐食物：</th>
+						<td>
+						<?php
+										foreach($foods as $key=>$value){
+								?>
+									<input type='checkbox' name='f_names' value='{$value.id}'/>{$value.f_name}&nbsp;
+								<?php } ?>
+						</td>
+				</tr>
+					<tr>
+						<th>描述：</th>
+						<td>
+						<input type='text' value='' class='add_input' name='f_desc'/>
+						</td>
+				</tr>
+				
+					<tr>
+						<th></th>
+						<td>
+							<input type="button" class="add_yes" value="" id='tijiao'/>
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+					</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+	document.getElementById('tijiao').onclick=function(){
+		var f_names=document.getElementsByName('f_names');
+		var f_name=document.getElementById('f_name').value;
+		for(var i=0;i<f_names.length;i++){
+			if(f_names[i].checked==true){
+				f_name+=f_names[i].value+',';
+			}
+		}
+		if(f_name!=''){
+			f_name=f_name.substring(0,f_name.length-1);
+		}
+	//	alert(f_name);
+		document.getElementById('f_name').value=f_name;
+		document.getElementById('form').submit();
+	}
+</script>
+</html>

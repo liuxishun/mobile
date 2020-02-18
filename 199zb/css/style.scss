@@ -1,0 +1,427 @@
+@import 'public.css';
+@import 'http://at.alicdn.com/t/font_ptjigxn10zt9y66r.css';
+
+.clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0} 
+.clearfloat{zoom:1} 
+
+
+
+@keyframes mybackground{
+	0%{background-color: #ffa3a3;}
+	60%{background-color: #ffa3a3;}
+	70%{background-color: #fc4141;}
+	80%{background-color: #ffa3a3;}
+	90%{background-color: #fc4141;}
+	100%{background-color: #ffa3a3;}
+}
+
+
+
+@mixin animetStyle {
+	animation: mybackground 3s infinite;
+}
+@mixin clearfloat {
+	zoom:1;
+	&:after{
+		display:block;clear:both;content:"";visibility:hidden;height:0
+	}
+}
+
+@mixin ListBackgroundImg {
+	background-image: url(../images/right.png);
+	background-position: 94% center;
+	background-repeat: no-repeat;
+	background-size: 15px 33px;
+}
+
+
+
+@mixin line-clamp ($line) {
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	word-break:break-all ;
+	-webkit-line-clamp: $line;
+	-webkit-box-orient: vertical;
+}
+
+
+
+
+$themeColor: #e66a52;
+
+
+
+.MaxCon{
+	width:750px;
+	height:100%;
+	position: relative;
+}
+
+div.videoCn{
+	position: absolute;
+	top: 0px;
+	left: 0;
+	right: 0;
+	height: 376px;
+	overflow: hidden;
+	div.banner{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		text-align: center;
+		top: 0;
+		left: 0;
+		div.men{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			z-index: 2;
+			background-color:rgba(0,0,0,0.3);
+		}
+		div.timeCn{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			z-index: 3;
+			padding-top: 150px;
+			text-align: center;
+			span{
+				display: inline-block;
+				width: 60px;
+				height: 60px;
+				border-radius:8px;
+				color: #fff;
+				font-size: 40px;
+			}
+			span.ind{
+				border:1px solid #fff;
+				background-color: rgba(0,0,0,0.3);
+			}
+		}
+		div.dist{
+			width: 100%;
+			position: absolute;
+			bottom:0;
+			left: 0;
+			height: 78px;
+			background-color:rgba(0,0,0,0.3);
+			font-size: 26px;
+			color: #fff;
+			padding: 0 20px;
+			text-align: left;
+
+			line-height: 78px;
+			@include line-clamp(1);
+			span{
+				font-weight: bold;
+			}
+
+		}
+	}
+}
+
+
+div.chatCon{
+	position: absolute;
+	top:377px;
+	left:0;
+	right:0;
+	bottom:0;
+	div.head{
+		width: 100%;
+		height: 95px;
+		font-size: 30px;
+		color: $themeColor;
+		font-weight: bold;
+		background-color:#f4f4f4;
+		border-bottom:1px solid #e1e1e1;
+		line-height: 94px;
+		text-align: center;
+
+	}
+
+	div.chatList{
+		position: absolute;
+		top: 96px;
+		left: 0;
+		right: 0px;
+		bottom:99px;
+		background-color:#fff;
+		overflow-y: auto;
+		border-bottom: 1px solid #e1e1e1;
+		>ul{
+			padding:18px;
+			>li{
+				width: 100%;
+				@include clearfloat;
+				div.iconC{
+					width: 85px;
+					height: 85px;
+					border-radius: 10px;
+					overflow: hidden;
+					float: left;
+					>img{
+						width: 100%;
+						height: 100%;
+						border-radius:10px;
+					}
+				}
+
+				div.Rn{
+					width: 610px;
+					float: right;
+					div.title{
+						line-height: 36px;
+						>span.name{
+							font-size: 24px;
+							color: #999;
+						}
+						>span.time{
+							margin-left: 30px;
+							font-size: 22px;
+							color: #cccbcb;
+						}
+					}
+
+					div.info{
+						display: inline-block;
+						padding: 18px;
+						border-radius:12px;
+						background-color:#f4f4f4;
+						border: 1px solid #e1e1e1;
+						color: #333;
+						position: relative;
+						font-size: 30px;
+						max-width:100%;
+						&:after{
+							position: absolute;
+							top: 20px;
+							left: -7px;
+							content: '';
+							border-top:inherit;
+							border-left:inherit;
+							border-right:none;
+							border-bottom:none;
+							width: 10px;
+							height: 18px;
+							background-color:inherit;
+							transform: skewX(30deg);
+
+						}
+					}
+
+				}
+			}
+
+		}
+	}
+
+
+	
+}
+
+
+div.bottomCn{
+	width: 100%;
+	height: 98px;
+	background-color:#f4f4f4;
+	position: absolute;
+	bottom:0;
+	left: 0;
+	padding:12px 20px;
+	input{
+		width: 556px;
+		height: 72px;
+		font-size: 28px;
+		color: #333;
+		border-radius:10px;
+		border:1px solid #e1e1e1;
+		padding: 0 10px;
+	}
+
+	button{
+		border:none;
+		font-size: 28px;
+		color: #333;
+		height: 72px;
+		background-color:#f4f4f4;
+		margin-left: 20px;
+	}
+}
+
+div.subscription{
+	width:150px;
+	position: absolute;
+	bottom:120px;
+	right:20px;
+	z-index:9;
+	div.imgC{
+		width: 113px;
+		height: 113px;
+		border-radius:10px;
+		border:3px solid $themeColor;
+		margin: 0 auto;
+		>img{
+			width: 100%;
+			height: 100%;
+		}
+	}
+	p{
+		margin-top: 10px;
+		font-size: 24px;
+		color: $themeColor;
+		text-align: center;
+	}
+}
+
+
+div.courseInfo{
+	position: absolute;
+	top:377px;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index:99;
+	background-color:#fff;
+
+
+	div.conline{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom:98px;
+		overflow-y: auto;
+	}
+
+	div.tit{
+		@include clearfloat;
+		position: relative;
+		padding:27px;
+		border:1px solid #e1e1e1;
+		div.close{
+			position: absolute;
+			top: 20px;
+			right: 20px;
+
+			width: 40px;
+			height: 40px;
+			border-radius:50%;
+			background-color:#f4f4f4;
+			text-align: center;
+			line-height: 38px;
+			i{
+				font-size: 22px;
+				color: #666;
+			}
+
+
+		}
+		div.imgC{
+			float: left;
+			width: 135px;
+			height: 135px;
+			border-radius:10px;
+			overflow: hidden;
+			>img{
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		div.Rn{
+			float: right;
+			width: 520px;
+			div.title{
+				font-size: 28px;
+				font-weight: bold;
+				line-height: 60px;
+			}
+			div.price{
+				margin-top: 10px;
+				font-size: 28px;
+				color: $themeColor;
+			}
+		}
+	}
+
+
+	div.form{
+		width: 100%;
+		padding: 20px 30px;
+		border-bottom:1px solid #e1e1e1;
+		div.line{
+			width: 100%;
+			span{
+				display: inline-block;
+				width: 100px;
+				height: 78px;
+				line-height: 78px;
+				color: #333;
+				font-size: 28px;
+			}
+			input{
+				width: 575px;
+				height: 78px;
+				border-radius:10px;
+				border:none;
+				color: #333;
+				font-size: 28px;
+				background-color:#f4f4f4;
+				padding: 0 15px;
+			}
+		}
+		div.line:nth-child(2){
+			margin-top: 20px;
+		}
+	}
+
+	div.word{
+		width: 100%;
+		padding: 26px;
+		@include clearfloat;
+		h3{
+			width: 100%;
+			float: left;
+			font-size: 26px;
+			font-weight: bold;
+		}
+		div.duan{
+			width: 100%;
+			float: left;
+			margin-top: 30px;
+		}
+		p{
+			width: 100%;
+			float: left;
+			font-size: 26px;
+			color: #666;
+			line-height:46px;
+		}
+	}
+
+	div.butCon{
+		width: 100%;
+		height: 97px;
+		position: absolute;
+		bottom:0;
+		left: 0;
+		a{
+			display: block;
+			background-color:$themeColor;
+			width: 100%;
+			height: 100%;
+			color: #fff;
+			font-size:30px;
+			text-align: center;
+			line-height: 97px;
+		}
+	}
+}
+
+

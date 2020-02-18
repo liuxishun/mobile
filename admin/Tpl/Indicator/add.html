@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/laydate/laydate.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>添加指标</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__URL__/saveItem" method='post' id='form'>
+			<table class="add_table" id='table'>
+				
+				<tr>
+						<th>指标名称：</th>
+						<td>
+						<input type="text" name="indicator_name" class="add_input" value="{$arr.indicator_name}" /> 
+						</td>
+				</tr>
+				<tr>
+						<th>对象频道：</th>
+						<td>
+                            <select name="mum_type">
+                                <option value="">请选择</option>
+                                <?php
+                                	$mum_types = D('admin://Member')->mum_type;
+                                ?>
+								<foreach name="mum_types" item="val">
+									<option value="{$val}" <?php if($val==$arr['mum_type']) echo 'selected'; ?>>{$val}</option>
+								</foreach>
+                            </select>
+                        </td>
+					</tr>
+				<tr>
+						<th>宝宝身长：</th>
+						<td>
+						<input type="text" name="indicator_height" class="add_input" value="{$arr.indicator_height}" />  宝妈cm/孕妇mm
+						</td>
+				</tr>
+				<tr>
+						<th>宝宝体重：</th>
+						<td>
+						<input type="text" name="indicator_weight" class="add_input" value="{$arr.indicator_weight}" /> 
+						</td>
+				</tr>
+				<tr>
+						<th>宝宝头围：</th>
+						<td>
+						<input type="text" name="indicator_head_circle" class="add_input" value="{$arr.indicator_head_circle}" /> 
+						</td>
+				</tr>
+
+				<tr>
+					<th>文章内容：</th>
+					<td>
+                        <textarea id="editor_1" name="content">{$arr.content}</textarea>
+<?php $editor_id = 'editor_1'; ?>
+<include file="Inc:inc_editor" />
+                    </td>
+				</tr>
+
+				<!-- <tr>
+						<th>宝宝描述：</th>
+						<td>
+						<input type="text" name="indicator_baby_desc" class="add_input" value="{$arr.indicator_baby_desc}" /> 
+						</td>
+				</tr>
+				<tr>
+						<th>妈妈描述：</th>
+						<td>
+						<input type="text" name="indicator_momy_desc" class="add_input" value="{$arr.indicator_momy_desc}" /> 
+						</td>
+				</tr> -->
+				<!-- <tr>
+						<th>视频截图：</th>
+						<td>
+						<input type="text" name="vedio_pic" class="add_input" data-preview="1" value="{$arr.vedio_pic}" /> 
+						<a href="javascript:;" onclick="myfilespace({dirName:'vpic',clickFn:'vedio_pic', extraFileUploadParams:{width:600, height:600, forcecut:0}})">浏览</a>
+						</td>
+				</tr>
+						<tr>
+						<th>视频地址：</th>
+						<td>
+						<input type="text" name="vedio_address" class="add_input" value="{$arr.vedio_address}" /> 
+						</td>
+				</tr> -->
+					<tr>
+						<th>所处周期：</th>
+						<td>
+						第&nbsp;<input type='text' name='p_id' value="{$arr.p_id}" />&nbsp;天
+						</td>
+				</tr>
+					<tr>
+						<th>是否启用：</th>
+						<td>
+						<input type='radio' value='1' name='enable_status' id='enable' <?php if($arr['enable_status'].''!=='0')echo 'checked'; ?>/>
+						<label for="enable">启用</label>&nbsp;
+
+						<input type='radio' value='0' name='enable_status' id='disable' <?php if($arr['enable_status'].''==='0')echo 'checked'; ?>/>
+						<label for="disable">冻结</label>
+
+						</td>
+				</tr>
+	
+				<tr>
+						<th></th>
+						<td>
+							<input name="id" type="hidden" value="{$arr.id}">
+							<input type="submit" class="add_yes" value=''/>
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>好孕妈妈</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/css/style.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/css/broad.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/css/jinxiu.css">
+	<style type="text/css">
+		.vedio_con1 img{ width:100%;}
+	</style>
+        <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+<script src="__PUBLIC__/ke/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    function ismobile(test){
+		var u = navigator.userAgent, app = navigator.appVersion;
+		if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+		 if(window.location.href.indexOf("?mobile")<0){
+		  try{
+		   if(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent)){
+			return '0';
+		   }else{
+			return '1';
+		   }
+		  }catch(e){}
+		 }
+		}
+		
+	};
+	var pla=ismobile(0);
+	if(pla==0){
+	
+		$('#contents').bind('focus',function(){  
+			$('.vedio_foot').css('position','static');  
+			$('.aaaa').css('position','static');
+			$('.vedio1').css('marginTop','0');
+			$('section').css('marginBottom','0');
+			
+			 
+		}).bind('blur',function(){  
+			$('.vedio_foot').css({'position':'fixed','bottom':'0'});  
+			$('.aaaa').css({'position':'fixed','top':'0'});
+			$('.vedio1').css('marginTop','480px'); 
+			$('section').css('marginBottom','190px');
+			$('body').scrollTop(0,100);
+
+		});
+	}
+});
+	$(function(){
+		$('.vedio1_p2 span').click(function(e) {
+			$(this).addClass('current').siblings().removeClass('current')
+			$('.vedio_con1').eq($(this).index()).addClass('current').siblings().removeClass('current')
+			//链式编程及针对类的特殊化简 方法3
+		});
+		$('.vedio_but').hide();
+		
+		var aa=$('iframe').height();
+		$('.vedio1').css('marginTop','aa');
+	});
+
+	function pay(){
+		if({$pd.bol}){
+			var dom = document.getElementById("myimg");
+			var sc = document.createElement("script");
+			sc.setAttribute("type","text/javascript");
+			sc.setAttribute("src","{$pd.VIDEO}&width=100%&height=480");
+			document.getElementById("myimg").innerHTML="";
+			dom.appendChild(sc);
+			$('.vedio1').css('marginTop','480px');
+		}else{
+			document.getElementById("myimg").innerHTML="<iframe style='margin-left:-8px; margin-top:-8px;' width='660px' height='350px' id='iframeZhibo' name='iframeZhibo' src='{$pd.url}' frameborder='0' scrolling='no' webkitallowfullscreen='' mozallowfullscreen='' allowfullscreen=''></iframe>";
+			$('.vedio1').css('marginTop','320px');
+		}
+
+		
+	}
+    </script>
+    
+</head>
+
+<body style="background-color: #f3f3f3;">
+<!-- 
+    <header id="header1">
+        <div id="top1">
+        	<input  class="icon" type="button" onclick="javascript:history.back(-1)">
+            <P class="title_s">课程详情</P>
+            <a href="#" class="collect">收藏</a>
+        </div>
+    </header> -->
+    <section class="section section1" style="margin-bottom:190px; top:0;">
+        <div class="aaaa" style="position:fixed; top:0; left:0; z-index:999; width:100%; right:0;">
+    
+            <div  id="myimg" class="vedio">
+                <img src="{$pd.IMAGE}"  onclick="pay()">
+                <P>{$pd.NUMBER_LEARNED}人以学</P>
+            </div>
+        </div>
+        
+        <div class="vedio1" style="margin-top:480px;">
+        	<P class="vedio1_p1"><span>[视频课程]{$pd.TITLE}</span><!-- <a href="#">考试</a> --></P>
+            <P class="vedio1_p2"><span class="current">简介</span><span>问答</span></P>
+        </div>
+        
+        <div class="vedio_con1 current" style="padding:20px; font-size:22px; line-height:40px; color:#333;">
+        	{$pd.jian}
+        </div>
+        
+        <div class="vedio_con1">
+            <ul class="broadcast_ul" style="  margin-top:0;" id="plUL">
+            <foreach name="pd.plist" item="l">
+            <li class="li2">
+                <img src="{$l.headimgurl}">
+                <div class="broadcast_ul_d1">
+                    <P class="broadcast_ul_d1_p1"><span class="broadcast_ul_d1_p1_s1">{$l.nickname}</span><span class="broadcast_ul_d1_p1_s2">{$l.time}</span></P>
+                    <div class="qp">
+                        <img class="qp_img" src="__PUBLIC__/ke/img/qp1.png">
+                        <P class="broadcast_ul_d1_p2">{$l.contents}</P>
+                    </div>
+                </div>
+            </li>
+            </foreach>
+
+        </ul>
+        </div>
+        
+    </section>
+    <footer class="vedio_foot">
+        <div class="vedio_tel" style="display: none;">
+        	<a href="tel:15001328927" class="vedio_tel_p1"><span class="vedio_tel_s1">电话咨询</span><span class="vedio_tel_s2">150-0132-8927</span></a>
+            <a href="http://dct.zoosnet.net/LR/Chatpre.aspx?id=DCT20072801&lng=cn" class="vedio_tel_p2"><span class="vedio_tel_s1">在线咨询</span><span class="vedio_tel_s2">online Reservation</span></a>
+        </div>
+    	<P class="input_shuru" style="width:100%; height:96px; background:#dddddd; padding:15px 10px;">
+    		<input id="contents" style="width:76%; height:100%; background:#fff; border:1px solid #b0b0b0; border-radius:9px; font-family:Microsoft YaHei; font-size:26px; color:#666; padding-left:10px;" type="text" placeholder="请输入您评论的信息">
+    		<input class="broadcast_foot_inp" style="width: 22%; float: right; padding: 0;border:1px solid #b0b0b0; border-radius:9px; font-family:Microsoft YaHei; height:100%; background:#fff; font-size:26px; color:#666; " type="button" value="发布" onclick="send()">
+    	</P>
+    </footer>
+    <!--<P class="dhzx" style="position:fixed; right:0; top:200px; z-index:9999;"><a href="tel:15001328927
+"><img style="width:68px; height:210px;" src="http://m.mumway.com/Public/ke/img/zixun2.png" ></a></P>-->
+</body>
+<script type="text/javascript">
+	setInterval("xiao()",1000);
+	//setTimeout("xiao()",1000);
+	function xiao(){
+		var url = '__URL__/getpinglun/urlid/{$pd.urlid}/openid/{$pd.openid}';
+		$.get(url,function(dd){
+			$('.broadcast_ul').html(dd);
+		});
+	}
+	function send(){
+		var dt = {};
+		dt.openid = '{$pd.openid}';
+		dt.urlid = '{$pd.urlid}';
+		dt.h_id = 0;
+		dt.contents = $('#contents').val();
+		var cont = $('#contents').val();
+		if (cont.replace(/(^\s*)|(\s*$)/g,"")==""){
+		    alert('输入为空，或都是空格');
+		}else{
+			var url = '__URL__/pinglun';
+			$.post(url,dt,function(dd){
+				$('#contents').val('');
+	    		if(!dd){
+	    			alert("发送失败！");
+	    		}
+	    	});
+		}
+	}
+
+</script>
+</html>

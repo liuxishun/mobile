@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>星级列表</b></span>
+		</div>
+
+		<div class="web_tit">
+		    <script type="text/javascript">
+			var searchURL='__ACTION__';
+			var searchIDs="hwtype_id".split('|');
+			</script>
+			类别：<select id="hwtype_id" style="font-size:12px">
+				<option value="">--请选择--</option>
+				<?php
+                    $hwtypes = M('hwtype')->select();
+                ?>
+                <foreach name="hwtypes" item="val">
+                <option value="{$val.id}" <?php if($val['id']==$para['hwtype_id'])echo 'selected'; ?>>{$val.name}</option>
+                </foreach>
+			 </select>
+			 
+			<input type="button" value="搜索" onclick="doSearch()" /> <input type="button" value="重置" onclick="doReset()" />
+		</div>
+		
+
+        <div class="con_box">
+        <form action="__URL__/del" method="POST" id="sub">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="80">编号</th>
+            <th>名称</th>
+            <th width="180">价格(元)</th>
+            <th width="100">是否显示</th>
+            <th width="180">基本操作</th>
+          </tr>
+
+          <foreach name="list" item="val">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+					<td>{$val.name}</td>
+                    <td>
+                        <del>{$val.old_price}</del>
+                        {$val.price}
+                    </td>
+					<td>
+						<script>showRW({api:'__URL__/is_display/id/<?php echo $val['id']; ?>/is_display/', v:'<?php echo $val['is_display']; ?>', vs:[1, 0]})</script>
+					</td>
+					<td>
+						<a href="__URL__/edit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a> |
+						<a href="__URL__/del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a>
+					</td>
+				</tr>
+		 </foreach>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"></div>
+
+
+          </form>
+ </div>
+
+</div>
+</div>      
+</body>
+</html>

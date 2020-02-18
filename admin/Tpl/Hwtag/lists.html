@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>阿姨列表</b></span>
+		</div>
+		<div class="web_tit">
+		    <script type="text/javascript">
+			var searchURL='__ACTION__';
+			var searchIDs="id|title|hwtype_id".split('|');
+			</script>
+			阿姨ID：<input type="text" id="id" value="{$para.id}" size="8" >
+            标题：<input type="text" id="title" value="{$para.title}" size="8" >
+            类别：
+            <select id="hwtype_id">
+                <option value="">请选择</option>
+                <?php
+                    $hwtypes = M('hwtype')->select();
+                ?>
+                <foreach name="hwtypes" item="item">
+                    <option value="{$item.id}" <?php if($para['hwtype_id']==$item['id'])echo 'selected'; ?>>{$item['name']}</option>
+                </foreach>
+            </select>
+
+			<input type="button" value="搜索" onclick="doSearch()" /> <input type="button" value="重置" onclick="doReset()" />
+		</div>
+		
+
+        <div class="con_box">
+        <form action="__URL__/del" method="POST" id="sub">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="80">编号</th>
+            <th>名称</th>
+            <th>地区</th>
+			<th width="100">类别</th>
+			<th width="100">星级</th>
+            <th width="80">是否显示</th>
+			<th width="80">是否置顶</th>
+			<th width="180">添加日期</th>
+            <th width="180">基本操作</th>
+          </tr>
+
+          <foreach name="list" item="val">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+					<td class="td_left">{$val.title}
+                    {$val.minzu}
+                    <?php $age_data = D('Common')->getAgeDataFromDate($val['birthday']); echo $age_data['age']? $age_data['age'].'岁' : ''; ?>
+                    {$age_data.shuxiang}
+                    {$age_data.xingzuo}
+                    </td>
+                    <td><?php echo $val['area_ids']? D('admin://Area')->getAreanames($val['area_ids']) : ''; ?></td>
+					<td><?php echo M('hwtype')->where(array('id'=>$val['hwtype_id']))->getField('name'); ?></td>
+					<td><?php echo M('hwlevel')->where(array('id'=>$val['hwlevel_id']))->getField('name'); ?></td>
+                    
+					<td>
+						<script>showRW({api:'__URL__/is_display/id/<?php echo $val['id']; ?>/is_display/', v:'<?php echo $val['is_display']; ?>', vs:[1, 0]})</script>
+					</td>
+					<td>
+						<script>showRW({api:'__URL__/is_top/id/<?php echo $val['id']; ?>/is_top/', v:'<?php echo $val['is_top']; ?>', vs:[1, 0]})</script>
+					</td>
+					<td><?php echo date('Y-m-d H:i:s', $val['addtime']); ?></td>
+					<td>
+						<a href="__URL__/edit/id/{$val.id}/tabid/1/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">图片</a> |
+                        <a href="__URL__/edit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a> |
+						<a href="__URL__/del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a>
+					</td>
+				</tr>
+		 </foreach>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"></div>
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+          </form>
+ </div>
+
+</div>
+</div>      
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>孕期营养咨询列表</b></span>
+		</div>
+		
+		
+
+        <div class="con_box">
+			<?php
+				$tp_u_idx='yun_foods_chat';
+				$tp_mid = $mid;
+			?>
+        	<include file="Member:inc_u_tab" />
+
+
+        <form action="__URL__/del" method="POST" id="sub">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="80">编号</th>
+            <th>用户内容</th>
+			<th>回复内容</th>
+			<th width="180">添加日期</th>
+            <th width="180">基本操作</th>
+          </tr>
+
+          <foreach name="list" item="val">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+					<td class="td_left">
+						<?php if ($val['mid']==$mid): ?>
+							{$val.content}
+						<?php endif ?>
+					</td>
+					<td class="td_left">
+						<?php if ($val['mid']!=$mid): ?>
+							{$val.content}
+						<?php endif ?>
+					</td>
+					<td><?php echo date('Y-m-d H:i:s', $val['addtime']); ?></td>
+					<td>
+						<a href="__URL__/del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a>
+					</td>
+				</tr>
+		 </foreach>
+
+		 		<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td class="td_left">
+						&nbsp;
+					</td>
+					<td class="td_left">
+						<textarea id="J_replay" class="txts" name=""></textarea><br />
+						<input id="J_btn_replay" type="button" value="回复" />
+					</td>
+					<td>&nbsp;</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"></div>
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+          </form>
+ </div>
+
+</div>
+</div>  
+
+<script>
+$('#J_btn_replay').bind('click', function(){
+	$.post('__URL__/add', {"info[to_mid]":'<?php echo $mid; ?>', "info[content]":$('#J_replay').val()}, function(d){
+		d.status==1? (location.reload()) : (alert(d.info||'提交失败'));
+	}, 'json');
+});
+</script>
+
+</body>
+</html>

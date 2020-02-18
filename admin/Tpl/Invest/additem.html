@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>测评表添加</b></span>
+		</div>
+		<div class="con_box">
+		<form action='__SELF__' method='POST' id='form'>
+			<table class="add_table" id='table'>
+				<tr>
+						<th>调查表名：</th>
+						<td>
+						<select name='t_id' id='t_id'>
+						<option value=''>--请选择--</option>
+							<?php foreach($list as $item){?>
+								<?php echo "<option value='".$item['id']."'>".$item['t_name']."</option>";?>
+							<?php } ?>
+							</select>
+						</td>
+				</tr>
+				<tr>
+						<th>调查表列：</th>
+						<td>
+						<select name='t_sub_id' id='sub_id'>
+						<option value=''>--请选择--</option>
+							</select>
+						</td>
+				</tr>
+				<tr>
+						<th></th>
+						<td>
+						<input type="button" value="添加表项" id='add'/><br/>
+						<input type='hidden' name='p_names'/>
+							<input type="button" class="add_yes" value="" id='tijiao'/>
+							
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+$(function(){
+	$('#t_id').change(function(){
+		var val=$(this).children('option:selected').val();
+		var sub_id=$('#sub_id');
+		sub_id.html('');
+		sub_id.append("<option value=''>--请选择--</option>");
+		$.ajax({
+			type:'POST',
+			dataType:'json',
+			data:{
+				id:val,
+			},
+			url:'__URL__/getSubItem',
+			success:function(data, textStatus, jqXHR){
+				if(data!=null){
+					for(var i=0;i<data.length;i++){
+						sub_id.append("<option value='"+data[i].id+"'>"+data[i].t_name+"</option>");
+					}
+				}
+			},
+			error:function(XMLHttpRequest,errorInfo,exception){
+				alert(errorInfo);
+			}
+		});
+	});
+});
+$('#add').click(function(){
+	var val=$('#sub_id').children('option:selected').val();
+	if(val==''){
+		alert('请选择表名和表列！');
+		return;
+	}
+	var length=$("#table tr").length;
+	$("<tr><th>表列选择项：</th><td><input type='text' name='p_sub_name' class='add_input' value=''/>&nbsp;<a href='javascript:void(0)' onclick='deleteRow(this)'>删除</a></td></tr>")
+	.insertBefore($("#table tr:eq("+(length-1)+")"));
+});
+function deleteRow(a){
+	var rowIndex=a.parentNode.parentNode.rowIndex;
+	var table=document.getElementById('table');
+	table.deleteRow(rowIndex);
+}
+$('#tijiao').click(function(){
+	var p_name=document.getElementsByName('p_sub_name');
+	var p_names='';
+	for(var i=0;i<p_name.length;i++){
+		if(p_name[i].value!=''){
+			p_names+=p_name[i].value+',';
+		}
+	}
+	if(p_names!=''){
+		p_names=p_names.substring(0,p_names.length-1);
+		document.getElementsByName('p_names')[0].value=p_names;
+	}
+	var val=$('#sub_id').children('option:selected').val();
+	if(val==''){
+		alert('请选择表名和表列！');
+		return;
+	}
+	$('#form').submit();
+});
+</script>
+</body>
+</html>

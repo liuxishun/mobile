@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/laydate/laydate.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>添加套餐</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__URL__/add" method='post' id='form'>
+			<table class="add_table" id='table'>
+				
+				<tr>
+						<th>所属天数：</th>
+						<td><select name="tian">
+							
+							
+						
+					<?php  for($i=1;$i<=280;$i++)
+					{?>
+                   <option value="<?php  echo $i;?>">第<?php echo $i;?>天
+					<?php
+					}?></select>
+						</td>
+				</tr>
+				<tr>
+						<th>早餐：</th>
+						<td>
+                     <foreach name='arr' item='v1'>
+					 <input type='checkbox' name='zaocan[]' value='{$v1.f_name}'>{$v1.f_name}
+						</foreach>
+						
+						</td>
+				</tr>
+				<tr>
+						<th>午餐：</th>
+						<td>
+						<foreach name='arr' item='v2'>
+					 <input type='checkbox' name='wucan[]' value='{$v2.f_name}'>{$v2.f_name}
+						</foreach>
+						</td>
+				</tr>
+				<tr>
+						<th>晚餐：</th>
+						<td>
+						<foreach name='arr' item='v3'>
+					 <input type='checkbox' name='wancan[]' value='{$v3.f_name}'>{$v3.f_name}
+						</foreach>
+						</td>
+				</tr>
+				<tr>  
+						<th>加餐：</th>
+						<td>
+						<foreach name='arr' item='v4'>
+					 <input type='checkbox' name='jiacan[]' value='{$v4.f_name}'>{$v4.f_name}
+						</foreach>
+						</td>
+				</tr>
+				<tr>  
+						<th>描述：</th>
+						<td>
+						
+					 <textarea name="dess" rows="50px" cols="10px" style="width:500px;height:200px"></textarea>
+						</td>
+				</tr>
+					
+					<tr>  
+						<th>所属用户：</th>
+						<td>
+						
+				    <select name="u_id">
+					<foreach  name='arr2' item='v5'>
+					<option value="" selected>{$v5.mobile}
+					</foreach>
+				</select>
+
+
+						</td>
+				</tr>
+	
+				<tr>
+						<th></th>
+						<td>
+							<input type="submit" class="add_yes" value=''/>
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+</html>

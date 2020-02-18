@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>签约列表</b></span>
+		</div>
+		<div class="web_tit">
+		    <script type="text/javascript">
+			var searchURL='__ACTION__';
+			var searchIDs="title|status".split('|');
+			</script>
+			姓名/电话：<input type="text" id="title" value="{$para.title}" size="8" >
+            状态：
+            <select id="status">
+                <option value="">请选择</option>
+                <?php
+                    $status_arr = D('Member')->appointment_status_arr;
+                ?>
+                <foreach name="status_arr" item="item" key="k">
+                    <option value="{$k}" <?php if($para['status'].''===$k.'')echo 'selected'; ?>>{$item}</option>
+                </foreach>
+            </select>
+
+			<input type="button" value="搜索" onclick="doSearch()" /> <input type="button" value="重置" onclick="doReset()" />
+		</div>
+		
+
+        <div class="con_box">
+        <form action="__URL__/del" method="POST" id="sub">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="80">编号</th>
+            <th width="150">预约日期</th>
+            <th width="100">联系人</th>
+            <th width="100">电话</th>
+			<th width="180">备注</th>
+			<th>预约阿姨</th>
+            <th>面试方式</th>
+            <th width="100">签约阿姨</th>
+            <th width="100">状态</th>
+			<th width="180">添加日期</th>
+            <th width="180">基本操作</th>
+          </tr>
+
+          <foreach name="list" item="val">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+                    <td><?php echo date('Y-m-d H:i', $val['plan_date']); ?></td>
+					<td>{$val.username}</td>
+                    <td>{$val.tel}</td>
+					<td>{$val.memo}</td>
+					<td>
+                        <?php
+                        $hw_rows = M('houseworker')->where("id IN (". $val['hw_ids'] .")")->select();
+                        ?>
+                        <foreach name="hw_rows" item="row">
+                        <a href="__APP__/Houseworker/edit/id/{$row.id}" target="_blank">{$row.title}</a>
+                        </foreach>
+                    </td>
+                    
+					<td>
+						<?php
+                        $hw_row = M('houseworker')->where(array('id'=>$val['hw_id']))->find();
+                        if($hw_row){
+                        ?>
+                        <a href="__APP__/Houseworker/edit/id/{$hw_row.id}" target="_blank">{$hw_row.title}</a>
+                        <?php } ?>
+					</td>
+                    <td>{$val.meet_type}</td>
+                    <td>{$status_arr[$val['status']]}</td>
+					<td><?php echo date('Y-m-d H:i:s', $val['add_time']); ?></td>
+					<td>
+                        <a href="__URL__/edit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a> |
+						<a href="__URL__/del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a>
+					</td>
+				</tr>
+		 </foreach>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"></div>
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+          </form>
+ </div>
+
+</div>
+</div>      
+</body>
+</html>

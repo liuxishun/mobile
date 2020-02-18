@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>demo..</title>
+    <script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', '87405247014f637f']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+</script>
+    <script type="text/javascript" src="http://libs.useso.com/js/jquery/1.7.2/jquery.min.js"></script>
+    <style type="text/css">
+		.demo{width:560px; margin:60px auto 10px auto}
+		.geo{margin-top:20px}
+		.demo p{line-height:32px; font-size:16px}
+		.demo p span,#baidu_geo,#google_geo{font-weight:bold}
+    </style>
+</head>
+<body>
+<div id="main">    
+	<div class="demo">       
+    	 <p>地理坐标：<span id="latlon"></span></p>       
+         <div class="geo">            
+         	<p>百度地图定位位置：</p>            
+            <p id="baidu_geo"></p>        
+         </div>        
+         <div class="geo">            
+         	<p>GOOGLE地图定位位置：</p>            
+            <p id="google_geo"></p>        
+         </div>    
+     </div>
+</div>
+<script>
+function getLocation(){   
+	 if (navigator.geolocation){        
+	 	navigator.geolocation.getCurrentPosition(showPosition,showError);    
+	 }else{        
+	 	alert("浏览器不支持地理定位。");    }
+	 }
+	 function showPosition(position){   
+	    $("#latlon").html("<br />纬度:"+position.coords.latitude +'<br />经度:'+ position.coords.longitude);   
+		var latlon = position.coords.latitude+','+position.coords.longitude;       
+		 //baidu    var url = "http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&callback=renderReverse&location="+latlon+"&output=json&pois=0";    
+		 $.ajax({         
+		 type: "GET",         
+		 dataType: "jsonp",         
+		 url: url,        
+		 beforeSend: function(){            
+		 $("#baidu_geo").html('正在定位...');        },        
+		 success: function (json) {             
+		 if(json.status==0){                
+		 $("#baidu_geo").html(json.result.formatted_address);            
+		 }        
+		 },        
+		 error: function (XMLHttpRequest, textStatus, errorThrown) {             
+		 $("#baidu_geo").html(latlon+"地址位置获取失败");         }    });        
+		 //google    var url = 'http://maps.google.cn/maps/api/geocode/json?latlng='+latlon+'&language=CN';    
+		 $.ajax({         
+		 type: "GET",        
+		 url: url,         
+		 beforeSend: function(){            
+		 $("#google_geo").html('正在定位...');        },        
+		 success: function (json) {             
+		 if(json.status=='OK'){                
+		 var results = json.results;                
+		 $.each(results,function(index,array){                    
+		 if(index==0){                    
+		 $("#google_geo").html(array['formatted_address']);                    
+		 }                
+		 });            
+		 }        
+		 },        
+		 error: function (XMLHttpRequest, textStatus, errorThrown) {             
+		 $("#google_geo").html(latlon+"地址位置获取失败");         
+		 }     
+		 });
+		 }function showError(error){    switch(error.code) {        case error.PERMISSION_DENIED:            alert("定位失败,用户拒绝请求地理定位");            break;        case error.POSITION_UNAVAILABLE:            alert("定位失败,位置信息是不可用");            break;        case error.TIMEOUT:            alert("定位失败,请求获取用户位置超时");            break;        case error.UNKNOWN_ERROR:            alert("定位失败,定位系统失效");            break;    }}getLocation();
+</script>
+
+<!-------百度统计--------->
+<script>
+var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?fffbfc695acd077c928d330c0e2190e4"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
+<!-------离线宝--------->
+<script type="text/javascript" charset="utf-8" async src="http://lxbjs.baidu.com/lxb.js?sid=8927712"></script>
+<!-------百度统计--------->
+
+</body>
+</html>
+
+<!--<script>
+    navigator.geolocation.getCurrentPosition( // 该函数三参数
+        function(pos){ // 则执行该调函数
+            alert(
+                '  经度：' + pos.coords.latitude +
+                '  纬度：' + pos.coords.longitude +
+                '  高度：' + pos.coords.altitude +
+                '  精确度(经纬)：' + pos.coords.accuracy +
+                '  精确度(高度)：' + pos.coords.altitudeAccuracy +
+                '  速度：' + pos.coords.speed
+            );
+        }, function(err){ // 失败则执行该调函数
+            alert(err.message);
+        }, { // 附带参数
+            enableHighAccuracy: false, // 提高精度(耗费资源)
+            timeout: 3000, // 超timeout则调用失败调函数
+            maximumAge: 1000 // 获取理信息效期超效期则重新获取位置信息
+        }
+    );
+</script>-->

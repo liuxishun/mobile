@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+</head>
+
+<body>
+
+<div class="add_tit cl">
+	<span class="l">位置：<a href=""><?php echo $sitename;?>管理平台</a><b>发布方案</b></span>
+</div>
+
+<style>
+.list-foods li{overflow: hidden;line-height: 28px;padding-bottom: 0px;}
+.list-foods li a{color: #0000ee;}
+.list-foods li .c-n{width: 100px;float: left;}
+.list-foods li .c-num{width:100px;float: left;}
+.list-foods li .c-unit{width: 100px;float: left;}
+.list-foods li .c-opt{width: 100px;float: left;}
+</style>
+<div class="con_box">
+<form action="__SELF__" method="post" onsubmit="return chk(this)">
+	<table  class="add_table">	
+		<tr>
+			<th>对象频道：</th>
+			<td>
+                <select name="info[mum_type]">
+                    <option value="">请选择</option>
+                    <?php
+                    	$mum_types = D('admin://Member')->mum_type;
+                    ?>
+					<foreach name="mum_types" item="val">
+						<option value="{$val}" <?php if($val==$arr['mum_type']) echo 'selected'; ?>>{$val}</option>
+					</foreach>
+                </select>
+            </td>
+		</tr>
+
+		<tr>
+			<th>所属周期：</th>
+			<td>第<input class="add_input" type="text" name="info[tian]" value="{$arr.tian}" style="width:50px;" />天</td>
+		</tr>
+
+		<?php
+			$can_s = array('zao', 'wu', 'wan');
+			$can_n = array('早', '午', '晚');
+		?>
+		<?php foreach ($can_s as $k => $v): ?>
+		<tr>
+			<th>&nbsp;</th>
+			<td>&nbsp;</td>
+		</tr>
+		<?php
+			$can_s = $arr[$v.'can']? explode(',', $arr[$v.'can']) : array('');
+			$jia_s = $arr[$v.'jia']? explode(',', $arr[$v.'jia']) : array('');
+		?>
+		<tr>
+			<th><?php echo $can_n[$k]; ?>餐：</th>
+			<td>
+				<ul class="list-foods" data-idx="<?php count($can_s); ?>">
+					<li>
+						<div class="c-n">名称</div>
+						<div class="c-num">数量</div>
+						<div class="c-unit">单位</div>
+						<div class="c-opt"><a class="J-add-food" data-k="{$v}" href="javascript:;">添加</a></div>
+					</li>
+					<?php foreach ($can_s as $sk => $sv): ?>
+					<?php
+						$ns = explode('(', $sv);
+						$n = $ns[0];
+						$n2 = str_replace(')', '', $ns[1]);
+						$num = mb_substr($n2, 0, -1, 'utf-8');
+						$unit = mb_substr($n2, -1, 1, 'utf-8');
+					?>
+					<li>
+						<div class="c-n"><input name="{$v}can[0][n]" value="{$n}" type="text" size="8" /></div>
+						<div class="c-num"><input name="{$v}can[0][num]" value="{$num}" type="text" size="4" /></div>
+						<div class="c-unit"><input name="{$v}can[0][unit]" value="{$unit}" type="text" size="4" /></div>
+						<div class="c-opt"><a class="J-remove-food" href="javascript:;">删除</a></div>
+					</li>
+					<?php endforeach ?>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><?php echo $can_n[$k]; ?>加餐：</th>
+			<td>
+				<ul class="list-foods" data-idx="<?php count($jia_s); ?>">
+					<li>
+						<div class="c-n">名称</div>
+						<div class="c-num">数量</div>
+						<div class="c-unit">单位</div>
+						<div class="c-opt"><a class="J-add-food" href="javascript:;">添加</a></div>
+					</li>
+					<?php foreach ($jia_s as $sk => $sv): ?>
+					<?php
+						$ns = explode('(', $sv);
+						$n = $ns[0];
+						$n2 = str_replace(')', '', $ns[1]);
+						$num = mb_substr($n2, 0, -1, 'utf-8');
+						$unit = mb_substr($n2, -1, 1, 'utf-8');
+					?>
+					<li>
+						<div class="c-n"><input name="{$v}jia[0][n]" value="{$n}" type="text" size="8" /></div>
+						<div class="c-num"><input name="{$v}jia[0][num]" value="{$num}" type="text" size="4" /></div>
+						<div class="c-unit"><input name="{$v}jia[0][unit]" value="{$unit}" type="text" size="4" /></div>
+						<div class="c-opt"><a class="J-remove-food" href="javascript:;">删除</a></div>
+					</li>
+					<?php endforeach ?>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th><?php echo $can_n[$k]; ?>餐描述：</th>
+			<td><textarea class="txts" name="{$v}candesc"><?php echo $arr[$v.'candesc']?></textarea></td>
+		</tr>
+		<?php endforeach ?>
+		
+
+
+		<tr height="40">
+			<th align="center">
+			</th>
+			<td align="center"><div align="left">
+			<input type="hidden" name="wj_id" value="<?php echo $wj_id;?>" />
+			  <input type="submit" value="" class="add_yes 1"/><a href="javascript:history.go(-1)" class="add_no"></a>
+			  </div></td>
+		</tr>
+	</table>
+</form>
+</div>
+
+<!--食物选择-->
+<?php
+	$foods = M('foods')->order('c_id ASC')->select();
+	$fsa = array();
+	foreach($foods as $v){
+		if(strpos($v['timeeat'], ',早餐,')!==false){
+			$fsa[0][] = $v;
+		}else if(strpos($v['timeeat'], ',午餐,')!==false){
+			$fsa[1][] = $v;
+		}else if(strpos($v['timeeat'], ',晚餐,')!==false){
+			$fsa[2][] = $v;
+		}else{
+			$fsa[3][] = $v;
+		}
+	}
+	$fsb = array();
+	for ($i=0; $i<4; $i++){
+		$fs = $fsa[$i];
+		foreach ($fs as $k => $v){
+			$c_n = M('food_catorgory')->where(array('id'=>$v['c_id']))->getField('c_type_name');
+			$fsb[$i][$c_n? $c_n : '其它'][] = $v;
+		}
+	}
+?>
+<style>
+.m-foods dl,
+.m-foods dt,
+.m-foods dd{margin: 0;padding: 0;}
+.f-mask{position: fixed;z-index: 20;left: 0;top: 0;bottom:0;display: none;width: 100%;height: 100%;background-color: #ccc;*filter:alpha(opacity=70);opacity:0.7;}
+.m-foods{position: fixed;z-index: 30;left:50%;top:20%;width: 500px;margin-left: -250px;border: 1px solid #ddd;background-color: #fff;}
+.m-foods a{color: #0000ee;}
+.m-foods .inner{padding:10px 15px;}
+.m-foods .hd{overflow: hidden;zoom:1;padding-bottom: 5px;}
+.m-foods .hd a{float: left;margin: 0 15px 0 0;}
+.m-foods .hd .cur{text-decoration: underline;font-weight: bold;}
+.m-foods .bd{min-height:100px;}
+.m-foods .bd .item{display: none;}
+.m-foods .bd .cur{display: block;}
+.m-foods .bd dl{position:relative;padding:5px 0 5px 80px;overflow: hidden;zoom:1;}
+.m-foods .bd dt{position: absolute;left: 0;top:6px;font-weight: bold;}
+.m-foods .bd dd{float: left;margin-right: 10px;}
+</style>
+<div id="J_f_mask" class="f-mask" style="display:none;"></div>
+<div id="J_foods" class="m-foods" style="display:none;"><div class="inner">
+	<div class="hd">
+		<a class="cur" data-idx="0" href="javascript:;">早餐</a>
+		<a data-idx="1" href="javascript:;">午餐</a>
+		<a data-idx="2" href="javascript:;">晚餐</a>
+		<a data-idx="3" href="javascript:;">其它</a>
+	</div>
+	<div class="bd">
+		<?php for ($i=0; $i<4; $i++): ?>
+			<div class="item <?php if($i==0)echo 'cur'; ?>">
+			<?php
+				$fs = $fsb[$i];
+				$cid = '';
+				$dds = array();
+			?>
+			<?php foreach ($fs as $k => $v): ?>
+				<dl><dt>{$k}</dt>
+				<dd>
+					<?php foreach ($v as $sk => $sv): ?>
+					<?php
+						echo '<a href="javascript:;" data-unit="'. $sv['unit'] .'">'. $sv['f_name'] .'</a>';
+					?>
+					<?php endforeach ?>
+				</dd></dl>
+			<?php endforeach ?>
+			</div>
+		<?php endfor ?>
+	</div>
+</div></div>
+
+<script>
+$('.J-add-food').bind('click', function(){
+	var ul=$(this).parents('ul').eq(0), html=[], k=$(this).data('k'), idx=ul.data('idx');
+	html.push('<li>');
+	html.push('	<div class="c-n"><input name="'+k+'can['+idx+'][n]" type="text" size="8" /></div>');
+	html.push('	<div class="c-num"><input name="'+k+'can['+idx+'][num]" type="text" size="4" /></div>');
+	html.push('	<div class="c-unit"><input name="'+k+'can['+idx+'][unit]" type="text" size="4" /></div>');
+	html.push('	<div class="c-opt"><a class="J-remove-food" href="javascript:;">删除</a></div>');
+	html.push('</li>');
+	ul.data('idx', idx+1);
+	ul.append(html.join(''));
+});
+$('.list-foods').delegate('.J-remove-food', 'click', function(){
+	var li=$(this).parents('li').eq(0);
+	li.remove();
+})
+$('.list-foods').delegate('.c-n input', 'click', function(){
+	$('#J_f_mask').show();
+	$('#J_foods').show();
+	tCtl = $(this).parent().parent();
+})
+
+var tCtl;
+$('#J_foods .hd a').hover(function(){
+	$('#J_foods .hd a').removeClass('cur');$(this).addClass('cur');
+	$('#J_foods .bd .item').removeClass('cur');$('#J_foods .bd .item').eq($(this).data('idx')).addClass('cur');
+}, function(){
+
+});
+$('#J_foods .bd a').bind('click', function(){
+	$(tCtl).find('[name*="[n]"]').val($(this).html());
+	$(tCtl).find('[name*="[unit]"]').val($(this).data('unit'));
+	$('#J_f_mask').hide();
+	$('#J_foods').hide();
+})
+$('#J_f_mask').bind('click', function(){
+	$('#J_f_mask').hide();
+	$('#J_foods').hide();
+});
+</script>
+
+</body>
+</html>

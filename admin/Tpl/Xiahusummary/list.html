@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<include file="Inc:inc_head" />
+
+</head>
+<body>
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>护理日志列表</b></span>
+		</div>
+	
+
+		
+
+        <div class="con_box">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="50">编号</th>
+            <th width="100">月龄</th>
+            <th width="100">头围</th>
+            <th width="100">身长</th>
+            <th width="100">体重</th>
+            <th width="100">黄疸</th>
+            <th width="100">月嫂名称</th>
+            <th width="150">基本操作</th>
+          </tr>
+
+          <volist name="list" id="val" key="k">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$k}</td>
+                  
+                    <!--<td>{$val.account}</td>-->
+                    <td>{$val.yueling }</td>
+                    <td>{$val.touwei }</td>
+                    <td>{$val.shenchang }</td>
+                    <td>{$val.tizhong }</td>
+                
+                    <td><?php if($val['huangdan']==0):?>
+							无
+							<?php elseif($val['huangdan']==1):?>
+							轻度
+							<?php elseif($val['huangdan']==2):?>
+							中度
+							<?php else:?>
+							重度
+							<?php endif?>
+					</td>
+					<td>{$val.title }</td>
+					
+					
+					<td>
+						<a href="__URL__/edit/id/{$val.id}">查看</a> |
+						<!--  <a href="__URL__/delete/id/{$val.id}">删除</a>-->
+						<a href="__URL__/delete/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>"  class="link-del">删除</a>
+					</td>
+				</tr>
+		 </volist>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"/></div>
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+
+ </div>
+
+</div>
+</div>  
+ 
+</body>
+</body>
+</html>

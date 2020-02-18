@@ -1,0 +1,63 @@
+<div class="index_distan">
+
+<style type="text/css">
+					.bank_1 *{
+						list-style: none;
+
+					}
+					.bank_1 li{
+						margin-top: 10px;
+					}
+					.bank_1 li span{
+						display: inline-block;
+						width: 100px;
+						margin-right: 8px;
+						text-align: right;
+						color: #666666;
+						font-size: 14px;
+						line-height: 30px;
+					}
+					.bank_1 li input{
+						width: 150px;
+						height: 30px;
+						border: 1px solid #999;
+						text-indent: 15px;
+						font-size: 14px;
+						color: #999;
+						line-height: 30px;
+					}
+					.index_distan1_formbotton{
+						padding-left: 100px;
+						padding-top: 15px;
+						padding-bottom: 15px;
+
+					}
+					.index_distan1_formbotton input{
+						width: 80px;
+						height: 30px;
+						border-radius: 3px;
+						background-color: #64a407;
+						color: #fff;
+						border: 0;
+						font-weight: bold;
+						box-shadow: 0 0 17px #fff inset;
+						
+					}
+				</style>
+					<div class="index_distan1" id="xian_2">
+						<form class="index_distan1_form"  action="__URL__/family_add_pro" method="post">
+							<ul  class="bank_1">
+								<li><span>姓名:</span><input type="text" name="info[f_name]" value="{$list.f_name}"></li>
+								<li><span>关系:</span><input type="text" name="info[condition]" value='{$list.condition}'></li>
+								<li><span>联系电话:</span><input type="text"  name="info[tel]" value='{$list.tel}'></li>
+								<li><span>所在单位:</span><input type="text" name="info[f_unit]" value='{$list.f_unit}'></li>
+								<li><span>职业:</span><input type="text" name="info[work]" value='{$list.work}'></li>
+									<input type="hidden" name="f_id" value="{$list.id}"> 
+								<input type="hidden" name ="info[houser_id]"  value='{$a_id.id}'>
+							</ul>
+							<div class="index_distan1_formbotton">
+								<input type="submit" value='确认'>
+							</div>
+						</form>
+					</div>
+				</div>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.1.0/jquery.form.min.js"></script>
+	<script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/wode/css/style.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/wode/css/common1.css">
+	<style type="text/css">
+    	/*页面*/
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			font-family: "Microsoft YaHei";
+		}
+		
+		body {
+			font-family: "Microsoft YaHei";
+		}
+		.yemian{ text-align:center; font-size:30px; color:#565656; line-height:50px; padding:80px 50px;}
+		.yemian span{ color:#ff1547; font-size:40px;}
+		.yemian_form{ padding:0 50px 0;}
+		.yemian_p1{ width:100%; margin-bottom:30px; background:#e2e2e2; border-radius:9px; height:80px; padding:10px 0;}
+		.yemian_s1{ width:120px; border-right:1px solid #cacaca; display:inline-block; height:60px; float:left; text-align:center; color:#565656; line-height:60px; font-size:28px; }
+		.yemian_p1 input{ width:60%; border:none; outline:none; height:60px; line-height:60px; padding-left:20px; background:#e2e2e2; font-size:26px; color:#565656;font-family:"微软雅黑";}
+		.yemian_p3{ width:100%; padding:20px 0 0;}
+		.yemian_input1{ width:100%; border:none; background:#5651b7; border-radius:9px; height:80px; line-height:80px; font-size:26px; color:#fff; -webkit-appearance: none;}
+		.yemian_input2{ width:45%; border:none; background:#b0b0b0; border-radius:9px; height:80px; line-height:80px; font-size:26px; color:#808080;}
+
+    </style>
+    <script type="text/javascript">
+    	$(function (){
+    		var options = {
+	            success: function (data) {
+	                alert("成功");
+	                $("#url").val(data);
+	            }
+	        };
+	        $("#form1").ajaxForm(options);
+	        var options1 = {
+		            success: function (data) {
+		            	if(data == 11){
+		            		alert("成功");
+		            	}else{
+		            		alert("失败");
+		            	}
+		            }
+		        };
+		    $("#form2").ajaxForm(options1);
+    		
+    	});
+    </script>
+</head>
+<body style="background-color: #fff;">
+<section class="section section1">
+	<form id="form1" class="yemian_form" action="__SELF__" method="post" enctype="multipart/form-data">
+		<P class="yemian"><span>*</span>输入你要生成的支付金额<br>点击确定</P>
+		<P class="yemian_p1"><span class="yemian_s1">金额</span><input type="text" id="jine" name="jine" placeholder="请输入金额" ></P>
+        <P class="yemian_p1"><span class="yemian_s1">图片</span><input type="file" id="yueret" name="yueret"></P>
+        <P class="yemian_p1"><span class="yemian_s1">生成路径</span><input type="text" id="url" name="url"></P>
+        <P class="yemian_p3"><input class="yemian_input1" type="submit" value="确定"></P>
+	</form>
+</section>
+</body>
+<body>
+<section class="section section1">
+	<form id="form2" class="yemian_form" action="__SELF__" method="post" enctype="multipart/form-data" >
+		<P class="yemian_p1"><span class="yemian_s1">日历</span><input type="file" id="rili" name="rili"></P>
+		<P class="yemian_p3"><input class="yemian_input1" type="submit" value="确定"></P>
+	</form>
+</section>
+</body>
+</html>

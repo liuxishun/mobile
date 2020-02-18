@@ -1,0 +1,31 @@
+                <table class="add_table">	
+                <?php
+                    $i = 0;
+                ?>
+                <foreach name="attrs" item="attr">
+                    <?php if(strpos($attr, '#')!==false){ ?>
+                    <tr>
+						<th>【<?php echo str_replace('#', '', $attr); ?>】</th>
+						<td>
+                        <td>
+                    </tr>
+                    <?php }else{ ?>
+                    <tr>
+						<th>{$attr}：</th>
+						<td>
+                            <input type="hidden" name="paras[{$i}][name]" value="{$attr}" />
+                            <select name="paras[{$i}][val]">
+                                <option value="">请选择</option>
+                                <?php
+                                    $sels = explode('|', '合格|标准|熟练|非常熟练');
+                                ?>
+                                <foreach name="sels" item="val">
+                                <option value="{$val}" <?php if($val==$paras[$attr])echo 'selected'; ?>>{$val}</option>
+                                </foreach>
+                            </select>
+                        </td>
+					</tr>
+                    <?php } ?>
+                <?php $i++; ?>
+                </foreach>
+                </table>

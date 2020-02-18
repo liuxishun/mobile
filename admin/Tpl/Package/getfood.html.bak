@@ -1,0 +1,54 @@
+<link href="http://weixin.pooway.com/yy_admin/static/css/admin_style.css" type="text/css" rel="stylesheet" />
+<script src="http://weixin.pooway.com/yy_admin/static/js/jquery-1.8.0.js"></script>
+<script type="text/javascript">
+var CFG_baseurl = 'http://weixin.pooway.com/yy_admin/';
+</script><link href="http://weixin.pooway.com/yy_admin/static/swfupload/css/swfupload.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/swfupload.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/js/swfupload.queue.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/js/fileprogress.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/js/handlers.js"></script>
+<style type="text/css">
+.foodlist{width:780px; margin:0 auto; margin-top:20px;}
+.foodlist li{ width:80px; float:left; text-align:center; margin:5px; background-color:#CCCCCC; height:26px; line-height:26px}
+.foodlist .sel{ background-color:#FF9933}
+.foodlist li a{ color:#000000; text-decoration:none}
+.foodlist li a:visited{ color:#66FF00}
+</style>
+<body>
+<div class="foodlist"><ul>
+<?php
+foreach($lists as $v) {
+	echo '<li><a href="javascript:;" dataid="'.$v['id'].'">'.$v['f_name'].'</a></li>';
+}
+?>
+</ul>
+</div>
+
+
+<div class="index_option"  style="clear:both">
+		
+		<center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php
+    $Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+    ?>
+<include file="Inc:inc_xpage" />
+</center>
+</div>
+
+
+<script type="text/javascript">
+var cid = <?php echo $cid;?>;
+var units = '<?php echo $unit;?>';
+$(function(){
+	$('.foodlist a').click(function(){
+		alert(1);die;
+		$(this).parent('li').addClass('sel');
+		var name = $(this).html();
+		var fid = $(this).attr('dataid');
+		var li_id = 'f_'+cid+'_'+fid;
+		if (!parent.$('#'+li_id).length) {
+			$('<li id="'+li_id+'"><a href="javascript:;" onclick="removef(\''+li_id+'\')">[X]</a>'+name+'<input type="text" name="quantity['+cid+'][]" value="" size="3"><select name="unit['+cid+'][]">'+units+'</select><input type="hidden" name="food['+cid+'][]" value="'+name+'"><input type="hidden" name="foodid['+cid+'][]" value="'+fid+'"></li>').appendTo(parent.$('#box_'+cid).find('.food'));
+		}
+	});
+})
+</script>
+</body>

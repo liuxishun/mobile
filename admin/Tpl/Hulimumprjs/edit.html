@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>护理项目编辑</b></span>
+		</div>
+
+        <div class="con_box">
+			<form method="post" action="__SELF__" id="form" name="form">
+				<table class="add_table">
+					<tr>
+						<th>名称：</th>
+						<td>{$arr.name}<input type="hidden" name="info[name]" class="add_input" value="{$arr.name}"/></td>
+					</tr>	
+					<tr>
+						<th>标识：</th>
+						<td>{$arr.cus_id}</td>
+					</tr>
+					<tr>
+						<th>记录类型：</th>
+						<td>{$arr.type}</td>
+					</tr>
+					<tr>
+						<th>记录次数：</th>
+						<td><input type="text" name="info[log_num]" class="add_input" value="{$arr.log_num}"/></td>
+					</tr>	
+					<tr>
+						<th>字段：</th>
+						<td>{$arr.fields}</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>
+							<input type="hidden" name="id" value="{$arr.id}"/>
+							<input type="hidden" name="listurl" value="{$listurl}"/>
+							<a href="javascript:;" onclick="document.form.submit();"class="add_yes"></a>
+							<a href="__URL__/lists" class="add_no"></a>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>

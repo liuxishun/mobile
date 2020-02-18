@@ -1,0 +1,156 @@
+
+<?php $include=array('filespace'); ?>
+
+<script type="text/javascript" src="__PUBLIC__/index/js/jquery-1.8.2.min.js"></script>
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="__PUBLIC__/index/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+
+
+	<div class="index_distan">
+
+	<style type="text/css">
+					.bank_1 *{
+						list-style: none;
+
+					}
+					.bank_1 li{
+						margin-top: 10px;
+					}
+					.bank_1 li span{
+						display: inline-block;
+						width: 100px;
+						margin-right: 8px;
+						text-align: right;
+						color: #666666;
+						font-size: 14px;
+						line-height: 30px;
+					}
+					.bank_1 li input{
+						width: 150px;
+						height: 30px;
+						border: 1px solid #999;
+						text-indent: 15px;
+						font-size: 14px;
+						color: #999;
+						line-height: 30px;
+					}
+					.index_distan1_formbotton{
+						padding-left: 100px;
+						padding-top: 15px;
+						padding-bottom: 15px;
+
+					}
+					.index_distan1_formbotton input{
+						width: 80px;
+						height: 30px;
+						border-radius: 3px;
+						background-color: #64a407;
+						color: #fff;
+						border: 0;
+						font-weight: bold;
+						box-shadow: 0 0 17px #fff inset;
+						
+					}
+				</style>
+					<div class="index_distan1" id="xian_5">
+						<form class="index_distan1_form"   action="__URL__/tianjia" method="post">
+						<input type="hidden" name="info[houser_id]" value="{$a_id.id}">
+							<ul class="bank_1">
+								<li><span>培训类别:</span>
+								<select name="info[tra_type]"  id='px_type' onchange="sel()">
+						         <option value="认证培训"  <?php if($list['tra_type']=='认证培训') echo "selected"?>>认证培训</option>
+                                 <option   value="上岗培训" <?php if($list['tra_type']=='上岗培训') echo "selected"?>>上岗培训</option>
+								</select>
+								</li>
+								<li id="renzhen" style="display:none">
+
+									<input type="checkbox" class="inputbox" value="母婴护理师" name="info[tra_name]"
+
+ 
+
+                                   <?php  echo $lis;?>
+						<input type="checkbox" class="inputbox" value="母婴护理师" name="tra_name[]" <?php $chk = in_array('母婴护理师',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>母婴护理师
+									<input type="checkbox" class="inputbox" value="育婴师" name="tra_name[]"<?php $chk = in_array('育婴师',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>育婴师
+									<input type="checkbox" class="inputbox" value="催乳师"  name="tra_name[]" <?php $chk = in_array('催乳师',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>催乳师
+									<input type="checkbox" class="inputbox" value="精英护理师" name="tra_name[]" <?php $chk = in_array('精英护理师',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>精英护理师
+									<input type="checkbox" class="inputbox" value="母婴护理师" name="tra_name[]" <?php $chk = in_array('母婴护理师资',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>母婴护理师资
+									<input type="checkbox" class="inputbox" value="育婴师资"  name="tra_name[]" <?php $chk = in_array('育婴师资',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>育婴师资
+									<input type="checkbox" class="inputbox" value="催乳师资" name="tra_name[]" <?php $chk = in_array('催乳师资',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>催乳师资
+								</li>
+								<li id="shanggang" style="display:none">
+
+									<input type="checkbox" class="inputbox" value="服务礼仪" name="tra_name[]"<?php $chk = in_array('服务礼仪',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>服务礼仪
+									<input type="checkbox" class="inputbox" value="公司制度" name="tra_name[]" <?php $chk = in_array('公司制度',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>公司制度
+									<input type="checkbox" class="inputbox" value="面试技巧" name="tra_name[]" <?php $chk = in_array('面试技巧',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>面试技巧
+									<input type="checkbox" class="inputbox" value="除垢/消毒" name="tra_name[]"<?php $chk = in_array('除垢/消毒',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>除垢/消毒
+									<input type="checkbox" class="inputbox" value="技能强化考核" name="tra_name[]"
+									<?php $chk = in_array('技能强化考核',$lis)? 'checked' : '';    ?>  <?php echo $chk;?>>技能强化考核
+						
+								</li>
+								<li><span>培训开始时间:</span><i><input type="text" name="info[start_time]" value="{$list.start_time}"></i></li>
+								<li><span>培训结束时间:</span><i><input type="text" name="info[end_time]" value="{$list.end_time}"></i></li>
+									<li><span>培训地点:</span><i><input type="text" name="info[training_adress]" value="{$list.training_adress}"></i></li>
+									
+									<li><span>培训老师:</span><input type="text"  name="info[tra_tea]" value="{$list.tra_tea}"></li>
+									<li><span>评分:</span><input type="text"  name="info[score]" value="{$list.score}"></li>
+									<li><span>评价:</span><input type="text" name="info[evealuation]" value="{$list.evealuation}"></li>
+
+                                                                                           
+
+									<input type="hidden" name="b_id" value="{$list.id}"> 
+								<input type="hidden" name ="info[houser_id]"  value='{$a_id.id}'>
+							</ul>
+							<div class="index_distan1_formbotton">
+							<input type="submit" value='确认'>
+								
+							</div>
+						</form>
+					</div>
+				</div>
+				
+				<script type="text/javascript">
+				
+				function   sel()
+{
+	var px_type=$('#px_type').val();
+
+	   if(px_type=="认证培训")
+	   	{
+	   $('#renzhen').show();
+	   $('#shanggang').hide();
+	   }
+	   if(px_type=="上岗培训")
+	   {
+	   	$('#shanggang').show();
+	   	$('#renzhen').hide();
+	   }
+
+}</script>
+
+<script type="text/javascript">
+<?php $y=date('Y'); ?>
+
+$(function(){
+	$('[name="info[start_time]"]').datepicker({
+		yearRange: "{$y-100}:{$y}",
+        duration: '', 
+		dateFormat: 'yy-mm-dd',
+		regional:'zh-CN',
+        changeMonth: true,
+        //changeYear: true
+	}).change(function() {
+	});
+	$('[name="info[end_time]"]').datepicker({
+		yearRange: "{$y-100}:{$y}",
+        duration: '', 
+		dateFormat: 'yy-mm-dd',
+		regional:'zh-CN',
+        changeMonth: true,
+        //changeYear: true
+	}).change(function() {
+	});
+	});
+
+
+				</script>

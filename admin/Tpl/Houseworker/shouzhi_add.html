@@ -1,0 +1,69 @@
+<div class="index_distan">
+
+
+<style type="text/css">
+					.bank_1 *{
+						list-style: none;
+
+					}
+					.bank_1 li{
+						margin-top: 10px;
+					}
+					.bank_1 li span{
+						display: inline-block;
+						width: 100px;
+						margin-right: 8px;
+						text-align: right;
+						color: #666666;
+						font-size: 14px;
+						line-height: 30px;
+					}
+					.bank_1 li input{
+						width: 150px;
+						height: 30px;
+						border: 1px solid #999;
+						text-indent: 15px;
+						font-size: 14px;
+						color: #999;
+						line-height: 30px;
+					}
+					.index_distan1_formbotton{
+						padding-left: 100px;
+						padding-top: 15px;
+						padding-bottom: 15px;
+
+					}
+					.index_distan1_formbotton input{
+						width: 80px;
+						height: 30px;
+						border-radius: 3px;
+						background-color: #64a407;
+						color: #fff;
+						border: 0;
+						font-weight: bold;
+						box-shadow: 0 0 17px #fff inset;
+						
+					}
+					</style>
+					<div class="index_distan1" id="xian_8">
+						<form class="index_distan1_form"    action="__URL__/shouzhi_add_pro" method="post"  >
+							<ul class="bank_1">
+								<li><span>项目:</span><input type="text" name='info[project]' value="{$list.project}"></li>
+								<li><span>付款人:</span><input type="text" name='info[pay_peo]'  value="{$list.pay_peo}"></li>
+								<li><span>经办人:</span><input type="text" name='info[agent]'  value="{$list.agent}"></li>
+								<li><span>登记人:</span><input type="text" name='info[registars]'  value="{$list.registars}"></li>
+								<li><span>金额:</span><input type="text" name='info[money]'  value="{$list.money}"></li>
+								<li><span>付款方式:</span><input type="text" name='info[pay_type]'  value="{$list.pay_type}"></li>
+								<li><span>付款时间:</span><input type="text" name='info[pay_time]'  value="{$list.pay_time}"></li>
+								<li><span>收据编号:</span><input type="text" name='info[pay_id]'  value="{$list.pay_id}"></li>
+								<li><span>目前状态:</span><input type="text" name='info[status]'  value="{$list.status}"></li>
+								
+							<input type="hidden" name ="info[houser_id]"  value='{$a_id.id}'>
+							<input type="hidden" name="f_id" value="{$list.id}"> 
+							</ul>
+							<div class="index_distan1_formbotton">
+								<input type="submit" value='确认'>
+							</div>
+						</form>
+					</div>
+				</div>

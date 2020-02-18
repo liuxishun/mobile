@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+
+</head>
+
+<body>
+<div class="right">
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>会员编辑</b></span>
+		</div>
+
+        <div class="con_box">
+			<?php
+				$tp_u_idx='base';
+				$tp_mid = $arr['id'];
+			?>
+        	<include file="Member:inc_u_tab" />
+
+
+			<form method="post" action="__SELF__" id="form" name="form">
+				<table class="add_table">
+					<tr>
+						<th>手机号码：</th>
+						<td>{$arr.mobile}<!-- <input type="text" name="info[mobile]" class="add_input" value="{$arr.mobile}"/> --></td>
+					</tr>
+                    
+					<tr>
+						<th>姓名：</th>
+						<td><input type="text" name="info[truename]" class="add_input" value="{$arr.truename}"/></td>
+					</tr>
+
+					<tr>
+						<th>类型：</th>
+						<td>{$arr.mum_type}</td>
+					</tr>
+
+					<?php if ($arr['mum_type']=='孕妇'){ ?>
+					<tr>
+						<th>预产期：</th>
+						<td>{$arr.pre_born}</td>
+					</tr>
+                	<?php }else if($arr['mum_type']=='宝妈'){ ?>
+                	<tr>
+						<th>宝宝生日：</th>
+						<td>{$arr.baby_birth} {$arr.baby_sex}</td>
+					</tr>
+                	<?php } ?>
+
+                    <!-- <tr>
+						<th>性别：</th>
+						<td>
+                            <label><input type="radio" name="info[sex]" value="男" <?php if($arr['sex'].''==='男') echo 'checked'; ?> />男</label> &nbsp;
+                            <label><input type="radio" name="info[sex]" value="女" <?php if($arr['sex'].''==='女') echo 'checked'; ?> />女</label>
+                        </td>
+					</tr> -->
+					<!-- <tr>
+						<th>生日：</th>
+						<td><input type="text" name="info[birthday]" class="add_input" value="{$arr.birthday}"/></td>
+					</tr> -->
+
+                    <!-- <tr>
+						<th>地区：</th>
+						<td>
+                         <div id="sel_area" style="display:inline;">
+                            <input type="hidden" id="area_id" name="info[area_ids]" />
+                         </div>
+<script>
+$(function(){
+    renderSels('<?php echo $arr['area_ids'] ?>', {id:'sel_area', name:'info[area_ids]', url:'__APP__/ajax/getAreacode&id=', lbls:'请选择,请选择'}, 0);
+});
+</script>
+                        </td>
+					</tr>
+                    <tr>
+						<th>街道：</th>
+						<td><input type="text" name="info[street]" class="add_input" value="{$arr.street}"/></td>
+					</tr> -->
+
+                    <tr>
+						<th>头像：</th>
+						<td>
+                            <input type="text" name="info[pic]" class="add_input" data-preview="1" value="{$arr.pic}" /> <a href="javascript:;" onclick="myfilespace({dirName:'mface',clickFn:'info[pic]', extraFileUploadParams:{width:400, height:400, forcecut:0}})">浏览</a>
+                        </td>
+					</tr>
+                    
+
+                    <!--<tr>
+						<th>余额：</th>
+						<td><input type="text" name="info[account]" class="add_input" value="{$arr.account}"/></td>
+					</tr>-->
+					
+                    <tr style="display:none;">
+						<th>密码：</th>
+						<td><input type="text" name="info[password]" class="add_input" value=""/>
+                        <?php if($arr['password'].''!=='')echo '不修改请留空'; ?>
+                        </td>
+					</tr>
+
+
+
+                    <tr>
+						<th>状态：</th>
+						<td>
+                            <label><input type="radio" name="info[status]" value="1" <?php if($arr['status'].''==='1') echo 'checked'; ?> />正常</label> &nbsp;
+                            <label><input type="radio" name="info[status]" value="0" <?php if($arr['status'].''==='0') echo 'checked'; ?> />冻结</label>
+                        </td>
+					</tr>
+					
+                    
+					<tr>
+						<th></th>
+						<td>
+							<input type="hidden" name="id" value="{$arr.id}"/>
+							<input type="hidden" name="listurl" value="{$listurl}"/>
+							<input type="submit" class="add_yes" value="" />
+							<a href="__URL__/lists" class="add_no"></a>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+$(function(){
+	$('[name="info[birthday]"]').datepicker({
+		duration: '', 
+		dateFormat: 'yy-mm-dd',
+		regional:'zh-CN'
+	}).change(function() {
+	})
+});
+</script>
+</body>
+
+</html>

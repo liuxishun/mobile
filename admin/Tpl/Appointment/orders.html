@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<include file="Inc:inc_head" />
+
+</head>
+<body>
+
+<div class="box">
+	<include file="Inc:inc_head_html" />
+   
+
+	<div class="main">
+		
+		<div class="line">&nbsp;</div>
+		<div class="wddd-cont">
+            筛选：<a href="__ACTION__" style="<?php if($para['status'].''=='' && !$para['unconfirm'])echo 'font-weight:bold;'; ?>">全部</a>  &nbsp; <a href="__ACTION__/status/3" style="<?php if($para['status']==3)echo 'font-weight:bold;'; ?>">已完成</a>
+              &nbsp; <a href="__ACTION__/unconfirm/1" style="<?php if($para['unconfirm']==1)echo 'font-weight:bold;'; ?>">待确认</a>
+            
+            <div id="list_order_box">
+            <foreach name="list" item="val">
+            <div class="wddd-list">
+				<div class="dd-list-ddh">
+					<b>订单号：{$val.order_sn}</b>
+					<span>（<?php echo $status[$val['status']] ?>）</span>
+				</div>
+				<div class="dd-list-sl">
+					<span>数量：</span><strong>{$val.t_qty}种产品</strong>
+					<b style="display:none;">金额（共计）：<em>￥{$val.amount}</em></b>
+				</div>
+
+                <?php if($val['userid']){
+                    $buyer = M('member')->where(array('id'=>$val['userid']))->find();
+                ?>
+                <div class="dd-list-sl">
+					<span>商家编号：</span>
+					<b>{$buyer.cus_id}</b>
+				</div>
+                <?php } ?>
+
+                <?php /*if($val['status']>=2 &&  $val['ship_info']){ ?>
+                <div class="dd-list-sl">
+					<span>发货信息：</span>
+					<b>{$val.ship_info}</b>
+				</div>
+                <?php }*/ ?>
+
+                <?php /*if($val['status']==-2 && $val['fail_memo']){ ?>
+                <div class="dd-list-sl">
+					<span>失败备注：</span>
+					<b>{$val.fail_memo}</b>
+				</div>
+                <?php }*/ ?>
+    
+				<div class="dd-list-ddxx">
+					<ul>
+						<li><span>时间：</span><p><?php echo date('Y-m-d H:i:s', $val['addtime']); ?></p></li>
+						<li><span>商品：</span><div class="p">
+                        <?php
+                            $cid=0;
+                        ?>
+                        <foreach name="val.ilist" item="item">
+                            <?php
+                                if($item['cid'] && $item['cid']!=$cid){
+                                    $cate = M('cate')->where(array('id'=>$item['cid']))->find();
+                                    if($cate){
+                                        echo '<div class="col-box">【'. $cate['name'] .'】</div>';
+                                    }
+                                    $cid = $item['cid'];
+                                }
+                            ?>
+                            <div class="col-box">
+                                <?php
+                                    $g_row = M('goods')->where(array('id'=>$item['goods_id']))->find();
+                                ?>
+                                <div class="flex" data-oid="{$val.id}" data-id="{$item.goods_id}" data-qty="{$item.qty}" data-p="{$item.price}">{$item.goods_name}</div>
+                                <div style="padding-right:8px;"> <!--￥{$item.price} x -->{$item.qty}{$g_row.unit}</div>
+                            </div>
+                        </foreach>
+                        </div></li>
+						<?php if($val['memo']){ ?><li><span>备注：</span><p>{$val.memo}</p></li><?php } ?>
+					</ul>
+				</div>
+                <!--<div class="dd-list-ddxx">
+					<ul>
+						<li><span>用户：</span><p><?php echo $val['username']; ?></p></li>
+                        <li><span>收件：</span><p>{$val.ship_name} {$val.mobile} {$val.address}</p></li>
+					</ul>
+				</div>-->
+                <?php if($val['status']==0||$val['status']==1||$val['status']==2){ ?>
+                <div style="border-top:1px solid #d4d4d4;width:96%;padding:0 2%;float:left;line-height:45px;text-align:right;"><form>
+                    <?php if($val['show_confirm']==1){ ?>
+                        <a href="javascript:;" onclick="updateOrder(this, '{$val.id}', 2);">确认收到派单信息</a>
+                    <?php } ?>
+				</form></div>
+                <?php } ?>
+			</div>
+		    </foreach>	
+            </div>
+
+            <?php if($pager['currentPage']<$pager['pageCount']){ ?>
+            <div data-ajax-plist="list_order_box" data-page="<?php echo $pager['currentPage']; ?>" data-url-tpl="<?php echo fixurl(array('page', 'pagesize'), __SELF__).'&page='; ?>@page" class="load-more-page"><a href="javascript:;" style="display:block;">加载更多...</a><span style="display:none;">载入中...</span></div>
+            <?php } ?>
+
+            <?php if(!$list){ ?>
+                <div style="padding:1em;">暂无记录</div>
+            <?php } ?>
+		</div>
+
+	</div>
+<script>
+function updateOrder(obj, id, status){
+    obj=$(obj);
+    var form=obj.parents('form').eq(0);
+    if(obj.attr('s'))return
+    obj.attr('s', 1).css('opacity', 0.6), $.post('__APP__/uajax/updateOrderByShop/id/'+id, form.serialize()+'&status='+status, function(d){
+        d.status? (Systip.show(d.info||'更新成功'),location.reload()) : (Systip.show(d.info||'更新失败'));
+        obj.attr('s', '').css('opacity', 1);
+    });
+}
+</script>
+
+	<div class="footer"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>订单列表</b></span>
+		</div>
+		<div class="web_tit">
+		    <script type="text/javascript">
+			var searchURL='__ACTION__';
+			var searchIDs="title|status".split('|');
+			</script>
+			姓名/电话：<input type="text" id="title" value="{$para.title}" size="8" style="width:150px;height:23px;" >
+            状态：
+            <select id="status">
+                <option value="">请选择</option>
+               
+                    <option value="0">未处理</option>
+                    <option value="1">已处理</option>
+                    <option value="2">已拒绝</option>
+                    <option value="99">已删除</option>
+        
+            </select>
+
+			<input type="button" value="搜索" onclick="doSearch()" />
+		</div>
+		
+
+        <div class="con_box">
+        <form action="__URL__/del" method="POST" id="sub">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="50">编号</th>
+            <th width="80">预约类型</th>
+            <th width="60">联系人</th>
+            <th width="80">电话</th>
+			<th width="120">关注的问题</th>
+			<th width="80">宝贝类型</th>
+           
+            <th width="100">预产期/宝贝生日</th>
+            <th width="60">状态</th>
+			<th width="80">添加日期</th>
+            <th width="120">基本操作</th>
+          </tr>
+
+          <foreach name="list" item="val">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+                    <td>{$val.type}</td>
+					<td>{$val.name}</td>
+                    <td>{$val.mobile}</td>
+					<td>{$val.content}</td>
+					<td>
+                        {$val.bady_type}
+                    </td>
+                    
+					
+                    <td>{$val.birthday}</td>
+                    <td><?php
+                        if($val['status'] == '0'){
+                            echo "<font color='green'>未处理</font>";
+                        }elseif($val['status'] == '1'){
+                            echo "<font color='blue'>已处理</font>";
+                        }elseif($val['status'] == '2'){
+                            echo "<font color='red'>已拒绝</font>";
+                        }else{
+                             echo "<font color='red'>已删除</font>";
+                        }
+                        ?></td>
+					<td><?php echo date('Y-m-d H:i:s', $val['addtime']); ?></td>
+					<td class="atype">
+                                            
+                        <!--a  color="green" href="#" class="__URL__/chuli/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">处理</a> |
+                         <a color = "red" href="#" class="__URL__/jujue/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">拒绝</a--> 
+                        <a color="green" href="javascript:;" class="<?php echo $val['id'];?>">操作</a> |                       
+                                             <b class="<?php echo $val['id'];?>">删除</b>
+                                             
+					</td>
+				</tr>
+		 </foreach>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"></div>
+                  <div id="btnz" style="width:650px;height:340px;position:fixed;left:150px;top:50px;background-color: graytext;border-radius: 8px;display:none;">
+                      <p style="width:100%;font-size:25px;text-align: center;color:blue;">备注<a href="javascript:;" style="float:right;color:red;margin-right: 5px;" id="closeX">X</a></p>
+                      <p style="width:100%;font-size:25px;text-align: center;color:blue;background-color: white;" class='pclass'>
+                          <!--a  color="green" href="javascript:;" class="__URL__/chuli/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">我要处理</a> | 
+                          <a  color = "red" href="javascript:;" class="__URL__/jujue/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">我要拒绝</a--> 
+                          <select style="width:100%;height:30px;border-radius: 5px;text-align:center;" id="types">
+                              <option style="color:blue;" value="__URL__/chuli/">我要处理</option>
+                              <option style="color:red;" value="__URL__/jujue/">我要拒绝</option>
+                          </select>
+                      </p>
+                          <textarea id="remark" style= "overflow:scroll; margin: 0px; width: 638px; height: 203px; color: blue;font-size: 15px;line-height:25px;padding: 5px 5px;"> </textarea><br><br>
+                          <p style="text-align: center;"><input type="submit" id="tj" value="提交" style="width:100px;color:white;background-color: greenyellow;" /></p>
+                    
+                  </div>
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+          </form>
+ </div>
+
+</div>
+</div>  
+    <script type="text/javascript">
+        $(".atype > a").each(function(){
+            $(this).click(function(){
+                //查找原始信息            
+                var id = $(this).attr("class");
+                var ull = "<?php echo U('listinfo');?>";
+                $("#remark").focus(function(){
+                    $("#remark").html('');
+                }).blur(function(){
+                    if($("#remark").val() == ''){
+                        $.post(ull,{id:id},function(info){
+                             $("#remark").html(info);
+                         });
+                    }
+                });
+                $.post(ull,{id:id},function(info){
+                    $("#remark").html(info);
+                });
+                //展示信息
+                $("#btnz").show();
+                var xuanze  = '' ;
+                $(".pclass > a").click(function(){
+                    xuanze = $(this).attr('class');
+                    $(".pclass > a").css({'background-color':'white'});
+                    $(this).css("background-color","gray");
+                });
+               $("#tj").click(function(){
+                    var ruul = $("#types").val() ;
+                    if(ruul == ''){
+                        alert('请选择 : 我要处理 或者 我要拒绝选项 '); return false;
+                    }
+                        $.post(ruul,{id:id,remark:$("#remark").val()},function(data){
+                            if(data=='1'){
+                               alert("操作成功"); 
+                               window.location.href="<?php echo U('infant_care');?>";
+                            }else{
+                                alert("操作失败");
+                               window.location.href="<?php echo U('infant_care');?>";
+                            }
+                        });
+                    
+                     return false;
+                });
+            });
+        }) ;
+        
+       
+        $(".atype b").each(function(){
+            $(this).click(function(){
+                var id = $(this).attr("class");
+                var ull = "<?php echo U('shanchu');?>";
+                $.post(ull,{id:id},function(msg){
+                   if(msg == '1'){
+                       alert('删除成功');
+                       window.location.href="<?php echo U('infant_care');?>";
+                   }else{
+                       alert("删除失败");
+                       window.location.href="<?php echo U('infant_care');?>";
+                   }
+                });
+            });
+           
+        });
+        $("#closeX").click(function(){
+            $("#btnz").hide();
+        });
+    </script>
+</body>
+</html>

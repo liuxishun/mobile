@@ -1,0 +1,208 @@
+<include file="Inc:inc_head" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index_1</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/index/css/index.css">
+	
+</head>
+<body  class="body_1">
+	
+
+
+			<div >
+				<ul class="index_con_nav_right_nav" id="list_3">
+					<li> <a href="#" class="active_2">全部</a> </li>
+					<li> <a href="#">新人</a> </li>
+					<li> <a href="#">面试</a> </li> 
+					<li> <a href="#">上岗</a> </li>
+					<li> <a href="#">离岗</a> </li>
+					<li> <a href="#">其他</a> </li>
+					
+					
+				</ul>
+				
+				<div class="clear"></div>
+				  <script type="text/javascript">
+			var searchURL='__ACTION__';
+			var searchIDs="username|mobile|hwtype_id|xingji|minzu|diqu".split('|');
+			</script>
+				<form class="index_con_nav_right_nav_form_2" name="">
+                     
+			  
+			    &nbsp;&nbsp;&nbsp;姓名:     <input  type="text" name="username" id="username"  style="width:100px;height:23px">
+                      &nbsp;&nbsp;&nbsp;&nbsp;手机:     <input  type="text"name="mobile" id="mobile" style="width:100px;height:23px">
+
+
+                  &nbsp;&nbsp;&nbsp;&nbsp;  类别:
+					<select name="hwtype_id"  id='hwtype_id'class="" onchange="search()">
+					 <option value="">请选择</option>
+                    <?php
+                    $hwtypes = M('hwtype')->select();
+                      ?>
+                    <foreach name="hwtypes" item="it">
+                    <option value="{$it.id}" >{$it.name}</option>
+                    </foreach>
+					</select>
+
+						  &nbsp;&nbsp;&nbsp;&nbsp;  星级:<select name="xingji" class="" id="xingji">
+							 <?php $age1 = M('hwlevel')->select();?>
+							<option value="">请选择</option>
+							<foreach    name='age1' item="vv">
+							<option value="{$vv.id}"> {$vv.name}</option>
+							</foreach>
+						    </select>
+             
+						  民族:<select name="minzu" class="" id="minzu" >
+						  <option value="">请选择</option>
+						  <?php
+								$db = M('houseworker');
+								 $p=$db->group("minzu")->select();
+						  ?>
+				       <foreach   name='p' item="vvi">
+						<option value="{$vvi.minzu}">{$vvi.minzu}</option>
+						</foreach>
+						</select>
+
+							地区:
+						<select name="diqu" class="" id="diqu">
+						<?php $db=D('Area');
+						$arr=$db->select();
+					
+						?>
+						<option value="">请选择</option>
+						<foreach name="arr" item="po">
+							<option value="{$po.id}">{$po.areaname}</option>
+							</foreach>
+							
+						</select>
+		
+				
+             <input type="button" value="搜索" onclick="doSearch()" /> <input type="button" value="重置" onclick="doReset()" />
+				</form>
+				
+            <div class="clear"></div>
+
+				<form class="index_con_nav_right_nav_form_3">
+					<input type="checkbox"></input>
+					<span>全选</span>
+					<button class="button_1">刷新</button>
+					<input type="button" class="button_2" value="+添加" onclick="ale()">
+			
+					
+					<p class="tiaoz">
+						<span class="span_1">共 <span>{$pager.count}</span>个阿姨</span>
+						<a href="__URL__/lists&pagesize=<?php echo $pager['pageSize'];?>&page=<?php echo $pager['currentPage']-1 ?>"><<</a>
+						<span class="span_1"><?php echo $pager['currentPage'];?></span>/<apan><?php echo $pager['pageCount'] ?></span>
+						<a href="__URL__/lists&pagesize=<?php echo $pager['pageSize'];?>&page=<?php echo $pager['currentPage']+1 ?>">下一页>></a>
+					</p>
+				</form> 
+
+
+				<ul class="index_con_nav_right_Ti">
+
+				<foreach   name='list' item="val">
+					<li>
+						<div>
+							<div class="index_con_nav_right_Ti_left">
+								<img src='<?php  if($val["pic"]=="")
+								{
+                                 echo "__PUBLIC__/index/images/abc_5.png";
+
+								}else
+								{
+								echo $val["pic"];
+								}
+							
+								?>' style="width:73px;height:106px;">
+						
+							<p>{$val.id}</p>
+								<input type="checkbox" class="checkbox_1">
+							</div>
+							<div class="index_con_nav_right_Ti_right">
+								<h4><a href="__APP__/houseworker/xiangqing/id/{$val.id}"  >{$val.title}</a></h4>
+								<p>
+                   <!--{$val.minzu}-->
+                    <?php $age_data = D('Common')->getAgeDataFromDate($val['birthday']); echo $age_data['age']? $age_data['age'].'岁' : ''; ?>
+                    {$age_data.shuxiang}
+                    {$age_data.xingzuo}</p>
+								<a href="#" class="a_1"><img src="__PUBLIC__/index/images/zbcss01.png">{$val.cellphone}</a><br/>
+								<span class="span_1" ><?php echo M('hwlevel')->where(array('id'=>$val['hwlevel_id']))->getField('name'); ?></span>  
+								<span class="span_2"></span><br/>
+									<span>&nbsp;</span><br/>
+								<p><?php echo $val['area_ids']? D('admin://Area')->getAreanames($val['area_ids']) : ''; ?></p>
+
+					            <a href="__URL__/edit/id/{$val.id}/tabid/1/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">图片</a>|
+								<a href="__URL__/edit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a>|
+								<a href="__URL__/del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a>
+						
+							</div>
+						</div>
+					</li>
+					</foreach>
+
+
+
+
+
+					
+					<div class="clear"></div>
+				</ul>
+
+
+
+
+
+
+
+				
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+	
+	
+		
+	
+<div class="index_option">
+		
+		<center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php
+    $Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+    ?>
+<include file="Inc:inc_xpage" />
+</center>
+
+
+	</div>
+	<div class=" index_footer">
+	<p>北京icp备09018459 京公网备 11010502011199</p>
+	<p>Copyright  © 2012-2015 北京嘉乐家政服务有限公司 版权所有</p>
+		
+	</div>
+
+
+	<script type="text/javascript" src="__PUBLIC__/index/js/index_1.js"></script>
+	
+</body>
+</html>
+<script type="text/javascript">
+
+
+
+
+function   ale(){
+	
+	location.href="__APP__/houseworker/add";
+
+
+	
+
+}
+
+
+
+
+
+
+</script>

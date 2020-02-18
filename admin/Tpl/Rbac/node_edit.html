@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+<script>
+function setLevel(obj){
+	$('[name="info[level]"]').val($(obj).find('option:checked').attr('data-level'));
+}
+</script>
+</head>
+<body>
+<div class="right">
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>节点编辑</b></span>
+		</div>
+
+        <div class="con_box">
+			<form method="post" action="__SELF__" id="form" name="form">
+				<table  class="add_table">
+					<tr>
+						<th>节点名称：</th>
+						<td><input type="text" name="info[title]" value="{$arr.title}" class="add_input" /></td>
+					</tr>
+					<tr>
+						<th>节点参数/规则：</th>
+						<td><input type="text" name="info[name]" value="{$arr.name}" class="add_input" />  <label><input type="checkbox" name="info[isexp]" <?php if($arr['isexp'])echo 'checked'; ?> value="1"  /> 正则规则（仅对第二层级有效）</label></td>
+					</tr>
+					<tr>
+						<th>父节点：</th>
+						<td>
+							<select name="info[pid]" onchange="setLevel(this)">
+							    <option value="0" data-level="1">顶节点(应用名称节点)</option>
+								<foreach name="nlist" item="val">
+									<option value="{$val.id}" <?php if($arr['pid']==$val['id'])echo 'selected'; ?> data-level="2">{$val.title}<?php echo $val['isexp']? '[正则]' : ''; ?>({$val.name})</option>
+									<foreach name="val.mlist" item="val">
+										<option value="{$val.id}" <?php if($arr['pid']==$val['id'])echo 'selected'; ?> data-level="3">|---{$val.title}<?php echo $val['isexp']? '[正则]' : ''; ?>({$val.name})</option>
+									</foreach>
+								</foreach>
+							</select>
+						</td>
+					</tr>
+					<tr style="display:none;">
+						<th>级别：</th>
+						<td><input type="text" name="info[level]" value="{$arr.level}" value="1" class="add_input" /></td>
+					</tr>
+					<tr>
+						<th>排序：</th>
+						<td><input type="text" name="info[sort]" value="{$arr.sort}" value="50" class="add_input" /></td>
+					</tr>
+					<tr>
+						<th>启&nbsp;&nbsp;用：</th>
+						<td>
+						    <label><input type="radio" name="info[status]" value="1" <?php if($arr['status']==1)echo 'checked'; ?> /> 是</label> &nbsp;&nbsp;
+							<label><input type="radio" name="info[status]" value="0" <?php if($arr['status']!=1)echo 'checked'; ?> /> 否</label>
+						</td>
+					</tr>
+					<tr>
+						<th>备&nbsp;&nbsp;注：</th>
+						<td>
+						    <textarea name="info[remark]" class="txts">{$arr.remark}</textarea>
+						</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>
+							<input type="hidden" name="id" value="{$arr.id}" />
+							<input type="hidden" name="listurl" value="{$listurl}"/>
+							<input type="submit" value="" class="add_yes">
+							<a href="__URL__/lists" class="add_no"></a>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

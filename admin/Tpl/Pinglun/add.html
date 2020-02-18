@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<script type="text/javascript" src="__PUBLIC__/laydate/laydate.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>评论添加</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__SELF__" method='post' id='form'>
+			<table class="add_table" id='table'>
+				    <tr>
+						<th>雇主名称：</th>
+						<td><input type="text" name="info[boss]" class="add_input" value="{$arr.boss}"/></td>
+					</tr>
+
+                    <tr>
+						<th>服务时间：</th>
+						<td><input type="text" name="info[work_time]" class="add_input" value="{$arr.work_time}"/></td>
+					</tr>
+
+                <tr>
+				<th>选择阿姨</th>
+				<td>
+                <?php if($arr['id']>0 || $_GET['h_id']){ ?>
+				<?php echo M('houseworker')->where(array('id'=>$arr['h_id']? $arr['h_id']:$_GET['h_id'] ))->getField('title'); ?>
+                <input type="hidden" name="info[h_id]" class="add_input" value="<?php echo $arr['h_id']? $arr['h_id']:$_GET['h_id']; ?>"/>
+				<?php }else{ ?>
+                <select name='info[h_id]'>
+				<option value=''>--请选择--</option>
+				<?php foreach($list as $val){?>
+				<option value='<?php echo $val['id'];?>' <?php if($val['id']==$_GET['h_id'])echo 'selected'; ?>><?php echo $val['title'];?></option>
+                </select>
+                <?php } ?>
+                <?php } ?>
+				</td>
+				</tr>
+				<tr>
+						<th>婴儿护理：</th>
+						<td>
+						<select name='info[yehuli]'>
+						<option value=''>--请选择--</option>
+						<option value='1' <?php if($arr['yehuli']==1)echo 'selected'; ?>>1颗星</option>
+						<option value='2' <?php if($arr['yehuli']==2)echo 'selected'; ?>>2颗星</option>
+						<option value='3' <?php if($arr['yehuli']==3)echo 'selected'; ?>>3颗星</option>
+						<option value='4' <?php if($arr['yehuli']==4)echo 'selected'; ?>>4颗星</option>
+						<option value='5' <?php if($arr['yehuli']==5)echo 'selected'; ?>>5颗星</option>
+						</select>
+						</td>
+				</tr>
+				<tr>
+						<th>产妇护理：</th>
+						<td>
+						<select name='info[chhuli]'>
+						<option value=''>--请选择--</option>
+						<option value='1' <?php if($arr['chhuli']==1)echo 'selected'; ?>>1颗星</option>
+						<option value='2' <?php if($arr['chhuli']==2)echo 'selected'; ?>>2颗星</option>
+						<option value='3' <?php if($arr['chhuli']==3)echo 'selected'; ?>>3颗星</option>
+						<option value='4' <?php if($arr['chhuli']==4)echo 'selected'; ?>>4颗星</option>
+						<option value='5' <?php if($arr['chhuli']==5)echo 'selected'; ?>>5颗星</option>
+						</select>
+						</td>
+				</tr>
+				<tr>
+						<th>与家人相处：</th>
+						<td>
+						<select name='info[jrxiangchu]'>
+						<option value=''>--请选择--</option>
+						<option value='1' <?php if($arr['jrxiangchu']==1)echo 'selected'; ?>>1颗星</option>
+						<option value='2' <?php if($arr['jrxiangchu']==2)echo 'selected'; ?>>2颗星</option>
+						<option value='3' <?php if($arr['jrxiangchu']==3)echo 'selected'; ?>>3颗星</option>
+						<option value='4' <?php if($arr['jrxiangchu']==4)echo 'selected'; ?>>4颗星</option>
+						<option value='5' <?php if($arr['jrxiangchu']==5)echo 'selected'; ?>>5颗星</option>
+						</select>
+						</td>
+				</tr>
+				<tr>
+						<th>月子餐口味：</th>
+						<td>
+						<select name='info[yzckouwei]'>
+						<option value=''>--请选择--</option>
+						<option value='1' <?php if($arr['yzckouwei']==1)echo 'selected'; ?>>1颗星</option>
+						<option value='2' <?php if($arr['yzckouwei']==2)echo 'selected'; ?>>2颗星</option>
+						<option value='3' <?php if($arr['yzckouwei']==3)echo 'selected'; ?>>3颗星</option>
+						<option value='4' <?php if($arr['yzckouwei']==4)echo 'selected'; ?>>4颗星</option>
+						<option value='5' <?php if($arr['yzckouwei']==5)echo 'selected'; ?>>5颗星</option>
+						</select>
+						</td>
+				</tr>
+				<tr>
+				<th>评论内容：</th>
+				<td>
+				 <textarea id="editor_1" class="txts" name="info[dianping]">{$arr.dianping}</textarea>
+<?php $editor_id = 'editor_1'; ?>
+<include file="Inc:inc_editor" />
+				</td>
+				</tr>
+				
+				<tr>
+				<th>图片集：</th>
+				<td>
+				<input type="hidden" id="ctl_pics" name="info[pics]" class="add_input" value="<?php echo implode('|', $pics); ?>" />
+
+<input type="hidden" id="upic">
+<a href="javascript:;" onclick="myfilespace({dirName:'houseworker',clickFn:'#upic', extraFileUploadParams:{width:800, height:800, forcecut:0}})">浏览</a>
+
+<div id="show_pics" style="padding:5px 0;line-height:1.5;"></div>
+
+<script type="text/javascript">
+picsManage.init('ctl_pics', 'upic', 'show_pics', false, 'pic');
+</script>
+				</td>
+				</tr>
+				<tr>
+						<th></th>
+						<td>
+						    <input type="hidden" name="id" value="{$arr.id}"/>
+							<input type="submit" class="add_yes" value=''/>
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

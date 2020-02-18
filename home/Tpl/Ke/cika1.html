@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/css/jinxiu.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/css/main.css">
+        <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+    <script src="__PUBLIC__/ke/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+		$(function(){
+			$('.choose_con>li:last a').css('borderRight',0);
+			$('.choose_con>li').click(function(e) {
+                $(this).addClass('current').siblings().removeClass('current');
+            });
+			
+		});
+
+    </script>
+    
+</head>
+
+<body style="background-color: #f3f3f3;">
+    <header id="header">
+        <div id="choose">
+        	<ul class="choose_con">
+            	<li><a href="__ROOT__/index.php/ke/jy_zhibo/openid/{$openid }">技能进阶</a></li>
+                <li class="current"><a href="__ROOT__/index.php/ke/jinxiu/openid/{$openid }">金牌进修</a></li>
+                <li><a href="__ROOT__/index.php/ke/quzheng/openid/{$openid }">在线考证</a></li>
+                <li><a href="__ROOT__/index.php/ke/mianshou/openid/{$openid }">面授特训</a></li>
+            </ul>
+        </div>
+    </header>
+<section class="section" style="padding:0;">
+	<ul class="cika">
+    	<li>
+        	<img class="cika_img1" src="__PUBLIC__/ke/images/cika_01.png">
+            <div class="cika_d">
+            	<P class="cika_p1"><img src="__PUBLIC__/ke/images/cika_04.png"></P>
+                <P class="cika_p2">12张/￥99</P>
+                <P class="cika_p3"><a href="#">购 买</a></P>
+            </div>
+        </li>
+        <li>
+        	<img class="cika_img1" src="__PUBLIC__/ke/images/cika_08.png">
+            <div class="cika_d">
+            	<P class="cika_p1"><img src="__PUBLIC__/ke/images/cika_09.png"></P>
+                <P class="cika_p2">27张/￥199</P>
+                <P class="cika_p3"><a href="#">购 买</a></P>
+            </div>
+        </li>
+        <li>
+        	<img class="cika_img1" src="__PUBLIC__/ke/images/cika_12.png">
+            <div class="cika_d">
+            	<P class="cika_p1"><img src="__PUBLIC__/ke/images/cika_13.png"></P>
+                <P class="cika_p2">54张/￥365</P>
+                <P class="cika_p3"><a href="#">购 买</a></P>
+            </div>
+        </li>
+    </ul>
+</section>
+    <footer>
+        <ul>
+            <li class="current"><a href="__ROOT__/index.php/ke/jy_zhibo/openid/{$openid }"><div><i class="iconfont">&#xe601;</i></div><span>学习</span></a></li>
+            <li class="fuli">
+            <!--60元课程福利
+                <a href="__ROOT__/fuli/fuli.php?openid={$openid }"><div><i class="iconfont">&#xe602;</i></div><span>福利</span></a>
+             	中秋活动转盘抽奖__ROOT__/prize/index/index.php?openid={$openid }
+              -->
+                <a href="__URL__/banzhang?openid={$openid }"><div><i class="iconfont">&#xe603;</i></div><span>班长</span></a>
+              
+            </li>
+            <li><a href="__URL__/wode?openid={$openid }"><div><i class="iconfont">&#xe600;</i></div><span>我的</span></a></li>
+            <div class="clear"></div>
+        </ul>
+    </footer>
+    <!--<P class="dhzx" style="position:fixed; right:0; top:200px; z-index:9999;"><a href="tel:15001328927
+"><img style="width:68px; height:210px;" src="http://m.mumway.com/Public/ke/img/zixun2.png" ></a></P>-->
+</body>
+</html>

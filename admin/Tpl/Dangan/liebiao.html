@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<include file="Inc:inc_head" />
+
+</head>
+<body>
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>健康档案</b></span>
+		</div>
+	
+		<div class="web_tit">
+		    <script type="text/javascript">
+			var searchURL='__ACTION__';
+			var searchIDs="name".split('|');
+			</script>
+            <input type="hidden" id="export" value="" >
+			档案名称：<input type="text" id="name" value="{$para.name}" size="8" >
+			<input type="button" value="搜索" onclick="doSearch()" />
+            <!--<input type="button" value="导出" onclick="$('#export').val(1);doSearch()" />
+            <input type="button" value="重置" onclick="doReset()" />-->
+		</div>
+
+		
+
+        <div class="con_box">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="50">编号</th>
+            <th width="100">姓名</th>
+            <th width="100">年龄</th>
+			<th width="100">民族</th>
+            <th width="150">基本操作</th>
+          </tr>
+
+          <volist name="list" id="val" key="k">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$k}</td>
+                  
+                    <!--<td>{$val.account}</td>-->
+                    <td>{$val.name}</td>
+                     <td>{$val.age}</td>
+					  <td>{$val.nation}</td>
+					
+					
+					<td>
+						
+					
+						<a href="__APP__/category/del/id/{$val.id}"  class="link-del">删除</a>
+					</td>
+				</tr>
+		 </volist>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"/></div>
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+
+ </div>
+
+</div>
+</div>  
+ 
+</body>
+</body>
+</html>

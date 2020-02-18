@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/wode/css/style.css">
+        <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+    <script src="__PUBLIC__/ke/wode/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+		$(function(){
+			$('.top_choice li:last').css('borderRight',0);
+			$('.choose_con>li:last a').css('borderRight',0);
+			$('.choose_con>li').click(function(e) {
+                $(this).addClass('current').siblings().removeClass('current');
+            });
+			$('.huiyuan_d1_s1:first').click(function(e) {
+                $('.huiyuan_d2_ul li:lt(1)').show().siblings().hide();
+            });	
+			$('.huiyuan_d1 span:eq(2)').click(function(e) {
+                $('.huiyuan_d2_ul li:lt(3)').show();
+				$('.huiyuan_d2_ul li:gt(2)').hide();
+            });
+			$('.huiyuan_d1_s1:last').click(function(e) {
+                $('.huiyuan_d2_ul li').show();
+            });	
+			$('.huiyuan_d1 span').click(function(e) {
+				$('.huiyuan_p3 span').eq($(this).index()).addClass('cur').siblings().removeClass('cur');
+            });		
+			
+		});
+
+    </script>
+    
+</head>
+
+<body style="background-color: #f1edea; " >
+    <section class="section" >
+        <div class="huiyuan">
+        	<p class="huiyuan_p1"><img class="huiyuan_img"  src="{$arr.headimgurl}" onerror="this.src='__PUBLIC__/ke/wode/img/img4.jpg'"><img class="huiyuan_img2" src="__PUBLIC__/ke/wode/img/zx_03.png"></p>
+            
+            <P class="huiyuan_p2">{$arr.nickname}ID:{$arr.id}</P>
+            <div class="huiyuan_d1">
+            	<span class="huiyuan_d1_s1">
+                	<img src="__PUBLIC__/ke/wode/img/dj.png">
+                </span>
+                <span class="huiyuan_d1_s2" style="background:#eee;"><i style="width:100%; height:8px; display:block; background:#eee;"></i></span>
+                <span class="huiyuan_d1_s1 cur">
+                	<img src="__PUBLIC__/ke/wode/img/dj11.png">
+                </span>
+                <span class="huiyuan_d1_s2" style="background:#eee;"><i style="width:20%; height:8px; display:block; background:#eee;"></i></span>
+                <span class="huiyuan_d1_s1">
+                	<img src="__PUBLIC__/ke/wode/img/dj12.png">
+                </span>
+            </div>
+            <P class="huiyuan_p3"><span class="huiyuan_p3_s1 cur"><img style="margin-left:36px;" src="__PUBLIC__/ke/wode/img/zx.png"></span><span class="huiyuan_p3_s2"></span><span class="huiyuan_p3_s1"><img src="__PUBLIC__/ke/wode/img/zx.png"></span><span class="huiyuan_p3_s2"></span><span class="huiyuan_p3_s1"><img style="margin-right:25px;" src="__PUBLIC__/ke/wode/img/zx.png"></span></P>
+        </div>
+        <div class="huiyuan_d2">
+        	<P class="huiyuan_d2_p1"><span>高级合伙人特权</span></P>
+            <ul class="huiyuan_d2_ul">
+            <li><a href="__URL__/bantequan">
+                	<p class="huiyuan_d2_ul_p1"><img src="__PUBLIC__/ke/wode/img/te2.png"></p>
+                    <P class="huiyuan_d2_ul_p2">课程奖励</P>
+                </a></li>
+            	<li><a >
+                	<p class="huiyuan_d2_ul_p1"><img src="__PUBLIC__/ke/wode/img/te1.png"></p>
+                    <P class="huiyuan_d2_ul_p2">销售服务奖励</P>
+                </a></li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>

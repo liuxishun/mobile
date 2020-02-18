@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>食物发布</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__SELF__" method='POST' id='form'>
+			<table class="add_table" id='table'>
+				<tr>
+						<th>食物名称：</th>
+						<td>
+						<input type='text' class='add_input' name='info[f_name]' value="{$arr.f_name}"/>
+						</td>
+				</tr>
+				<tr>
+						<th>食物单位：</th>
+						<td>
+						<input type='text' class='add_input' name='info[unit]' value="{$arr.unit}"/>
+						</td>
+				</tr>
+				<tr>
+						<th>所属分类：</th>
+						<td>
+							<select id="J_slt_cates" name='info[c_id]'><option value=''>--请选择--</option>
+							<?php
+									foreach($food_catorgories as $key=>$value){
+							?>
+								<option value="<?php echo $value['id'];?>" <?php if($value['id']==$arr['c_id'])echo 'selected'; ?>><?php echo $value['c_type_name'];?></option>
+							<?php } ?>
+							</select>
+						</td>
+				</tr>
+				<tr>
+						<th>增加分类：</th>
+						<td>
+						<input type='text' class='add_input' id='c_type_name'/>&nbsp;<a href='javascript:void(0)' onclick='Addtype()'>增加</a>
+						</td>
+				</tr>
+				<tr>
+						<th>适合时段：</th>
+						<td>
+						   <?php
+						   		$timeeats = $arr['timeeat']? explode(',', trim($arr['timeeat'], ',') ) : '';
+						   ?>
+						   <input type="checkbox" value="" <?php if(!$timeeats)echo 'checked'; ?>>所有时段
+						   <input type="checkbox" name="timeeat[]" value="早餐" <?php if(in_array('早餐', $timeeats))echo 'checked'; ?>>早餐
+						   <input type="checkbox" name="timeeat[]" value="午餐" <?php if(in_array('午餐', $timeeats))echo 'checked'; ?>>午餐
+						   <input type="checkbox" name="timeeat[]" value="晚餐" <?php if(in_array('晚餐', $timeeats))echo 'checked'; ?>>晚餐
+						</td>
+				</tr>
+				
+				<tr>
+						<th>食物图片：</th>
+						<td>
+						<input type="text" name="info[f_pic]" class="add_input" data-preview="1"  value="{$arr.f_pic}"/> 
+						<a href="javascript:;" onclick="myfilespace({dirName:'foods',clickFn:'f_pic', extraFileUploadParams:{width:600, height:600, forcecut:0}})">浏览</a>
+						</td>
+				</tr>
+				
+					<tr>
+						<th></th>
+						<td>
+							<input type="hidden" name="id" value="{$arr.id}"/>
+							<input type="hidden" name="listurl" value="{$listurl}"/>
+							<input type="submit" class="add_yes" value=""/>
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+					</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+	
+	function Addtype(){
+		var c_type_name=document.getElementById('c_type_name');
+		if(c_type_name.value.replace(/( )/g,'')==''){
+			alert('分类名称不能为空！');
+			return;
+		}
+		$.ajax({
+			type:"POST",
+			data:{"c_type_name":c_type_name.value},
+			url:"__URL__/Addtype",
+			success:function(d){
+				alert("新增成功！");
+
+				$.get(location.href, function(d){
+					$('#J_slt_cates').html($(d).find('#J_slt_cates').html());
+				});
+				
+				c_type_name.value='';
+			}
+		});
+	}
+</script>
+</html>

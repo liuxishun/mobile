@@ -1,0 +1,147 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	font-family: "Microsoft YaHei";
+        -webkit-appearance: none; //去掉浏览器默认样式
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-touch-callout: none;
+}
+    
+html,
+body {
+	-webkit-user-select: none;
+}
+    
+body {
+	font-family: "Microsoft YaHei";
+	background:#f3f3f3;
+	-webkit-text-size-adjust: 100%; //关闭自动调整字体
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+	
+	
+
+}
+
+body -webkit-scrollbar {
+	width: 0;
+}
+
+body {
+	position: relative;
+}
+
+img {
+	border: none;
+	vertical-align: bottom;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+.clear {
+	clear: both;
+}
+
+.outer {
+	zoom: 1;
+}
+
+input[type="submit"],input[type="reset"],input[type="button"],button { -webkit-appearance: none; }
+
+::-webkit-input-placeholder { /* WebKit browsers */
+　　color:#999;
+　　}
+　　:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+　　color:#999;
+　　}
+　　::-moz-placeholder { /* Mozilla Firefox 19+ */
+　　color:#999;
+　　}
+　　:-ms-input-placeholder { /* Internet Explorer 10+ */
+　　color:#999;
+　　}
+
+/*==for IE6/7 Maxthon2==*/
+
+/**************************section*******************************/
+section{
+	width: 640px;
+    padding-top: 78px;
+    padding-bottom: 110px;
+}
+
+/************************次卡*********************************/
+.cika{ overflow:hidden; }
+.cika li{ margin-bottom:40px; overflow:hidden; height:320px; border-top:1px solid #ccc; border-bottom:1px solid #ccc; background:#fff;}
+.cika_img1{ width:472px; height:320px; float:left; }
+.cika_d{ width:168px; float:left;}
+.cika_p1{ text-align:center; padding-top:70px;}
+.cika_p1 img{width:123px; height:41px; }
+.cika_p2{ text-align:center; line-height:60px; padding-bottom:15px; font-size:24px; color:#000000;}
+.cika_p3{ text-align:center;}
+.cika_p3 a{ width:130px; height:50px; background:#ff7200; line-height:50px; font-size:24px; color:#fff; text-align:center; display:inline-block;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

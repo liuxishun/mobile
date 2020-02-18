@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style type="text/css">
+.file{ display:block}
+.food{ width:920px}
+.food li{ width:200px; float:left; margin:5px;}
+.log{ text-align:left;; padding:20px; color:#FF0000}
+.log p{ width:600px; text-align:left; padding-left:160px; position:relative; margin-bottom:10px}
+.log p span{ position:absolute; left:0; top:0;}
+</style>
+<link href="http://weixin.pooway.com/yy_admin/static/css/admin_style.css" type="text/css" rel="stylesheet" />
+<script src="http://weixin.pooway.com/yy_admin/static/js/jquery-1.8.0.js"></script>
+<script type="text/javascript">
+var CFG_baseurl = 'http://weixin.pooway.com/yy_admin/';
+</script><link href="http://weixin.pooway.com/yy_admin/static/swfupload/css/swfupload.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/swfupload.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/js/swfupload.queue.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/js/fileprogress.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://weixin.pooway.com/yy_admin/static/swfupload/js/handlers.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/js/artDialog/artDialog.js?skin=default"></script>
+<script type="text/javascript" src="__PUBLIC__/static/js/artDialog/plugins/iframeTools.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/js/jquery-calendar.js"></script> 
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/jquery-calendar.css" /> 
+<script type="text/javascript">
+function chk(obj){
+	if (obj['title'].value=='') {
+		alert('方案标题不能为空');
+		obj['title'].focus();
+		return false;
+	}
+	return true;
+}
+</script>
+<script type="text/javascript">
+	window._CFG = {};
+	window._CFG.baseUrl = '__APP__';
+	window._CFG.PHPSESSID = '';
+	</script>
+	<script type="text/javascript" src="__PUBLIC__/static/js/ueditor/ueditor.config.js"></script>
+	<script type="text/javascript">
+	window.UEDITOR_CONFIG.UEDITOR_HOME_URL = '__PUBLIC__/static/js/ueditor/';
+	window.UEDITOR_CONFIG.initialFrameWidth = 720;
+	window.UEDITOR_CONFIG.initialFrameHeight = 250;
+</script>
+<script type="text/javascript" src="__PUBLIC__/static/js/ueditor/ueditor.all.min.js"></script>
+</head>
+
+<body>
+
+<div class="add_tit cl">
+	<span class="l">位置：<a href=""><?php echo $sitename;?>管理平台</a><b>发布方案</b></span>
+</div>
+
+<div class="con_box">
+<form action="__URL__/biaoti" method="post" onsubmit="return chk(this)">
+	<table  class="list_table" style="margin-bottom:50px">	
+		<tr>
+			<td align="center">方案标题：</td>
+			<td align="center"><div align="left">
+			  <input type="text" name="title" id="title" value="" style="width:300px" />
+			  </div></td>
+		</tr>
+		<tr>
+			<td>所属周期：</td>
+			<td><select name='belone_time' style="float:left">
+			<?php
+			for($i=1;$i<=280;$i++){
+			?>
+				
+			<option value='<?php echo $i;?>'>第<?php echo $i;?>天</option>
+				
+			<?php
+			}
+			?></select>
+				</td>
+		</tr>
+
+<!--
+		<?php if($template==1){
+				echo '<input type="hidden" name="template" value="1" />';
+			} else {
+		?>		<?php } ?>
+-->
+		<tr>
+			<td align="center">所属会员：</td>
+			<td align="center"><div align="left">
+			  <input type="text" name="uid" id="uid" size="8" value="<?php echo $uid ? $uid : '';?>" readonly="" /><span><?php echo $nickname;?></span>
+			  </div></td>
+		</tr>
+
+		<tr id="sm_tr">
+			<td align="center"></td>
+			<td align="center"><div align="left"><a href="javascript:;" id="add_sm">添加一组描述</a></div></td>
+		</tr>
+		<!--营养搭配-->
+		<tr>
+			<td align="center">营养搭配：</td>
+			<td align="center"><div align="left">
+			  <?php 
+				foreach($res as $k=>$v){
+					echo '<input type="checkbox" name="category[]" class="foodcat" value="'.$k.'">'.$v['eattime'].' &nbsp;';
+				}
+             
+			  ?>
+
+			  </div></td>
+		</tr>
+
+
+		<!--弹出框-->
+		<tr>
+			<td align="center"></td>
+			<td align="center" valign="top"><div align="left">
+			 <?php 
+			 $tags = '';
+			 foreach($arr as $tk=>$tv) {
+			 	$tags .= '<input type="checkbox" name="tag" class="tag" value="'.$tk.'">'.$tv['c_type_name'].'&nbsp;';
+			 }
+			
+			foreach($res as $k=>$v){
+				echo '<div id="box_'.$k.'" style="display:none;margin-top:20px;padding:10px;border:dashed 2px #999999"><ul>选择<font color="red"><strong>'.$v['eattime'].'</strong></font>食品：<input type="text" name="kw" class="kw" placeholder="关键字">&nbsp;&nbsp;
+				分类：'.$tags.'&nbsp;&nbsp;
+				<input type="button" name="search" class="search" value="查找食品" dataid="'.$k.'"></ul><ul class="food"></ul><ul style="clear:left"></ul>
+				
+				<ul><textarea name="cat_intro['.$k.']" placeholder="'.$v['eattime'].'搭配说明" cols="70" rows="6"></textarea></ul></div>';
+			} ?>
+		  </div></td>
+		</tr>		
+
+		<!--加餐的弹出框-->
+		<tr>
+			<td align="center"></td>
+			<td align="center" valign="top"><div align="left">
+			 <?php 
+			 $tags = '';
+			 foreach($arr as $tk=>$tv) {
+			 	$tags .= '<input type="checkbox" name="tag" class="tag" value="'.$tk.'">'.$tv['c_type_name'].'&nbsp;';
+			 }
+			
+			foreach($res as $k=>$v){
+				echo '<div id="boxs_'.$k.'" style="display:none;margin-top:20px;padding:10px;border:dashed 2px #999999"><ul>选择<font color="red"><strong>'.$v['eattime'].'</strong></font>加餐食品：<input type="text" name="kw" class="kw" placeholder="关键字">&nbsp;&nbsp;
+				分类：'.$tags.'&nbsp;&nbsp;
+				<input type="button" name="search" class="search" value="查找食品" dataid="'.$k.'"></ul><ul class="food"></ul><ul style="clear:left"></ul>
+				
+				<ul><textarea name="cat_intro['.$k.']" placeholder="'.$v['eattime'].'搭配说明" cols="70" rows="6"></textarea></ul></div>';
+			} ?>
+		  </div></td>
+		</tr>		
+		
+
+
+		<tr height="40">
+			<td align="center">
+			</td>
+			<td align="center"><div align="left">
+			<input type="hidden" name="wj_id" value="<?php echo $wj_id;?>" />
+			  <input type="submit" value="" class="add_yes 1"/><a href="javascript:history.go(-1)" class="add_no"></a>
+			  </div></td>
+		</tr>
+	</table>
+</form>
+</div>
+<script type="text/javascript">
+var day = 0;
+
+function removef(li_id) {
+	$('#'+li_id).remove();
+}
+
+function setUid(uid,name) {
+	$('#uid').val(uid);
+	$('#uid').next('span').html(name);
+}
+
+$(function(){
+	$('.foodcat').click(function(){
+		var catid = $(this).val();
+		if(confirm("您要加餐吗")){
+			$('#boxs_'+catid).css('display','');
+		}
+		//alert(catid);
+		var ischk = $(this).attr('checked');
+		if(ischk=='checked'){
+			$('#box_'+catid).css('display','');
+		} else {
+			$('#box_'+catid).css('display','none');
+		}
+		
+	});
+	
+	$('.search').click(function(){
+		var __par = $(this).parent('ul'),tagids='';
+		var cid = $(this).attr('dataid');
+		var kw = __par.find('.kw').val();
+		
+		__par.find('.tag').each(function(){
+			if($(this).attr('checked')=='checked') {
+				tagids = tagids+$(this).val()+',';
+			}
+		});  
+		//art.dialog.open(CFG_baseurl+'program/getFood?cid='+cid+'&kw='+encodeURIComponent(kw)+'&tag='+tagids, {id:'art_food', title: false, width:800, height:400, lock:true});
+		art.dialog.open('http://m.mumway.com/admin.php?s=/Package/getFood&cid='+cid+'&kw='+kw+'&tag='+tagids, {id:'art_food', title: false, width:800, height:400, lock:true});
+	});
+	
+	$('#add_sm').click(function(){
+		$('<tr><td></td><td><div style="text-align:left"></div></td></tr><tr><td></td><td><textarea id="editor_'+day+'" name="sm_intro"></textarea></td></tr>').insertBefore($('#sm_tr'));
+		editor = new UE.ui.Editor();
+		editor.render("editor_"+day);
+		day++;
+	});
+	
+	//选择会员
+	$('#uid').click(function(){
+		art.dialog.open('__URL__/getUid',{id:'art_uid', title: false, width:800, height:400, lock:true});
+	});
+})
+</script>
+</body>
+</html>

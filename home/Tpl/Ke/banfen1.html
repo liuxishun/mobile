@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>好孕妈妈</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/wode/css/style.css">
+        <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+    <script src="__PUBLIC__/ke/wode/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+		$(function(){
+			$('.top_choice li:last').css('borderRight',0);
+			$('.choose_con>li:last a').css('borderRight',0);
+			$('.choose_con>li').click(function(e) {
+                $(this).addClass('current').siblings().removeClass('current');
+            });
+			
+		});
+
+    </script>
+    
+</head>
+
+<body style="background-color: #f3f3f3;">
+	<header id="header">
+        <div id="choose1">
+        	<ul class="choose_con1">
+            	<li class="current"><a href="__URL__/banfen1?openid={$openid}">全部粉丝</a></li>
+                <li><a href="__URL__/banfen2?openid={$openid}">已购买粉丝</a></li>
+            	<li><a href="__URL__/banfen3?openid={$openid}">未购买粉丝</a></li>
+            </ul>
+        </div>
+    </header>
+    <section class="section">
+        <p class="fun_p1">共<?php echo $fencount?$fencount:0; ?>人 &nbsp; 已购买<?php echo $yicount?$yicount:0; ?>人 &nbsp; 未购买<?php echo $weicount?$weicount:0; ?>人 &nbsp; 总销售额：<?php echo $zjine?$zjine:0; ?>元</P>
+        <ul class="fun_ul">
+        	<foreach name="list" item="li">
+        	<li><a href="#">
+            	<p class="fun_ul_d2_p1">消费金额:{$li.money}元</p>
+            	<img class="fun_ul_img1" src="{$li.headimgurl}" onerror="this.src='__PUBLIC__/ke/wode/img/img4.jpg'">
+                <div class="fun_ul_d1">
+                	<P class="fun_ul_d1_p1">{$li.nickname}</P>
+                    <P class="fun_ul_d1_p2">成为粉丝时间：2016年9月7日 14:08:31</P>
+                </div></a>
+                <P class="fun_ul_d2_p2"><a href="__URL__/bansongquan?openid={$openid}&sopenid={$li.openid}">发券</a></P>
+            </li>
+            </foreach>
+        </ul>
+
+    </section>
+</body>
+</html>

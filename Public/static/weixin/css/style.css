@@ -1,0 +1,575 @@
+.bodyback{
+	background-color: #f1edea;
+}
+
+		.nav{
+			width: 100%;
+			height: 4rem;
+			overflow-y:hidden;
+			overflow-x:auto;
+			background-color: #fff;
+			position: fixed;
+			z-index: 12;
+		}
+		.nav >span{
+			display: block;
+			background-color: #fff;
+			font-size: 2rem;
+			color: #e777ff;
+			position: fixed;
+			top: 4px;
+			right: 0;
+			line-height: 3rem;
+			padding: 0 0.2rem;
+			border:1px solid  #e5e5e5;
+		}
+		.nabUl{
+			width: 42rem;
+			height: 100%;
+			list-style: none;
+		
+		}
+		.nabUl li{
+			width: 6.8rem;
+			height: 100%;
+			float: left;
+			line-height: 100px;
+			text-align: center;
+		}
+		.nabUl li >a{
+			display: block;
+		
+			height: 100%;
+			font-size: 1.4rem;
+			color: #646464;
+			text-align: center;
+			line-height: 3.9rem;
+		}
+		.nabUl li > .active{
+			color: #e777ff;
+			border-bottom: 2px solid #e777ff;
+		
+		}
+
+.Df_list{
+	width: 100%;
+}
+.Df_list >li{
+	width: 100%;
+	margin-top: 0.8rem;
+	border-top: 1px solid #d5d5d5;
+	border-bottom: 1px solid #d5d5d5;
+	background-color: #fff;
+	padding: 0.8rem 0 0; 
+	position: relative;
+	padding-bottom: 0.8rem;
+}
+
+.Df_list >li >.Aimg{
+	float: left;
+	width: 11rem;
+	height: 8.5rem;
+	display: block;
+	border-radius: 8px;
+	margin-left: 0.8rem;
+}
+.Df_list >li >.Aimg >img{
+	width: 100%;
+	height:100%;
+	margin-top:0.8rem;
+}
+.Df_list >li > .Word{
+	margin-left: 13.8rem;
+	margin-right: 0.8rem;
+	padding-top: 0.88rem;
+	position: relative;
+	height: 9.9rem;
+}
+.Df_list >li > .Word >h4{
+	width: 100%;
+	font-size: 1.35rem;
+	color: #221815;
+	font-weight: normal;
+}
+.Df_list >li > .Word >h4 >a{
+	color: #221815;
+}
+.Df_list >li > .Word >p{
+	margin-top: 0.5rem;
+	font-size: 1.25rem;
+	color: #898989;
+	margin-bottom: 0.5rem;
+}
+.Df_list >li > .Word > .span01{
+	margin-top: 0.3rem;
+	display: inline-block;
+	padding: 0 8px;
+	border:2px solid #dc8efc;
+	color: #dc8efc;
+	font-size:1.2rem;
+	border-radius: 3px;
+}
+.Df_list >li > .Word >.time{
+	background-image: url(../images/back02.png);
+	background-repeat: no-repeat;
+	background-position: 0 50%;
+	background-size: 1.2rem 1.2rem;
+	font-size: 1.2rem;
+	color: #666;
+	display: block;
+	padding-left: 1.5rem;
+}
+.Df_list >li > .Word > .bot{
+	width: 100%;
+	position: absolute;
+	bottom: 0.9rem;
+	right: 0;
+}
+.Df_list >li > .Word > .bot >.temi{
+	display: inline-block;
+	position: absolute;
+	bottom: -0.1rem;
+	right: 4rem;
+	
+	font-size: 1.2rem;
+	color: #666;
+	
+}
+
+.Df_list >li > .Word > .bot >.shij{
+	display: inline-block;
+	float: left;
+	font-size: 1.2rem;
+	color: #aaaaaa;
+	margin-left:0rem;
+	
+}
+.Df_list >li > .Word > .bot >.time{ 
+    background-image: url(../images/back02.png);
+	background-repeat: no-repeat; 
+	background-position: 0px 50%;
+	background-size: 1.2rem 1.2rem;
+	font-size: 1.2rem;
+	color: #aaaaaa;
+	display: block;
+	float: left;
+	width:5rem;
+	text-align:right;
+	
+	}
+.Df_list >li > .Word > .bot >.xianj{
+	position: absolute;
+	bottom: 0;
+	right: -6px;
+	font-size: 1.6rem;
+	color: #dc8efc;
+	font-family:"Arial;
+}
+.Df_list >li > .Word > .bot >.jiand{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 4.5rem;
+	height: 2.8rem;
+	line-height: 2.8rem;
+	border-radius: 4px;
+	font-size: 1.2rem;
+	color: #fff;
+	text-align: center;
+	background-color: #dc8efc;
+
+}
+.Df_list >li >.Pinl{
+	width: 100%;
+	height: 2.6rem;
+	margin-top: 0.8rem;
+	text-align: center;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	border-top:1px solid #d5d5d5;
+	background-color: #fcfcfc;
+}
+.Df_list >li >.Pinl >span{
+	display: inline-block;
+	font-size: 1.2rem;
+	color: #666464;
+	line-height: 2.6rem;
+	text-indent: 20px;
+	background-size: 1.2rem 1.2rem;
+	background-repeat: no-repeat;
+	background-position: 0 center;
+	background-image: url(../images/back03.png);
+}
+.Df_list >li >.Pinl > .left{
+	float: left;
+	background-image: url(../images/back02.png);
+}
+.Df_list >li >.Pinl > .right{
+	float: right;
+	background-image: url(../images/back04.png);
+}
+
+
+.Df_list >li > .xianmian{
+	position: absolute;
+	left: 0;
+	bottom: 1.2rem;
+	display: block;
+	width: 8rem;
+	height: 2.4rem;
+	background-color: #dc8efc;
+	color: #fff;
+	border-radius: 0 1.2rem 1.2rem 0 ;
+	font-size: 1.2rem;
+	line-height: 2.4rem;
+	text-indent: 1.5rem;
+}
+
+.D2_header{
+	padding: 0.8rem;
+	background-color: #fff;
+}
+.D2_header >img{
+	width: 100%
+}
+
+.D2_header .word{
+	width: 100%;
+	margin-top: 0.8rem;
+	position: relative; 
+	padding-left: 0.6rem;
+}
+.D2_header .word >h3{
+	font-weight: normal;
+	font-size: 1.6rem;
+	color: #221815; 
+}
+.D2_header .word >p{
+	margin-top: 0.2rem;
+	font-size: 1.2rem;
+	color: #898989;
+}
+.D2_header .word > .fenxiang{
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 1.2rem;
+	height: 4rem;
+	width: 4rem;
+	border-left: 1px solid #c9caca;
+	color: #898989;
+	padding-top: 2.5rem;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: center 30%;
+	background-size: 1.5rem 1.5rem;
+	background-image: url(../images/back06.png);
+}
+.D2_header >.jiage{
+	width: 100%;
+	margin-top: 0.4rem;
+	padding-left: 0.6rem;
+}
+.D2_header >.jiage >.span01{
+	font-size: 2.5rem;
+	color: #dc8efc;
+}
+.D2_header >.jiage >.span02{
+	margin-left: 1.5rem;
+	font-size: 1rem;
+	background-color: #dc8efc;
+	color: #fff;
+	display: inline-block;
+	padding: 0 5px;
+}
+.D2_header >.jiage >.span03{
+	margin-left: 1rem;
+	font-size: 1rem;
+	color: #898989;
+	text-decoration:line-through;
+}
+
+.D2_Youhui{
+	width: 100%;
+	margin-top:0.8rem;
+	padding: 0.8rem 1.5rem;
+	background-color: #fff;
+}
+.D2_Youhui >h3{
+	font-weight: normal;
+	font-size: 1.6rem;
+	color: #221815; 
+}
+.D2_Youhui >ul >li {
+	margin-top:0.5rem; 
+}
+.D2_Youhui >ul >li > .span01{
+	width: 2rem;
+	height: 2rem;
+	background-color: #dc8efc;
+	color: #fff;
+	text-align: center;
+	line-height: 2rem;
+	font-size: 1.4rem;
+	display: inline-block;
+	border-radius: 4px;
+}
+.D2_Youhui >ul >li > .span02{
+	font-size: 1.4rem;
+	color: #999;
+	margin-left: 1.2rem;
+}
+.D2_Youhui >ul >li > .span03{
+	margin-top: 0.3rem;
+	display: block;
+	width: 1.5rem;
+	height: 1.5rem;
+	float: right;
+	background-size: 1.4rem 1.4rem;
+	background-repeat: no-repeat;
+	background-image: url(../images/back07.png);
+}
+.D2_Youhui >ul >li > .backimg01{
+	background-image: url(../images/back08.png);
+}
+
+
+.D2_shulian{
+	width: 100%;
+	padding: 0.8rem 1.5rem;
+	background-color: #fff;
+	margin-top: 0.8rem;
+
+}
+.D2_shulian >h3{
+	font-weight: normal;
+	font-size: 1.6rem;
+	line-height: 2.5rem;
+	color: #221815;
+	float: left;
+}
+.D2_shulian >.jiaj{
+	float: right;
+	width: 8rem;
+	height: 2.5rem;
+	border-radius: 8px;
+	border:2px solid #c6c6c6;
+	text-align: center;
+}
+.D2_shulian >.jiaj >span{
+	display: inline-block;
+	line-height: 2.1rem;
+	text-align: center;
+	font-size: 1.4rem;
+	margin: 0 0.8rem;
+	color: #666;
+}
+
+.D2_Qlis{
+	width: 100%;
+	padding-bottom: 4rem;
+}
+.D2_Qlis >li{
+	margin-top: 0.8rem;
+}
+.D2_Qlis >li >.head{
+	width: 100%;
+	padding: 3rem 0 0.8rem 8rem;
+	background-color: #fff;
+	position: relative;
+}
+.D2_Qlis >li >.head >h3{
+	font-weight: normal;
+	font-size: 1.6rem;
+	color: #221815;
+}
+.D2_Qlis >li >.head >span{
+	display: block;
+	width: 5rem;
+	height: 5rem;
+	line-height: 5rem;
+	text-align: center;
+	background-image: url(../images/back09.png);
+	background-repeat: no-repeat;
+	background-size: 5rem 5rem;
+	font-size: 2.3rem;
+	font-weight: bold;
+	color: #fff;
+	position: absolute;
+	bottom: -0.6rem;
+	left: 1.5rem;
+
+}
+.D2_Qlis >li >.woed{
+	padding: 1.5em 3rem 1.5rem;
+}
+.D2_Qlis >li >.woed2{
+	padding-top: 1.5rem;
+	position: relative;
+}
+.D2_Qlis >li >.woed >p{
+	font-size: 1.2rem;
+	color: #999;
+	line-height: 1.8rem;
+}
+.D2_Qlis >li >.woed2 >p{
+	text-align: center;
+	font-size: 1.2rem;
+	color: #999;
+	line-height: 1.8rem;
+}
+.D2_Qlis >li >.woed2 >.img_21{
+	text-align: center;
+}
+.D2_Qlis >li >.woed2 >.img_21 >img{
+	width: 6rem;
+	height: 6rem;
+	border-radius: 8px;
+	display: inline-block;
+	margin:0.8rem 0.4rem;
+}
+
+
+
+.D2_lianxi{
+	width: 100%;
+	padding-top: 0.8rem;
+	background-color: #fff;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 0;
+}
+.D2_lianxi >a{
+	display: block;
+	width: 49%;
+	height: 3.5rem;
+	line-height: 1.6rem;
+	text-align: center;
+	padding-top: 0.6rem;
+	font-size: 1.6rem;
+	color: #000;
+	background-color: #fff100;   
+	float: left; 
+	background-image: url(../images/back10.png); 
+	background-repeat: no-repeat;
+	background-position: 25% 50%;
+	background-size: 1.8rem 1.8rem;
+}
+.D2_lianxi >a >em{
+	font-size: 1.6rem;
+	line-height: 1.6rem;
+	font-style: normal;
+	display: inline-block;
+	text-indent: 3rem;
+}
+.D2_lianxi >a >span{
+	position: relative;
+	top: -0.3rem;
+	left: 0;
+	font-size: 0.6rem;
+	line-height: 0.6rem;
+	display: inline-block;
+	margin-top: -0.2rem;
+	text-indent: 3rem;
+}
+.D2_lianxi > .rig{
+	float: right;
+	background-color: #f39800;
+	background-image: url(../images/back11.png); 
+	background-size: 1.5rem 1.8rem;
+}
+
+
+.D3lisword{
+	width: 100%;
+	padding: 0 1.5rem;
+
+}
+.D3lisword >img{
+	width: 13.5rem;
+	height: 7.2rem;
+	display: block;
+}
+.D3lisword > .left{
+	float: left;
+}
+.D3lisword > .Rig{
+	float: right;
+}
+.D3lisword >.marleft{
+	margin-left: 14rem;
+}
+.D3lisword >.marRig{
+	margin-right: 14rem;
+}
+.D3lisword >p{
+	width: 14rem;
+	font-size: 1.4rem;
+	color: #999999;
+	line-height: 1.8rem;
+}
+.D3_bota{
+	width: 100%;
+
+}
+.D3_bota >.head{
+	width: 100%;
+	height: 5rem;
+	position: relative;
+	background-color: #fff;
+	border-top: 1px solid #f1edea;
+	border-bottom: 1px solid #f1edea;
+	padding-top: 3rem;
+	text-align: center;
+}
+.D3_bota >.head >span{
+	display: block;
+	width: 100%;
+	position: absolute;
+	bottom: 0.5rem;
+	left: 0;
+	z-index: 2;
+	text-align: center;
+}
+.D3_bota >.head >span>em{
+	display: inline-block;
+	font-size: 1.8rem;
+	color: #333;
+	background-color: #fff;
+	font-style: normal;
+	padding: 0 0.5rem;
+}
+.D3_bota >.head >i{
+	display: block;
+	width: 100%;
+	border-bottom: 2px solid #b5b5b5;
+	position: absolute;
+	bottom: 1.2rem;
+	left: 0;
+	z-index: 1;
+
+}
+.D3_bota >.but{
+	width: 100%;
+	padding:1rem 0.8rem;
+	text-align: center;
+}
+
+.D3_bota >.but > a{
+	display: inline-block;
+	width: 13.5rem;
+	margin: 0 0.5rem;
+}
+.D3_bota >.but > a >img{
+	width: 100%;
+
+
+}
+.D3_bota >.but > a >p{
+	background-color: #fff;
+	font-size: 1.6rem;
+	text-align: center;
+	color: #666;
+}

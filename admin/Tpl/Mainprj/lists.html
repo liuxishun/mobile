@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>主要套餐列表</b></span>
+		</div>
+		<div class="web_tit">
+		    <script type="text/javascript">
+			var searchURL='__ACTION__';
+			var searchIDs="title|mum_type".split('|');
+			</script>
+			标题：<input type="text" id="title" value="{$para.title}" size="8" >
+			类别：<select id="mum_type" style="font-size:12px">
+				<option value="">--请选择--</option>
+				<?php
+                	$mum_types = D('admin://Member')->mum_type;
+                ?>
+				<foreach name="mum_types" item="val">
+					<option value="{$val}" <?php if($val==$para['mum_type']) echo 'selected'; ?>>{$val}</option>
+				</foreach>
+			 </select>
+			 
+			<input type="button" value="搜索" onclick="doSearch()" /> <input type="button" value="重置" onclick="doReset()" />
+		</div>
+		
+
+        <div class="con_box">
+        <form action="__URL__/del" method="POST" id="sub">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="80">编号</th>
+            <th>标题</th>
+			<th>自定义ID</th>
+			<th>类别阿姨类</th>
+			<th>价格</th>
+            <th>收费类型</th>
+            <th width="80">是否显示</th>
+			<th width="80">是否置顶</th>
+            <th width="180">基本操作</th>
+          </tr>
+
+          <foreach name="list" item="val">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+					<td class="td_left">{$val.title}</td>
+					<td>{$val.cus_id}</td>
+					<td>
+						{$val.mum_type}
+					</td>
+					<td>
+						{$val.price}</del>
+					</td>
+                    <td>
+                    	<?php if ($val['buy_mode']==1): ?>
+                    	限时免费{$val.free_week}周
+                    	<?php else: ?>
+                    	免费
+                    	<?php endif ?>
+                    </td>
+					<td>
+						<script>showRW({api:'__URL__/is_display/id/<?php echo $val['id']; ?>/is_display/', v:'<?php echo $val['is_display']; ?>', vs:[1, 0]})</script>
+					</td>
+					<td>
+						<script>showRW({api:'__URL__/is_top/id/<?php echo $val['id']; ?>/is_top/', v:'<?php echo $val['is_top']; ?>', vs:[1, 0]})</script>
+					</td>
+					<td>
+						<a href="__URL__/edit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a><!--  |
+						<a href="__URL__/del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a> -->
+					</td>
+				</tr>
+		 </foreach>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; 
+		  	<!-- <input type="button" onclick="delall(this)"  value="删除选中"> -->
+		  </div>
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+          </form>
+ </div>
+
+</div>
+</div>      
+</body>
+</html>

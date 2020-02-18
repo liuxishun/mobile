@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php $include=array('filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+</head>
+
+<body>
+ <div class="right">
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>标签编辑</b></span>
+		</div>
+
+        <div class="con_box">
+			<form method="post" action="__SELF__" id="form" name="form">
+				
+
+                
+
+               <div class="tab-item" >
+                <table class="add_table">
+					<tr>
+						<th>已有标签：</th>
+						<td>
+                            <?php
+                                $u_tags = D('Houseworker')->getAllTags();
+                                $u_tag_ids = array();
+                                foreach($u_tags as $tag){
+                                    $u_tag_ids[] = $tag['id'];
+                                }
+                                $tags = D('Houseworker')->getAllTags();
+                            ?>
+                            <foreach name="tags" item="tag">
+                            <label><input type="checkbox" name="tag_ids[]" value="{$tag.id}" <?php if(in_array($tag['id'], $u_tag_ids)) echo 'checked'; ?> />{$tag.name}</label> &nbsp; 
+                            </foreach>
+                        </td>
+					</tr>
+                    <tr>
+						<th>添加新标签：</th>
+						<td><input type="text" name="newtag" class="add_input" value=""/> 多个以空格间隔
+                        </td>
+					</tr>
+                </table>
+                </div>
+
+
+			    <table class="add_table">
+                    <tr>
+						<th></th>
+						<td>
+							<input type="hidden" name="id" value="{$arr.id}"/>
+							<input type="hidden" name="listurl" value="{$listurl}"/>
+							<a href="javascript:;" onclick="document.form.submit();"class="add_yes"></a>
+							<a href="__URL__/lists" class="add_no"></a>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+<?php $y=date('Y'); ?>
+$(function(){
+	$('[name="info[birthday]"]').datepicker({
+		yearRange: "{$y-100}:{$y}",
+        duration: '', 
+		dateFormat: 'yy-mm-dd',
+		regional:'zh-CN',
+        changeMonth: true,
+        changeYear: true
+	}).change(function() {
+	})
+});
+</script>
+</body>
+</html>

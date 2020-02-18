@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+
+        
+<div class="easyui-panel" data-options="fit:true,border:false" style="padding:10px;">
+    <table id="dg"></table> 
+</div>
+
+<script type="text/javascript">
+var searchURL='__ACTION__';
+var searchIDs="id|mobile".split('|');
+</script>
+<div id="toolbar">
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="openWin('详细资料', '__APP__/user/info&id=', '100%', '100%')" data-options="iconCls:'icon-tip',plain:true">详细资料</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="del()" data-options="iconCls:'icon-remove',plain:true">删除</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="delAll()" data-options="iconCls:'icon-remove',plain:true">全部删除</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="location.reload()" data-options="iconCls:'icon-reload',plain:true">刷新</a>
+    <!--<div>
+        用户ID: <input id="id" value="<?php echo $_GET['id'] ?>" class="easyui-validatebox" type="text" style="width:80px">
+        手机号: <input id="mobile" value="<?php echo $_GET['mobile'] ?>" class="easyui-validatebox" type="text" style="width:80px">
+
+        <a href="javascript:;" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()" >搜索</a>
+        <a href="javascript:;" class="easyui-linkbutton" onclick="doReset()" >重置</a>
+    </div>-->
+</div>
+
+
+
+<script>
+
+$('#dg').datagrid({
+    title:"意见反馈管理",
+    fit:true,
+    rownumbers:true,
+    url:'__URL__/getdata<?php echo strstr($_SERVER['QUERY_STRING'], '&'); ?>',
+    idField:'id',
+    toolbar:'#toolbar',
+    singleSelect:true,
+    pagination:true,
+    pageSize:20,
+    columns:[[
+        {title:'ID',field:'id', width:60,align:'left'},
+        {title:'星级',field:'star', width:150},
+        {title:'反馈内容',field:'content',width:300,align:'left'},
+
+        {title:'添加时间',field:'add_time',width:200,align:'right'},
+    ]],
+    onDblClickRow:function(idx, row){$('#dg').datagrid('selectRow', idx), $('[datagrid-row-index='+idx+']').attr('s', 1),edit();},
+});
+function formatOrderId(value, row, index){
+    return value*1? value : '';
+}
+function formatDisplay(value, row, index){
+    return genRWimg({api:'__URL__/is_display/id/'+row.id+'/is_display/', v:value, vs:[1, 0],link:false})
+}
+var url;
+
+function del(){
+    var row = $('#dg').datagrid('getSelected');
+    if (row){
+        $.messager.confirm('Confirm','确定要删除所选项吗？',function(r){
+            if (r){
+                $.post('__URL__/del', {id:row.id},function(result){
+                    if (result.status){
+                        $('#dg').datagrid('reload');
+                    } else {
+                        $.messager.show({
+                            title: 'Error',
+                            msg: result.info
+                        });
+                    }
+                },'json');
+            }
+        });
+    }
+}
+function delAll(){
+    $.messager.confirm('Confirm','确定要删除所有吗？',function(r){
+        if (r){
+            $.post('__URL__/delAll', {},function(result){
+                if (result.status){
+                    $('#dg').datagrid('reload');
+                } else {
+                    $.messager.show({
+                        title: 'Error',
+                        msg: result.info
+                    });
+                }
+            },'json');
+        }
+    });
+}
+
+
+$(function(){
+    $('#win').window('close'); 
+});
+
+function openWin(t, baseurl, w, h){
+    var row = $('#dg').datagrid('getSelected');
+    if (row){
+        art.dialog.open(baseurl+row.user_id, {title: t, width:w||800, height:h||400, lock:true});
+    }
+}
+
+</script>
+
+</body>
+</html>

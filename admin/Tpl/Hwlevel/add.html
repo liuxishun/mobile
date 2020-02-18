@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<?php
+    $include = array('filespace');
+?>
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>星级编辑</b></span>
+		</div>
+
+        <div class="con_box">
+			<form method="post" action="__SELF__" id="form" name="form">
+				<div id="data_area">
+                    
+                </div>
+
+                <table class="add_table">
+					<tr>
+						<th>名称：</th>
+						<td><input type="text" name="info[name]" class="add_input" value="{$arr.name}"/></td>
+					</tr>	
+
+                    <tr>
+						<th>所属类别：</th>
+						<td>
+                            <select id="tid" name="info[hwtype_id]" onchange="updateParaBox()">
+                                <option value="">请选择</option>
+                                <?php
+                                    $hwtypes = M('hwtype')->select();
+                                ?>
+                                <foreach name="hwtypes" item="val">
+                                <option value="{$val.id}" <?php if($val['id']==$arr['hwtype_id'])echo 'selected'; ?>>{$val.name}</option>
+                                </foreach>
+                            </select>
+                        </td>
+					</tr>
+
+                    <tr>
+						<th>图标：</th>
+						<td><input type="text" name="info[pic]" class="add_input" data-preview="1" value="{$arr.pic}"/> <a href="javascript:;" onclick="myfilespace({dirName:'hwlevel',clickFn:'info[pic]', extraFileUploadParams:{width:300, height:300, forcecut:0}})">浏览</a></td>
+					</tr>
+
+                    <tr>
+						<th>星级：</th>
+						<td>
+                            <select id="tid" name="info[level_num]">
+                                <?php
+                                    $hwlevels = array('初级'=>1, '三级'=>3, '四级'=>4, '五级'=>5, '六级'=>6, '明星'=>7);
+                                ?>
+                                <foreach name="hwlevels" item="val" key="k">
+                                <option value="{$val}" <?php if($val==$arr['level_num'])echo 'selected'; ?>>{$k}</option>
+                                </foreach>
+                            </select>
+                        </td>
+					</tr>
+
+                    <tr>
+						<th>市场价：</th>
+						<td><input type="text" name="info[old_price]" class="add_input" value="{$arr.old_price}"/> 元</td>
+					</tr>	
+                    <tr>
+						<th>会员价：</th>
+						<td><input type="text" name="info[price]" class="add_input" value="{$arr.price}"/> 元</td>
+					</tr>
+                </table>
+                <div id="para_box"></div>
+
+                <table class="add_table">
+					<tr>
+						<th>排序：</th>
+						<td><input type="text" name="info[sort]" class="add_input" value="<?php echo $arr['sort'].''!==''? $arr['sort']:50; ?>"/></td>
+					</tr>					
+                    <tr>
+						<th>是否显示：</th>
+						<td><label><input type="radio" name="info[is_display]" value="1" <?php if($arr['is_display'].''!=='0') echo 'checked'; ?> />是</label> &nbsp; <label><input type="radio" name="info[is_display]" value="0" <?php if($arr['is_display'].''==='0') echo 'checked'; ?> />否</label></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>
+							<input type="hidden" name="id" value="{$arr.id}"/>
+							<input type="hidden" name="listurl" value="{$listurl}"/>
+							<a href="javascript:;" onclick="document.form.submit();"class="add_yes"></a>
+							<a href="__URL__/lists" class="add_no"></a>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+function updateParaBox(){
+    var id='{$arr.id}', tid=$('#tid').val();
+    tid? $.get('__URL__/attrparas&id='+id+'&tid='+tid, function(d){
+        $('#para_box').html(d);
+    }) : $('#para_box').html('');
+}
+updateParaBox();
+</script>
+
+</body>
+</html>

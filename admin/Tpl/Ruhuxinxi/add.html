@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>入户填写信息档案表添加</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__URL__/saveItem" method='POST' id='form'>
+			<table class="add_table" id='table'>
+				<tr>
+						<th>类型：</th>
+						<td>
+						<script type="text/javascript">
+						document.write("<select name='id'><option value=''>--请选择--</option>");
+								<?php
+										foreach($pingluns as $key=>$value){
+								?>
+									document.write("<option value='"+<?php echo $value['id'];?>+"'><?php echo $value['p_title'];?></option>");
+								<?php } ?>
+								document.write("</select>");
+						</script>
+						</td>
+				</tr>
+				<tr>
+						<th>增加分类：</th>
+						<td>
+						<input type='text' value='' class='add_input' id='c_type_name'/>&nbsp;<a href='javascript:void(0)' onclick='Addtype()'>增加</a>
+						</td>
+				</tr>
+			
+				
+				
+					<tr>
+						<th></th>
+						<td>
+						<input type="button" value='增加描述选项' id='add'/><br/>
+							<input type="button" class="add_yes" value="" id='tijiao'/>
+							<a href="__URL__/index" class="add_no"></a>
+							<input type='hidden' name='sub_title_s'/>
+						</td>
+					</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+	
+	function Addtype(){
+		var c_type_name=document.getElementById('c_type_name');
+		if(c_type_name.value.replace(/( )/g,'')==''){
+			alert('分类名称不能为空！');
+			return;
+		}
+		$.ajax({
+			type:"POST",
+			data:{"c_type_name":c_type_name.value},
+			url:"__URL__/Addtype",
+			success:function(d){
+				alert("新增成功！");
+				var data=$.parseJSON(d);
+				if(typeof(data.id)!='undefined'&&typeof(data.p_title)!='undefined'){
+				$('select[name=id]').append('<option value='+data.id+'>'+data.p_title+'</option');
+				}
+				c_type_name.value='';
+			}
+		});
+	}
+	document.getElementById('add').onclick=function(){
+		var table=document.getElementById('table');
+		var tr=table.insertRow(table.rows.length-1);
+		tr.innerHTML="<th>具体描述选项：</th><td><input type='text' value='' class='add_input' name='p_sub_title'/>&nbsp;<a href='javascript:void(0)' onclick='DeleteItem(this)'>删除</a></td>";
+		
+	}
+	document.getElementById('tijiao').onclick=function(){
+		var id=document.getElementsByName('id')[0];
+		if(id.selectedIndex==0){
+			alert('请选择分类！');
+			return;
+		}
+		var p_sub_title=document.getElementsByName('p_sub_title');
+		var sub_title_s=document.getElementsByName('sub_title_s')[0];
+		var p_sub_titles='';
+		for(var i=0;i<p_sub_title.length;i++){
+			if(p_sub_title[i].value!=''){
+				p_sub_titles+=p_sub_title[i].value+',';
+			}
+		}
+		if(p_sub_titles!=''){
+			p_sub_titles=p_sub_titles.substring(0,p_sub_titles.length-1);
+		}
+		sub_title_s.value=p_sub_titles;
+		document.getElementById('form').submit();
+	}
+	function DeleteItem(item){
+		var table=document.getElementById('table');
+		table.deleteRow(item.parentNode.parentNode.rowIndex);
+	}
+</script>
+</html>

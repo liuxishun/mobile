@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+        <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+	<script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+                function view(){
+                    $("#D1_fiexT").show();
+                }
+    
+    </script>
+
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/wode/css/style.css">
+    <link rel="stylesheet" href="__PUBLIC__/ke/wode/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/wode/css/lightGallery.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/wode/css/common1.css">
+    
+    <style type="text/css">
+        .swiper-container {
+            width: 100%;
+            height:150px;
+            margin: 20px auto;
+        }
+        .swiper-container1 {
+            width: 100%;
+            height:190px;
+            margin: 20px auto;
+        }
+        .swiper-container1 .swiper-slide img{ height:150px;}
+        .swiper-container1 p span{
+            font-size:20px; color:#666; line-height:50px; height:50px; display:inline-block;
+            
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .append-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .append-buttons a {
+            display: inline-block;
+            border: 1px solid #007aff;
+            color: #007aff;
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin: 0 10px;
+            font-size: 13px;
+        }
+        .swiper-slide img{ width:100%; height:100%;}
+        
+        
+        .xpic{ overflow:hidden; padding:5px 0;text-align:center;margin:0 auto}
+        .xpic img{ width:33px; height:33px; display:inline-block; float:right;}
+        
+        .highcharts-legend{ display:none;}
+        .introduce1{ width:180px; position:absolute; right:0px; top:45px;}
+        .introduce1 div{ display:none; padding:8px; background:#dc8efc; color:#fff; line-height:28px; font-size:18px; border-radius:9px; width:100%; overflow:hidden; font-family:"Microsoft YaHei"; box-sizing:border-box; margin-top:50px;}
+        .introduce1 div span{ font-size:14px; }
+        .highcharts-tooltip{ display:none;}
+        .highcharts-container{text-align: right;}
+        
+        .scz {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    background: rgba(0,0,0,0.4);
+		    z-index: 9999;
+		    display: none;
+		}
+    </style>
+	
+</head>
+<body>
+<section class="section" style="margin-top:0;">
+    <!-- module00 -->
+    <div class="figure">
+        <div class=" middle">
+            <div class="t-title" style="margin-bottom:20px;">
+                <img src="__PUBLIC__/ke/wode/img/icon01.png">
+                <span>详细资料</span>
+                <a class="xiangx">编辑</a>
+            </div>
+            <div class="introduce">
+            	<form id="bootImgpic" action="__SELF__" method="post" enctype="multipart/form-data">
+                	<input type="file" name="pic" style="display:none" id="piciid" >
+	                <div class="head-p" onClick="piciid.click()">
+	                    <img src="/{$arr.pic}" onerror="this.src='__PUBLIC__/ke/wode/img/pic.png'">
+	                </div>
+                </form>
+                <script type="text/javascript">
+                    var elem = document.getElementById("piciid");  
+                    if("\v"=="v"){  
+                        elem.onpropertychange = uploadHand;  
+                    }else{  
+                        elem.addEventListener("change",uploadHand,false);  
+                    }  
+              
+                    function uploadHand(){  
+                        if(elem.value){  
+                          // 事件监听到 有改变 就提交form表单 
+                          document.getElementById('bootImgpic').submit();
+                        }  
+                    }  
+              
+                </script>
+                <div class="g-name">
+                    <strong>{$arr.title}</strong>
+                    <p>{$arr.area_id}<span>|</span>{$arr.age}岁<span>|</span>{$arr.school_type}</p>
+                    <p>{$arr['experence_year_yuesao']+$arr['experence_year_yuying']}年经验</p>
+                    <p>身份证号：{$arr.idcard}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- module01 -->
+    <div class="rolling">
+        <div class="middle">
+            <div class="t-title">
+                <img src="__PUBLIC__/ke/wode/img/icon01.png">
+                <span>个人技能</span>
+                <a class="mine">添加</a>
+            </div>
+           	<P class="caiyi">
+           	<foreach name="skill" item="vo">
+           	<span>{$vo}</span>
+           	</foreach>
+           	</P>
+        </div>
+    </div>    
+    <!-- module02 -->
+    <div class="rolling">
+        <div class="middle">
+            <div class="t-title">
+                <img src="__PUBLIC__/ke/wode/img/icon01.png">
+                <span>真实工作照片</span>
+                <form id="bootImg1" action="__SELF__" method="post" enctype="multipart/form-data">
+                	<a onClick="idfile55.click()">上传</a>
+                	<input type="file" name="file" style="display:none" id="idfile55" >
+                </form>
+                <script type="text/javascript">
+                    var element = document.getElementById("idfile55");  
+                    if("\v"=="v"){  
+                        element.onpropertychange = uploadHandle;  
+                    }else{  
+                        element.addEventListener("change",uploadHandle,false);  
+                    }  
+              
+                    function uploadHandle(){  
+                        if(element.value){  
+                          // 事件监听到 有改变 就提交form表单 
+                          document.getElementById('bootImg1').submit();
+                        }  
+                    }  
+              
+                </script>
+            </div>
+            <div class="swiper-container swiper-container-horizontal">
+                <div class="swiper-wrapper gallery auto-loop" style="overflow:visible;">
+                    <!-- 开始循环 -->
+                    <foreach name="shanghu" item="vo">
+                    <div class="swiper-slide swiper-slide-active" data-src="/{$vo}" style="width: 231px; margin-right: 15px;"><img src="/{$vo}"></div>
+                	</foreach>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- module03 -->
+
+    <div class="rolling">
+        <div class="middle">
+            <div class="t-title">
+                <img src="__PUBLIC__/ke/wode/img/icon02.png">
+                <span>六维专业考核</span>
+            </div>
+            <div class="skills">
+                <p style="margin:20px 0 0; padding-left:90px; position:relative;"><img style="width:80px; height:80px; position:absolute; left:0; top:0; border-radius:40px; " src="__PUBLIC__/ke/wode/img/tututu.png">经好孕妈妈专业测评团队，认证“{$arr.title}”，符合“{$arr['experence_year_yuesao']+$arr['experence_year_yuying']}”年工作经验，技能合格，评定为“高级月嫂”。
+                </p>
+                <div class="spider" style="height:auto;">
+                    <div style="position:relative;">
+                        <div id="container" style="width:85%;height:320px; float:left; padding:40px 0 0; box-sizing: border-box; " data-highcharts-chart="0"></div>
+                        <div class="introduce1">
+                            <div class="introduce2" style="display: none;">“高级月嫂”之经验----工作经验“{$arr['experence_year_yuesao']+$arr['experence_year_yuying']}”年，照顾宝宝“{$arr['baby_yuesao']+$arr['baby_yuying']}”个</div>
+                            <div class="introduce2" style="display: none; background: rgb(106, 210, 143);">“高级月嫂”之产妇护理----生活护理、伤口护理、恶露观察</div>
+                            <div class="introduce2" style="display: none; background: rgb(252, 217, 142);">“高级月嫂”之新生儿护理----生活护理、生命体征评估、黄疸观察、吐奶预防及护理</div>
+                            <div class="introduce2" style="display: none; background: rgb(252, 142, 214);">“高级月嫂”之月子餐制作----菜类制作，汤类制作，面食制作</div>
+                            <div class="introduce2" style="display: block; background: rgb(142, 202, 252);">“高级月嫂”之乳房护理----喂养指导，乳头皲裂的护理，开奶通乳</div>
+                            <div class="introduce2" style="display: none; background: rgb(252, 142, 142);">“高级月嫂”之产后恢复----产后束腹带</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- module04 -->
+    <div class="rolling">
+        <div class="middle">
+            <div class="t-title">
+                <img src="__PUBLIC__/ke/wode/img/icon03.png">
+                <span>资质证书</span>
+                <a id="zhengshu">上传</a>
+            </div>
+            <div class="swiper-container swiper-container1 swiper-container-horizontal">
+            <div class="swiper-wrapper gallery1 auto-loop" style="overflow:visible;">
+            	<foreach name="zhengjians" item="vo">
+            	<if condition="$vo['name'] neq '身份证'">
+                    <div class="swiper-slide swiper-slide-active" data-src="/{$vo.pic}" style="width: 231px; margin-right: 15px;"><p><img src="/{$vo.pic}"><span>{$vo.name}</span></p></div>
+                </if>
+                </foreach>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- module05 -->
+    <div class="rolling">
+        <div class="middle">
+            <div class="t-title">
+                <img src="__PUBLIC__/ke/wode/img/icon01.png">
+                <span>工作期望</span>
+                <a class="xiwang">添加</a>
+            </div>
+            <foreach name="qiuzhi" item="vo">
+           	<div class="qiwang">
+            	<P class="qiwang_p1">期望工作：{$vo.gongzhong}</P>
+                <P class="qiwang_p1">期望薪资：{$vo.gongzi}元/月</P>
+                <P class="qiwang_p1">期望工作地点：{$vo.address}</P>
+            </div>
+            </foreach>
+        </div>
+    </div>    
+    <!-- module06 -->
+    <div class="rolling">
+        <div class="middle">
+            <div class="t-title">
+                <img src="__PUBLIC__/ke/wode/img/icon01.png">
+                <span>空档期</span>
+                <a href="#" class="kongd">添加</a>
+            </div>
+           	<div class="kong">
+           	<foreach name="kongdang" item="vo">
+            	<P class="kong_p1">{$vo}</P>
+            </foreach>
+            </div>
+        </div>
+    </div>    
+
+<!-- Swiper JS -->
+<script src="__PUBLIC__/ke/wode/js/swiper.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+var appendNumber = 4;
+var prependNumber = 1;
+var swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    slidesPerView: 2.5,
+    centeredSlides: false,
+    paginationClickable: true,
+    spaceBetween: 15
+});
+
+</script>
+</section>
+<footer class="post_foot">
+    <input class="vedio_but" type="button" value="确认并提交简历" onclick="add()">
+</footer>
+<script type="text/javascript">
+var tij = {$tij};
+if(tij != 1){
+	alert('{$titi}');
+}
+function add(){
+	if(tij == 1){
+		location.href='__URL__/jiuyesmg/guyong/{$id}/guzhu_id/{$gid}';
+	}else{
+		alert('{$titi}');
+	}
+}
+
+</script>
+<!--------------擅长技能弹框---------------------->
+<form action="__SELF__" method="post">
+<input type="hidden" name="namet" value="skill">
+<div class="sc">
+	<div class="sc_in">
+    	<h3 class="sc_in_h3"><span class="sc_in_h3_s1">擅长技能</span><span class="sc_in_h3_s2 cuo">×</span></h3>
+        <P class="sc_in_p1">
+        	<label><input type="checkbox" name="skill[]" value="高端月子餐制作"><span>高端月子餐制作</span></label>
+            <label><input type="checkbox" name="skill[]" value="产奶开奶/催乳"><span>产奶开奶/催乳</span></label>
+            <label><input type="checkbox" name="skill[]" value="月子餐营养搭配"><span>月子餐营养搭配</span></label>
+            <label><input type="checkbox" name="skill[]" value="带过双胞胎"><span>带过双胞胎</span></label>
+            <label><input type="checkbox" name="skill[]" value="绑腹带"><span>绑腹带</span></label>
+            <label><input type="checkbox" name="skill[]" value="盆底肌修复"><span>盆底肌修复</span></label>
+        </P>
+        <P class="sc_in_p2">其它</P>
+        <P class="sc_in_p3"><input class="sc_in_p3_inp" type="submit" value="保存"></P>
+    </div>
+</div>
+<!--------------擅长技能弹框---------------------->
+<!--------------擅长技能其它弹框---------------------->
+
+<div class="sc1">
+	<div class="sc_in">
+    	<h3 class="sc_in_h3"><span class="sc_in_h3_s1">擅长技能</span><span class="sc_in_h3_s2 cuo1">×</span></h3>
+        <P class="sc1_in_p1"><input type="text" name="skill1" placeholder="请输入"></P>
+        <P class="sc_in_p3"><input class="sc1_in_p3_inp sc1_in_p3_inp1" type="button" value="保存"></P>
+    </div>
+</div>
+</form>
+<!--------------擅长技能其它弹框---------------------->
+<!--------------详细资料弹框---------------------->
+
+<div class="sc2">
+<form action="__SELF__" method="post">
+<input type="hidden" name="namet" value="jiben">
+	<div class="sc_in">
+    	<h3 class="sc_in_h3"><span class="sc_in_h3_s1">详细资料</span><span class="sc_in_h3_s2 cuo2">×</span></h3>
+    	<P class="sc1_in_p1">身份证：<input type="text" name="idcard" value="{$arr.idcard}" placeholder="如：46" ></P>
+        <P class="sc1_in_p1">籍贯：<input type="text" name="area_id" value="{$arr.area_id}" placeholder="如：山东" ></P>
+        <P class="sc1_in_p1">年龄：<input type="number" name="age" value="{$arr.age}" placeholder="如：46" ></P>
+        <P class="sc1_in_p1">学历：<input type="text" name="school_type" value="{$arr.school_type}"  placeholder="如：本科" ></P>
+        <P class="sc1_in_p1">年限：<input type="number" name="experence_year_yuesao" value="{$arr.experence_year_yuesao}"  placeholder="如：6" ></P>
+        <P class="sc_in_p3"><input class="sc1_in_p3_inp" type="submit" value="保存"></P>
+    </div>
+</form>
+</div>
+<!--------------详细资料弹框---------------------->
+
+<!--------------空档期弹框---------------------->
+
+<div class="sc3">
+<form action="__SELF__" method="post">
+<input type="hidden" name="namet" value="kongdang">
+	<div class="sc_in">
+    	<h3 class="sc_in_h3"><span class="sc_in_h3_s1">空档期</span><span class="sc_in_h3_s2 cuo3">×</span></h3>
+        <P class="sc1_in_p1"><input type="text" name="start_kongdang" placeholder="开始时间"   id="beginTime" class="kbtn"></P>
+        <P class="sc1_in_p1"><input type="text" name="end_kongdang" placeholder="结束时间"  id="endTime" class="kbtn"  ></P>
+        <P class="sc_in_p3"><input class="sc1_in_p3_inp" type="submit" value="保存"></P>
+    </div>
+</form>
+</div>
+<div id="datePlugin" ></div>
+<script type="text/javascript" src="__PUBLIC__/ke/wode/js/jquery-1.9.1.js" ></script>
+<script type="text/javascript" src="__PUBLIC__/ke/wode/js/date.js" ></script>
+<script type="text/javascript" src="__PUBLIC__/ke/wode/js/iscroll.js" ></script>
+
+<script type="text/javascript">
+		$('#beginTime').date();
+		$('#endTime').date();
+		var id = {$id};
+		if(id == 0) $('.sc2').show();		
+</script>
+<!--------------空档期弹框---------------------->
+<!--------------工作期望弹框---------------------->
+
+<div class="sc4">
+<form action="__SELF__" method="post">
+<input type="hidden" name="namet" value="qiuzhi">
+	<div class="sc_in">
+    	<h3 class="sc_in_h3"><span class="sc_in_h3_s1">工作期望</span><span class="sc_in_h3_s2 cuo4">×</span></h3>
+        <P class="sc1_in_p1"><input type="text" name="gongzhong" placeholder="期望工作" class="kbtn1" ></P>
+        <P class="sc1_in_p1"><input type="text" name="gongzi" placeholder="期望薪资"  class="kbtn2"></P>
+        <P class="sc1_in_p1"><input type="text" name="address" placeholder="期望工作区域" ></P>
+        <P class="sc_in_p3"><input class="sc1_in_p3_inp" type="submit" value="保存"></P>
+    </div>
+</form>
+    <div class="datePlugin1 choice1">
+            <div class="datePage1 page1">
+                <div>
+                    <div class="datescroll1">
+                        <div class="yearwrapper1 choice_d1">
+                            <ul>
+                                <li class="cur">育儿嫂</li>
+                                <li>月嫂</li>
+                                <li>全职</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="dateFooter1">
+                    <div class="setcancle1">
+                        <ul>
+                            <li class="dateconfirm1 butt1">确定</li>
+                            <li class="datecancle1 butt2">取消</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    <div class="datePlugin1 choice2">
+            <div class="datePage1 page1">
+                <div>
+                    <div class="datescroll1">
+                        <div class="yearwrapper1 choice_d2">
+                            <ul>
+                                <li class="cur">2000以下</li>
+                                <li>2000-5000</li>
+                                <li>5000-10000</li>
+                                <li>10000-15000</li>
+                                <li>15000-25000</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="dateFooter1">
+                    <div class="setcancle1">
+                        <ul>
+                            <li class="dateconfirm1 butt12">确定</li>
+                            <li class="datecancle1 butt22">取消</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+
+
+
+<!--------------工作期望弹框---------------------->
+
+<!--------------证书---------------------->
+<div id="scz" class="scz" style="display: none;">
+<form action="__SELF__" method="post" enctype="multipart/form-data" >
+	<div class="sc_in">
+    	<h3 class="sc_in_h3"><span class="sc_in_h3_s1">证书管理</span><span class="sc_in_h3_s2 cuoz">×</span></h3>
+       <P class="sc1_in_p1"> <select style="width: 440px;" class="sc1_in_p1" name="name">
+        <foreach name="zjitem" item="vo">
+        <option value="{$vo.name}">{$vo.name}</option>
+        </foreach>
+        </select></P>
+        <br>
+        <P class="sc1_in_p1"><input class="sc1_in_p1" type="file" name="zhengshu" class="kbtn"></P>
+        <P class="sc_in_p3"><input class="sc1_in_p3_inp" type="submit" value="保存"></P>
+    </div>
+</form>
+</div>
+<!--------------证书---------------------->
+
+
+<script type="text/javascript" src="__PUBLIC__/ke/wode/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ke/wode/js/highcharts.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ke/wode/js/highcharts-more.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ke/wode/js/lightGallery.js"></script>
+<script type="text/javascript">
+	$(function () {
+		//证书
+		$('#zhengshu').click(function(e) {
+			$('#scz').toggle();
+		});
+		$('.cuoz').click(function(e) {
+			$('#scz').toggle();
+		});
+		$(".gallery").lightGallery({
+			loop:true,
+			auto:true,
+			pause:4000
+		});
+		$(".gallery1").lightGallery({
+			loop:true,
+			auto:true,
+			pause:4000
+		});
+		
+
+	$('#container').highcharts({
+				
+		chart: {
+			polar: true,
+			type: 'bar',
+			spacing:10
+		},
+		
+		title: {
+			text: '',
+			x: -80
+		},
+		xAxis: {
+			//categories: ['6','6','6','6','5','4'],
+			categories: ['经验', '产妇护理', '新生儿护理', '月子餐制作', '乳房护理', '产后恢复'],
+			tickmarkPlacement: 'on',
+			lineWidth: 0,
+			gridLineColor: '#dc8efc',
+			offset:2
+			
+		},
+			
+		yAxis: {
+			gridLineInterpolation: 'polygon',
+			lineWidth: 0,
+			gridLineColor: '#dc8efc',
+			min: 0
+		},
+		
+		tooltip: {
+			shared: true,
+			pointFormat: ''
+			
+		},
+		
+		legend: {
+			align: 'right',
+			verticalAlign: 'top',
+			y: 0,
+			layout: 'vertical',
+			backgroundColor: '#dc8efc'
+		},
+
+			
+		series: [{
+			
+			name: '',
+			data: [{$arr.xingji}],
+			pointPlacement: 'on',
+		}]
+	
+	});
+	$('.highcharts-tracker path:eq(0)').attr('fill','#dc8efc');
+	$('.highcharts-tracker path:eq(1)').css('fill','#6ad28f');
+	$('.highcharts-tracker path:eq(2)').css('fill','#fcd98e');
+	$('.highcharts-tracker path:eq(3)').css('fill','#fc8ed6');
+	$('.highcharts-tracker path:eq(4)').css('fill','#8ecafc');
+	$('.highcharts-tracker path:eq(5)').css('fill','#fc8e8e');
+	
+	$('.highcharts-tracker path').attr('opacity','0.5');
+	//$('.highcharts-series-0 path').attr('stroke','#dc8efc');
+	$('.highcharts-tracker path:first').attr('opacity','1');
+	$('.highcharts-xaxis-labels text:eq(0)').css('fill','rgba(220,142,252,1)');
+	$('.highcharts-xaxis-labels text:eq(1)').css('fill','#6ad28f');
+	$('.highcharts-xaxis-labels text:eq(2)').css('fill','#fcd98e');
+	$('.highcharts-xaxis-labels text:eq(3)').css('fill','#fc8ed6');
+	$('.highcharts-xaxis-labels text:eq(4)').css('fill','#8ecafc');
+	$('.highcharts-xaxis-labels text:eq(5)').css('fill','#fc8e8e');
+	
+	
+	$('.highcharts-xaxis-labels text').css('font-family','Microsoft YaHei');
+	$('.highcharts-xaxis-labels text').css('width','48px');
+	//$('svg').css('paddingLeft','32px');
+	$('.introduce1 .introduce2:eq(1)').css('background','#6ad28f');
+	$('.introduce1 .introduce2:eq(2)').css('background','#fcd98e');
+	$('.introduce1 .introduce2:eq(3)').css('background','#fc8ed6');
+	$('.introduce1 .introduce2:eq(4)').css('background','#8ecafc');
+	$('.introduce1 .introduce2:eq(5)').css('background','#fc8e8e');
+	
+	var num=0;
+	function donghua(){
+		
+		if(num==6) {num=0;}
+		
+		$('.highcharts-tracker path').eq(num).attr('opacity','1').siblings().attr('opacity','0.5');
+		//$('.highcharts-tracker path').eq(num).addClass('itemHoverStyle').siblings().removeClass('itemHoverStyle');
+		//$('.highcharts-tracker path').eq(num).css('transform','scale3d(1,1,1.1)').siblings().css('transform','scale3d(1,1,1)');
+		$('.introduce1 .introduce2').eq(num).css('display','block').siblings().css('display','none');
+		num++;
+	}  
+	setInterval(donghua, 3000);  
+	//$('.highcharts-series-group .highcharts-series path').attr('fill','rgba(220,142,252,0.5)');
+	
+	//擅长技能弹框
+	$('.sc_in_p1 span').click(function(e) {
+		$(this).toggleClass('cur');
+	});
+	$('.mine').click(function(e) {
+		$('.sc').show();
+	});
+	$('.sc_in_p2').click(function(e) {
+		$('.sc').hide();
+		$('.sc1').show();
+	});
+	$('.cuo').click(function(e) {
+		$('.sc').hide();
+	});
+	$('.cuo1').click(function(e) {
+		$('.sc1').hide();
+		$('.sc').show();
+	});
+	$('.sc1_in_p3_inp1').click(function(e) {
+		$('.sc1').hide();
+		$('.sc').show();
+	});
+	
+	
+	$('.xiangx').click(function(e) {
+		$('.sc2').show();
+	});
+	$('.cuo2').click(function(e) {
+		$('.sc2').hide();
+	});
+	
+	$('.kongd').click(function(e) {
+		$('.sc3').show();
+	});
+	$('.cuo3').click(function(e) {
+		$('.sc3').hide();
+	});
+
+	$('.xiwang').click(function(e) {
+		$('.sc4').show();
+	});
+	$('.cuo4').click(function(e) {
+		$('.sc4').hide();
+	});
+
+
+	
+	$('.kbtn1').click(function(e) {
+		$('.choice1').show()
+	});;
+	$('.butt2').click(function(e) {
+		$('.choice1').hide()
+	});
+	$('.choice_d1 ul li').click(function(e) {
+		$(this).addClass('cur').siblings().removeClass('cur');
+	});;
+	
+	$('.butt1').click(function(e) {
+		$('.choice1').hide();
+		$('.kbtn1').val($('.choice_d1 ul .cur').html());
+	});;
+
+
+	$('.kbtn2').click(function(e) {
+		$('.choice2').show()
+	});;
+	$('.butt22').click(function(e) {
+		$('.choice2').hide()
+	});
+	$('.choice_d2 ul li').click(function(e) {
+		$(this).addClass('cur').siblings().removeClass('cur');
+	});;
+	
+	$('.butt12').click(function(e) {
+		$('.choice2').hide();
+		$('.kbtn2').val($('.choice_d2 ul .cur').html());
+	});;
+
+	
+	
+});
+</script>
+
+</body>
+</html>

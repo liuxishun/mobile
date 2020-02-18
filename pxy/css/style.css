@@ -1,0 +1,292 @@
+@import url(public.css);
+@import "http://at.alicdn.com/t/font_nua7vl8b0t384cxr.css";
+.clearfloat:after {
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height: 0; }
+
+.clearfloat {
+  zoom: 1; }
+
+section#Max_Con {
+  width: 640px;
+  position: relative;
+  overflow-x: hidden;
+  background-color: #f1edea; }
+  section#Max_Con footer.footer {
+    width: 640px;
+    height: 90px;
+    border-top: 1px solid #9b9b9b;
+    background-color: #fff;
+    position: fixed;
+    bottom: -1px;
+    left: 0; }
+    section#Max_Con footer.footer > a {
+      display: block;
+      float: left;
+      text-align: center;
+      line-height: 88px;
+      height: 100%;
+      font-size: 26px; }
+    section#Max_Con footer.footer > a.one {
+      width: 25%;
+      color: #4e4e4e; 
+	  border-right: 1px solid #9b9b9b;}
+    section#Max_Con footer.footer > a.one:nth-child(3) {
+      border-right: none; }
+    section#Max_Con footer.footer > a.two {
+      width: 25%;
+      background-color: #f23030;
+      color: #fff; }
+  section#Max_Con div.modoOne {
+    width: 100%;
+    height: 1317px;
+    background-image: url(../img/1.jpg);
+    background-repeat: no-repeat;
+    border-bottom: 1px solid #d4d4d2;
+    background-color: #fff;
+    position: relative; }
+    section#Max_Con div.modoOne form.indForm {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 0 50px 65px; }
+      section#Max_Con div.modoOne form.indForm div.link > a {
+        display: block; }
+      section#Max_Con div.modoOne form.indForm div.link > a.noe {
+        float: left; }
+      section#Max_Con div.modoOne form.indForm div.link > a.two {
+        float: right; }
+      section#Max_Con div.modoOne form.indForm div.Form {
+        width: 100%;
+        margin-top: 25px; }
+        section#Max_Con div.modoOne form.indForm div.Form div.xiala {
+          width: 100%; }
+          section#Max_Con div.modoOne form.indForm div.Form div.xiala select {
+            width: 257px;
+            height: 69px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid #959595;
+            font-size: 26px;
+            padding: 0 20px; }
+          section#Max_Con div.modoOne form.indForm div.Form div.xiala select:nth-child(2) {
+            margin-left: 20px; }
+        section#Max_Con div.modoOne form.indForm div.Form div.input {
+          margin-top: 18px; }
+          section#Max_Con div.modoOne form.indForm div.Form div.input > input {
+            width: 100%;
+            height: 69px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid #959595;
+            font-size: 26px;
+            padding: 0 20px; }
+        section#Max_Con div.modoOne form.indForm div.Form div.bot {
+          margin-top: 18px; }
+          section#Max_Con div.modoOne form.indForm div.Form div.bot > button {
+            width: 100%;
+            height: 69px;
+            background-color: #ffc000;
+            color: #ce000d;
+            border-radius: 10px;
+            border: 0;
+            font-weight: bold;
+            font-size: 32px;
+            padding: 0 20px; }
+  section#Max_Con div.nodoInd {
+    margin-top: 18px;
+    border-top: 1px solid #d4d4d2;
+    border-bottom: 1px solid #d4d4d2;
+    position: relative;
+	background:#fff; }
+    section#Max_Con div.nodoInd .butlink {
+      display: block;
+      width: 466px;
+      height: 50px;
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      margin-left: -233px; }
+    section#Max_Con div.nodoInd div.videoCon {
+      width: 100%;
+      height: 789px;
+      background-color: #fff;
+      background-image: url(../img/9.jpg); }
+      section#Max_Con div.nodoInd div.videoCon video {
+        position: absolute;
+        top: 280px;
+        left: 69px;
+        width: 497px;
+        height: 307px; }
+      section#Max_Con div.nodoInd div.videoCon img#videomen {
+        display: none;
+        position: absolute;
+        top: 280px;
+        left: 69px;
+        width: 497px;
+        height: 307px; }
+
+/*# sourceMappingURL=style.css.map */
+/******************培训*******************************/
+.peixun_p{ 
+	font-size:22px; 
+	color:#4f4f4f;
+	line-height:34px;
+	padding:0 20px 80px;
+	max-height:3000px;}
+.peixun_p span{ color:#f77f7a;}
+.peixunOne {
+	width: 100%;
+	height: 1063px;
+	background-image:url(../img/peixun_02.jpg);
+	background-repeat: no-repeat;
+	border-bottom: 1px solid #d4d4d2;
+	background-color: #fff;
+	position: relative; }
+.peixunOne form.indForm {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 0 50px 65px; }
+.peixunOne form.indForm div.Form {
+	width: 100%;
+	margin-top: 25px; }
+.peixunOne form.indForm div.Form div.xiala {
+	width: 385px;
+	margin:0 auto; }
+.peixunOne form.indForm div.Form div.xiala select {
+	width: 100%;
+	height: 80px;
+	background-color: #fff;
+	border-radius: 10px;
+	border: 1px solid #959595;
+	font-size: 26px;
+	padding: 0 20px; }
+.peixunOne form.indForm div.Form div.input {
+	margin:18px auto 0; 
+	width:385px;}
+.peixunOne form.indForm div.Form div.input > input {
+	width: 100%;
+	height: 80px;
+	background-color: #fff;
+	border-radius: 10px;
+	border: 1px solid #959595;
+	font-size: 26px;
+	padding: 0 20px; }
+.peixunOne form.indForm div.Form div.bot {
+	margin: 84px auto 0;
+	width: 422px; }
+.peixunOne form.indForm div.Form div.bot > button {
+	width: 422px;
+	height: 80px;
+	background-color: #feeb15;
+	color: #131515;
+	border-radius: 10px;
+	border: 0;
+	font-weight: bold;
+	font-size: 32px;
+	padding: 0 20px;}
+
+
+
+.peixunTwo {
+	width: 100%;
+	height: 794px;
+	background-image:url(../img/peixun37.jpg);
+	background-repeat: no-repeat;
+	border-bottom: 1px solid #d4d4d2;
+	background-color: #fff;
+	position: relative;
+	margin-bottom:88px; }
+.peixunTwo form.indForm {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 0 50px 65px; }
+.peixunTwo form.indForm div.Form {
+	width: 100%;
+	margin-top: 25px; }
+.peixunTwo form.indForm div.Form div.input {
+	margin:18px auto 0; 
+	width:425px;}
+.peixunTwo form.indForm div.Form div.input > input {
+	width: 100%;
+	height: 80px;
+	background-color: #fff;
+	border-radius: 10px;
+	border: 1px solid #959595;
+	font-size: 26px;
+	padding: 0 20px; }
+.peixunTwo form.indForm div.Form div.bot {
+	margin: 30px auto 0;
+	width: 425px; }
+.peixunTwo form.indForm div.Form div.bot > button {
+	width: 422px;
+	height: 80px;
+	background-color: #feeb15;
+	color: #131515;
+	border-radius: 10px;
+	border: 0;
+	font-weight: bold;
+	font-size: 32px;
+	padding: 0 20px;}
+.peixun_ul{
+	padding:0 20px;
+	overflow:hidden;
+	}
+.peixun_ul li{
+	margin-bottom:20px;}
+.peixun_ul_h3{
+	font-weight:normal;
+	color:#fff;
+	background:#f4837c;
+	padding:5px 0;}
+.peixun_ul_h3 span{
+	margin-left:28px;
+	font-size:24px;
+	line-height:30px;
+	height:30px;
+	display:inline-block;}
+.peixun_ul_h3 .peixun_ul_h3_s1{
+	border-left:8px solid #fff;
+	padding-left:10px;}
+.peixun_ul_h3 .peixun_ul_h3_s2{
+	font-size:20px;
+	text-decoration:line-through;}
+.peixun_ul_d{
+	border:2px dashed #f6bdb8;
+	border-top:0;
+	border-radius:0 0 11px 11px;
+	padding:12px 12px 20px 25px;
+	overflow:hidden;}
+.peixun_ul_d_p{
+	font-size:20px;
+	color:#4f4f4f;
+	line-height:28px;
+	max-height:1000px;
+	width:274px;
+	float:left;}
+.peixun_ul_d_p span{
+	color:#f77f7a;}
+.peixun_ul_d_d{
+	float:right;
+	width:267px;}
+.peixun_ul_d_d_img{
+	margin-top:6px;}
+.peixun_ul_d_d_a{
+	margin-top:15px;
+	height:60px;
+	line-height:60px;
+	text-align:center;
+	color:#fff;
+	display:inline-block;
+	font-size:28px;
+	background:#f4837c;
+	width:100%;
+	border-radius:5px;}

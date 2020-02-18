@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+<body>
+<div class="right">
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>权限组权限编辑</b></span>
+		</div>
+
+        <div class="con_box">
+        <form action="__SELF__" method="POST" id="sub">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="80">编号</th>
+            <th>名称</th>
+			<th>参数/规则</th>
+          </tr>
+
+          <foreach name="nlist" item="val">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" id="chk_{$val.id}" <?php if($val['check_role'])echo 'checked'; ?> value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+					<td class="td_left">{$val.title}</td>
+					<td class="td_left"><?php if($val['isexp'])echo '[正则]'; ?>{$val.name}</td>
+				</tr>
+				<assign name="aid" value="$val.id" />
+				<foreach name="val.mlist" item="val">
+						<tr>
+							<td><input type="checkbox" name="checkboxes[]" pid="chk_{$aid}" id="chk_{$aid}_{$val.id}"  <?php if($val['check_role'])echo 'checked'; ?> value="{$val.id}" ></td>
+							<td>{$val.id}</td>
+							<td class="td_left">|---{$val.title}</td>
+							<td class="td_left"><?php if($val['isexp'])echo '[正则]'; ?>{$val.name}</td>
+						</tr>
+						<assign name="mid" value="$val.id" />
+						<foreach name="val.alist" item="val">
+								<tr>
+									<td><input type="checkbox" name="checkboxes[]" pid="chk_{$aid}_{$mid}" id="chk_{$aid}_{$mid}_{$val.id}" <?php if($val['check_role'])echo 'checked'; ?> value="{$val.id}" ></td>
+									<td>{$val.id}</td>
+									<td class="td_left">|------{$val.title}</td>
+									<td class="td_left"><?php if($val['isexp'])echo '[正则]'; ?>{$val.name}</td>
+								</tr>
+						 </foreach>
+				 </foreach>
+		 </foreach>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="submit" value="保存"></div>
+
+			<input type="hidden" name="id" value="{$role_id}" />
+			<input type="hidden" name="listurl" value="{$listurl}"/>
+          </form>
+ </div>
+
+
+	</div>
+</div>
+
+<script>
+$('[name="checkboxes[]"]').bind('click', function(){
+    var tid;
+	//当前项取消，取消所有下级项;当前项选择，勾选所有上级
+	this.checked? (tid=$(this).attr('pid'), tid&&$('#'+tid).attr('checked', 'checked'), tid&&(tid=$('#'+tid).attr('pid'), tid&&$('#'+tid).attr('checked', 'checked'))): ($('[id^="'+this.id+'"]').each(function(){this.checked=false}));
+});
+</script>
+</body>
+</html>

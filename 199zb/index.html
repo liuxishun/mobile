@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>视频直播</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css?=11">
+	<script type="text/javascript" src="js/Adaptive.js"></script>
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="js/weixin.js"></script>
+	<script type="text/javascript">
+		//获取url中的参数
+		function getUrlParam(name) {
+	        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	        var r = location.search.substr(1).match(reg);  //匹配目标参数
+	        if (r != null) return decodeURI(r[2]); return null; //返回参数值
+	    }
+		if(getUrlParam("source")){
+			sessionStorage.mm_herlive_source = getUrlParam("source");//来源
+		}
+		if(getUrlParam("from_admin_id")){
+			sessionStorage.from_admin_id = getUrlParam("from_admin_id");//后台用户ID
+		}
+		if(getUrlParam("cid")){
+			sessionStorage.mm_herlive_channel = getUrlParam("cid");//我要报名，渠道
+		}
+		var openid = 'oO3bqsoSGiYk2sGjpnebk1u7V14c';//用户标识
+		openid = getUrlParam('openid');//用户标识
+		if(!openid){
+			window.location.href="http://m.mumway.com/wxys/herliveLogin.php?vid="+getUrlParam('vid')+"&from_admin_id="+getUrlParam('from_admin_id');
+		}
+    </script>
+    <style type="text/css">
+	    @keyframes myfirst
+	    {
+	    	0%{transform: scale(1);}
+	    	25%  {transform: scale(1.1);}
+	    	50%  {transform: scale(1.1);}
+	    	100% {transform: scale(1.0);}
+	    }
+	    .applyLink{
+	    	position: fixed;
+	    	bottom:250px;
+	    	right:10px;
+	    	width: 100px;
+	    	height: 100px;
+	    	border-radius: 50%;
+	    	background-color: #ea6175;
+	    	color: #fff;
+	    	text-align: center;
+	    	font-size: 26px;
+	    	z-index: 99;
+	    	padding-top: 15px;
+	    	animation: myfirst 1s infinite;
+	    }
+	</style>
+</head>
+<body style="display:none;">
+	<div id="assets" style="display:none;padding: 20px 0; position: fixed;top: 0;bottom: 0;left: 0;right: 0;text-align: right;background-color: rgba(0,0,0,0.5);"><img alt="" src="images/assets.png"></div><!--提示分享图片-->
+	<a class="applyLink" href="http://oa.fanqieguanjia.com/active/faceteaching/">我要<br/>报名</a>
+	<div class="xuanfu" style="display:none;"><img src="images/icon_up.png">有新消息</div>
+
+	<section class="MaxCon" style="display:none;">
+		<div class="videoCn">
+			<div class="banner">
+				<img src="images/banner.jpg" id="banner_img">
+				<img id="button_play" style="width:130px; height:130px; position:absolute; left:50%; top:100px; margin-left:-65px;" src="http://m.mumway.com/Public/ke/img/bo.png">
+				<div class="timeCn">
+					<span class="ind" id="day">00</span>
+					<span class="text">天</span>
+					<span class="ind"  id="when">0</span>
+					<span class="text">时</span>
+					<span class="ind" id="points">0</span>
+					<span class="text">分</span>
+					<span class="ind" id="seconds">0</span>
+					<span class="text">秒</span>
+				</div>
+				<div class="men" style="display:none;" id="banner">
+				</div>
+				<div class="dist">
+					<marquee><span id="announcement">公告：前方公告高能，请注意躲避！阿萨达达达萨达萨达达...</span></marquee>
+				</div>
+			</div>
+		</div>
+		<div class="chatCon">
+			<div class="head">互动问答区</div>
+			<div class="chatList">
+				<ul id="comments">
+					<li style="display:none;">
+						<div class="iconC"><img src="images/12435.jpeg"></div>
+						<div class="Rn">
+							<div class="title">
+								<span class="name">hoahoaho</span>
+								<span class="time">2017-08-21 14:14:14</span>
+							</div>
+							<div class="info">
+								1354656767i7676567865
+							</div>
+							<div class="infos">
+								<span>好孕妈妈回复：</span><br>
+								阿萨达达达萨达萨达达
+							</div>
+						</div>
+					</li>
+				</ul>	
+			</div>
+		</div>
+
+		<div class="bottomCn">
+			<input type="text" name="content" id="content" placeholder="写留言...">
+			<button type="button" onclick="send()">发布留言</button>
+		</div>
+	</section>
+	<section class="Login" style="display:none;">
+		<form action="">
+			<ul>
+				<li>
+					<div class="name">姓名</div>
+					<input type="text" name="name" id="names" placeholder="请输入姓名">
+				</li>
+				<li>
+					<div class="name">手机号</div>
+					<input type="number" name="phone" id="phones" placeholder="请输入手机号码">
+					<span class="yanz" onclick="sendCode()">发送验证码</span>
+				</li>
+				<li>
+					<div class="name">验证码</div>
+					<input type="number" name="code" id="code" placeholder="请输入收到的验证码">
+				</li>
+				<li style="border-bottom: none;">
+					<button type="button" onclick="login()">登录</button>
+				</li>
+			</ul>
+		</form>
+	</section>
+	
+<script type="text/javascript">
+	$(function(){
+		diaoaj();//微信分享
+		getVideo();//视频
+		//我要报名悬浮按钮加渠道
+		if(sessionStorage.mm_herlive_channel){
+			$(".applyLink").attr("href", $(".applyLink").attr("href") + "?" +sessionStorage.mm_herlive_channel);
+		}
+	});
+	var urlvid = '';//视频vid
+	var urlid = '128';//视频id
+	var yanz = '11';//验证码
+	var clock = '';//验证码定时器
+	var nums = 60;//验证码间隔
+	var baseUrl = 'http://oa.fanqieguanjia.com/';//登录域名
+	var vtitle = '';//视频标题
+	var comID = 0;//保存最大评论id，用于分页查询
+	
+	//登录
+	function login(){
+		var phone= $("#phones").val();
+		var name= $("#names").val();
+		if(name == ''){
+			alert("请输入姓名");
+			return false;
+		}
+		var code= $("#code").val();
+		if(!(/^1\d{10}$/.test(phone))){
+			alert("请输入正确手机号码");
+			return false;
+		}
+		if(yanz != code){
+			alert("请输入验证码错误");
+			return false;
+		}
+		var dt = {};
+		dt.name = name;
+		dt.phone = phone;
+		dt.openid = openid;
+		dt.vtitle = vtitle;
+		dt.source = sessionStorage.mm_herlive_source;//来源
+		console.log(dt);
+		$.ajax({
+			url:baseUrl+"index/Herlive/login",
+			data:dt,
+			type:"post",
+			success:function(msg){
+				if(Boolean(msg.success)){
+					play();//登录成功播放视频
+				}else{
+					alert('登录失败！');
+				}
+			}
+		});
+	}
+	//验证码
+	function sendCode(){
+		var phone= $("#phones").val();
+		if((/^1\d{10}$/.test(phone))){
+			$('.yanz').removeAttr('onclick').text(nums+'秒');
+			//定时
+			clock = setInterval(function(){
+				nums--;
+				if(nums > 0){
+					$('.yanz').text(nums+'秒');
+				}else{
+				  clearInterval(clock); //清除js定时器
+				  $('.yanz').attr('onclick','sendCode()').text('重新发送');
+				  nums = 60; //重置时间
+				}
+			}, 1000); //一秒执行一次
+			$.ajax({
+				url:baseUrl+"index/Sms/getVerificationCode",
+				data:{"phone":phone},
+				type:"get",
+				success:function(msg){
+					if(Boolean(msg.success)){
+						yanz = msg.code;
+					}else{
+						alert('获取验证码失败！');
+					}
+				}
+			});
+		}else{
+			alert("请输入手机号码");
+		}
+	}
+	
+	//播放按键
+	function play(){
+		$.ajax({
+			url:baseUrl+"index/Herlive/validationLogin",
+			data:{"openid":openid},
+			type:"get",
+			async: false,
+			success:function(msg){
+				if(Boolean(msg.success)){
+					var phomes = "15210107155,13150033234,18207801310,15159398655,18045437757,13834616298,15313482185,18511314196,18859301636";
+					// if(urlid == 134 && phomes.indexOf(msg.phone) < 0){
+					// 	alert("您没有报名成功，暂时无法观看");
+					// 	return false;
+					// }
+					$("#banner_play").hide();
+					$("#banner_img").hide();
+					$("#banner").show();
+					$(".MaxCon").show();
+					$(".Login").hide();
+				}else{
+					$(".MaxCon").hide();
+					$(".Login").show();
+				}
+			}
+		});
+	}
+
+	//获取视频
+	function getVideo(){
+		if(getUrlParam('vid') != null){
+			urlvid = getUrlParam('vid');
+		}
+		$.ajax({
+			url:"http://m.mumway.com/index.php/class/getVideo",
+			type:"get",
+			data:{"vid":urlvid, "openid":openid},
+			success:function(msg){
+				console.log(msg);
+				if(msg.code == 0){
+					return ;
+				}
+				urlid = msg.id;//设置视频id
+				urlvid = msg.vid;//设置视频id
+				vtitle = msg.title;
+				var video = msg.url;
+				$("#banner_img").attr('src', "http://my.mumway.com/"+msg.pic);
+				if(video.indexOf("p.bokecc.com") >= 0){
+					//cc视频
+					//video = 'https://p.bokecc.com/player?vid=AFF3C467020443569C33DC5901307461&siteid=D3EEE7CD051FA897&autoStart=false&width=640&height=480&playerid=B3D0EF60D7A1798D&playertype=1';
+					video = video.replace('width=640', 'width=750').replace('height=480', 'height=420');
+					video = video.substring(video.indexOf("https"), video.indexOf("e=1") + 3);
+					var dom = document.getElementById("banner");
+					var sc = document.createElement("script");
+					sc.setAttribute("type", "text/javascript");
+					sc.setAttribute("src", video);
+					dom.innerHTML="";
+					dom.appendChild(sc);
+					$("#banner").unbind( "click" )
+				}else{
+					//云见视频
+					$('#banner').html('<iframe style="margin-left:-8px; margin-top:-8px; " id="iframeZhibo" src="'+video+'" width="765px" height="100%" frameborder="0" scrolling="no" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>');//视频
+				}
+				var time2="2017/08/22 17:26:00";
+				time2 = msg.start_time.replace(/-/g,"/");
+				var dr1 = new Date(time2);
+				var dr=new Date();
+				var n=parseInt((dr1 - dr)/1000);
+				tick(n);//计时
+				announcement();//公告
+				comments(true);//评论
+				$(".MaxCon").show();
+				$('body').show();
+				Share = {
+					title: msg.fen_title,
+					link: 'http://m.mumway.com/199zb/index.html?vid='+urlvid,
+					desc: msg.fen_desc,
+					imgUrl: 'http://bjm.mumway.com/'+msg.fen_pic,
+					type: 'link',
+					dataUrl: '',
+					success: function () { 
+						console.log('分享ok');
+					},
+					cancel: function () { 
+			            // 用户取消分享后执行的回调函数
+			            console.log('分享null');
+			        }
+			     };
+			 }
+		})
+	}
+	//直播到计时
+	function tick(n) {
+		if(n<=0){
+			clearInterval(tick())
+			$(".timeCn").hide();
+			//绑定直播按钮，显示直播
+			$(".banner").click(function(){
+				play();
+			});
+			return;
+		}
+		var tian_show=parseInt(n/86400);  <!--天数-->
+		if(tian_show < 10) tian_show = "0"+tian_show;
+		var tian=n%86400;  <!--天数余数-->
+		var shi_show=parseInt(tian/3600); <!--小时-->
+		if(shi_show < 10) shi_show = "0"+shi_show;
+		var shi=tian%3600; <!--小时余数-->
+		var fen_show=parseInt(shi/60);<!--分数-->
+		if(fen_show < 10) fen_show = "0"+fen_show;
+		var fen=shi%60;<!--分数余数-->
+		var miao_show=parseInt(fen/1);<!--秒数-->
+		if(miao_show < 10) miao_show = "0"+miao_show;
+
+		$("#day").text(tian_show);
+		$("#when").text(shi_show);
+		$("#points").text(fen_show);
+		$("#seconds").text(miao_show);
+		n--;
+		setTimeout("tick("+n+")", 1000);
+	}
+	//公告
+	function announcement(){
+		$.ajax({
+			url:"http://m.mumway.com/index.php/class/ggajax",
+			type:"post",
+			data:{"id":urlid},
+			success:function(msg){
+				$("#announcement").html(msg);
+			}
+		});
+		setTimeout("announcement()",60000);
+	}
+	
+	//评论
+	function comments(bl){
+		var url = 'http://m.mumway.com/index.php/class/getComments';
+		var dt = {};
+		dt.urlid = urlid;
+		dt.id = comID;
+		$.get(url,dt,function(data){
+			var comments = "";
+			var anchor = true;//查看自己最新回复消息
+			$.each(data, function(k, v){
+				if(k == 0) comID = v.id;
+				if(anchor && openid == v.openid){
+					//查看自己最新回复消息
+					$(".xuanfu").one("click",function(){
+						location.href = "#box"+v.id;
+						$(this).hide();
+					}).show();
+					anchor = false;
+				}
+				var reply = "";
+				if(v.reply){
+					reply = '<br><div class="infos">\
+					<span>好孕妈妈回复：</span><br>'+v.reply+'\
+					</div>';
+				}
+				comments += '<li id="box'+v.id+'">\
+				<div class="iconC"><img src="'+v.headimgurl+'"></div>\
+				<div class="Rn">\
+				<div class="title">\
+				<span class="name">'+v.nickname+'</span>\
+				<span class="time">'+v.time+'</span>\
+				</div>\
+				<div class="info">'+v.contents+'</div>\
+				'+reply+'\
+				</div>\
+				</li>';
+			});
+			$('#comments').prepend(comments);
+		});
+		
+		if(bl){//判断是否启动定时器
+			setTimeout("comments(true)",5000);
+		}
+	}
+	var content_old = 'content_old';//判断是否刷屏重复提交
+	//发送评论
+	function send(){
+		var dt = {};
+		dt.openid = openid;
+		dt.urlid = urlid;//视频id
+		dt.h_id = 0;//用户id
+		var content = $('#content').val();
+		if(content_old == content){//判断是否刷屏重复提交
+			return;
+		}
+		dt.contents = content;
+		if (content.replace(/(^\s*)|(\s*$)/g,"")==""){
+			alert('留言不能为空，请输入');
+		}else{
+			content_old = content;
+			var url = 'http://m.mumway.com/index.php/class/addComments';
+			$.post(url,dt,function(dd){
+				$('#content').val('');
+				comments(false);//刷新评论
+				if(!dd){
+					alert("发送失败！");
+				}
+			});
+		}
+	}
+	
+</script>
+</body>
+</html>

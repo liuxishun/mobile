@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/laydate/laydate.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>发布周期</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__URL__/saveItem" method='post' id='form'>
+			<table class="add_table" id='table'>
+				
+				<tr>
+						<th>阶段名称：</th>
+						<td>
+						<input type="text" name="period_stage_name" class="add_input" /> 
+						</td>
+				</tr>
+				<tr>
+						<th>阶段范围：</th>
+						<td>
+						<select name='period_duration'>
+							<option value='1'>1</option>
+						</select>
+						&nbsp;天
+						</td>
+				</tr>
+					<tr>
+						<th>所处阶段：</th>
+						<td>
+						第&nbsp;
+						<script type="text/javascript">
+						document.write("<select name='period_state'>");
+								for(var i=1;i<281;i++){
+									document.write("<option value='"+i+"'>"+i+"</option>");
+								}
+								document.write("</select>");
+						</script>
+						&nbsp;天
+						</td>
+				</tr>
+					<tr>
+						<th>是否启用：</th>
+						<td>
+						<input type='radio' value='1' name='enable_status' id='enable' checked/>
+						<label for="enable">启用</label>&nbsp;
+						<input type='radio' value='0' name='enable_status' id='disable'/>
+						<label for="disable">冻结</label>
+						</td>
+				</tr>
+	
+				<tr>
+						<th></th>
+						<td>
+							<input type="submit" class="add_yes" value=''/>
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+</html>

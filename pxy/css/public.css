@@ -1,0 +1,111 @@
+
+
+// @font-face { 
+//   font-family: 'apple'; 
+//   src: url(../fontfamily/apple/PingFangRegular.ttf); 
+// } 
+
+
+// @font-face { 
+//   font-family: 'digger'; 
+//   src: url(../fontfamily/digger/Geog-BdIt.otf); 
+// } 
+
+// @font-face { 
+//   font-family: 'digger_number'; 
+//   src: url(../fontfamily/digger/Geog-RgIt.otf); 
+// } 
+
+
+// @font-face { 
+//   font-family: 'English'; 
+//   src: url(../fontfamily/en/Dosis.ttf); 
+// } 
+
+
+// @font-face { 
+//   font-family: 'number'; 
+//   src: url(../fontfamily/ind/number.otf); 
+// } 
+
+
+// .fontdigger{
+//   font-family: digger;
+// }
+
+
+
+.onlyLine {
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  font-family: "Microsoft Yahei";
+
+}
+  
+
+*:focus {outline: none;}
+html,body {
+  width: 100%;
+  height: 100%;
+  -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+body -webkit-scrollbar {
+  width: 0;
+}
+
+img {
+  border: none;
+  vertical-align: bottom;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+a:hover {
+  color: #be0d23;
+}
+input[type=button],
+input[type=submit] {
+  -webkit-appearance: none;
+  outline: none;
+}
+/*清除浮动*/
+.clear {
+  display: block;
+  clear: both;
+}
+/*隐藏元素*/
+.hide {
+  display: none;
+}
+ul li {
+  list-style: none;
+}
+i,b{font-style: normal;font-weight: normal;}
+h1,h2,h3,h4,h5{
+  font-weight: normal;
+}
+
+
+
+
+
+
+
+
+

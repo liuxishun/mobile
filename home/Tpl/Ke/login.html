@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>好孕妈妈</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/css/style.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/css/my.css">
+        <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+    <script src="__PUBLIC__/ke/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+		$(function(){
+			$(".entry_d1_p2 label span").click(function(e) {
+				$(this).toggleClass('curr')
+    		});
+		})
+			function check(){
+        	var dt = {};
+        	dt.userphone = $("#userphone").val();
+        	dt.userpassword = $("#userpassword").val();
+        	if(dt.userphone == ""){
+        		alert("请输入手机号码");
+        		return false;
+        	}
+        	if(dt.userpassword == ""){
+        		alert("请输入密码");
+        		return false;
+        	}
+
+        	return true;
+        }
+    </script>
+    
+</head>
+
+<body style="background-color: #fff;">
+   <!-- 
+    <header id="header1">
+        <div id="top1">
+        	<input  class="icon" type="button" onclick="javascript:history.back(-1)">
+            <P class="title_s">登录</P>
+            <a href="ke/register" class="collect">注册</a>
+        </div>        
+    </header> -->
+    <section class="section section1" >
+    	<form action="ke/login" method="post"  onsubmit="return check()">
+    		<input type="hidden" name="usul" value="${pd.usul}">
+    	<P class="entry_p1"><img src="__PUBLIC__/ke/img/entry/zc_05.png"></P>
+        <div class="entry_d1">
+        	<P class="entry_d1_p1"><span class="entry_d1_s1"></span><input type="text" id="userphone" name="userphone" placeholder="请输入手机号" ></P>
+            <P class="entry_d1_p1"><span class="entry_d1_s1 entry_d1_s3"></span><input type="text" id="userpassword" name="userpassword" placeholder="请输入密码" ></P>
+            <P class="entry_d1_p4"><a href="ke/reglogin">忘记密码?</a></P>
+            <P class="entry_d1_p3"><input type="submit" value="马上登录"></P>
+            <P style="text-align:center; line-height：80px; font-size:22px; color:#565656; padding-top:20px;">没有帐号，去 <a href="ke/register" style="text-decoration:underline;">注册</a></P>
+        </div>
+        </form>
+    </section>
+</body>
+</html>

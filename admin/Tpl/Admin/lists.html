@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>管理员列表</b></span>
+		</div>
+		<div class="web_tit">
+		    <script type="text/javascript">
+			var searchURL='__ACTION__';
+			var searchIDs="username|role_id".split('|');
+			</script>
+			用户名：<input type="text" id="username" value="{$para.username}" size="8" >
+			用户组：<select id="role_id" style="font-size:12px" <?php if(!C('MY_AUTH_ON')){ ?>style="display:none;"<?php } ?>>
+				<option value="">--请选择--</option>
+				<foreach name="rlist" item="val">
+				<option value="{$val.id}" <?php if($val['id']==$para['role_id'])echo 'selected'; ?>>{$val.name}</option>
+				</foreach>
+			 </select>
+			<input type="button" value="搜索" onclick="doSearch()" /> <input type="button" value="重置" onclick="doReset()" />
+		</div>
+		
+
+        <div class="con_box">
+        <form action="__URL__/del" method="POST" id="sub">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="80">编号</th>
+            <th>用户名</th>
+			<?php if(C('MY_AUTH_ON')){ ?><th>权限组</th><?php } ?>
+			<th>添加时间</th>
+            <th>登录时间</th>
+			<th>登录次数</th>
+            <th width="180">基本操作</th>
+          </tr>
+
+          <foreach name="list" item="val">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+					<td>{$val.username}</td>
+					<?php if(C('MY_AUTH_ON')){ ?><td>{$val.role.name}</td><?php } ?>
+					<td><?php echo date("Y-m-d H:i:s", $val['addtime']);?></td>
+					<td><if condition="$val['lastlogin'] neq 0"><?php echo date("Y-m-d H:i:s",$val['lastlogin']);?><else/>暂时没登陆过</if></td>
+					<td>{$val.login_num}</td>
+					<td>
+						<?php if(C('MY_AUTH_ON')){ ?>
+						<a href="__APP__/rbac/user_role_edit/id/{$val.id}/username/<?php echo base64_encode($val['username']); ?>/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">配置权限组</a> |
+						<?php } ?>
+						<a href="__URL__/edit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a> |
+						<a href="__URL__/del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a>
+					</td>
+				</tr>
+		 </foreach>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"></div>
+
+<div class="pagefy mt_10 cl">
+<?php
+$Xpage_baseurl = fixurl(array('page', 'pagesize'), __SELF__). '&pagesize=' . $pager['pageSize'].'&';
+?>
+<include file="Inc:inc_xpage" />
+</div>
+
+          </form>
+ </div>
+
+</div>
+</div>      
+</body>
+</html>

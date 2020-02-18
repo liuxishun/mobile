@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>入户填写信息档案表编辑</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__URL__/save" method='POST' id='form'>
+			<table class="add_table" id='table'>
+				<tr>
+						<th>类型：</th>
+						<td>
+						<script type="text/javascript">
+						document.write("<select name='p_id'><option value=''>--请选择--</option>");
+								<?php
+										foreach($pingluns as $key=>$value){
+								?>
+								<?php if($tpinglun[0]['p_id']==$value['id']):?>
+									document.write("<option value='"+<?php echo $value['id'];?>+"' selected><?php echo $value['p_title'];?></option>");
+									<?php else:?>
+									document.write("<option value='"+<?php echo $value['id'];?>+"'><?php echo $value['p_title'];?></option>");
+									<?php endif?>
+								<?php } ?>
+								document.write("</select>");
+						</script>
+						</td>
+				</tr>
+				<tr>
+						<th>体描述选项：</th>
+						<td>
+						<input type='hidden' name='sub_id' value='<?php echo $tpinglun[0]['id']?>'>
+						<input type='text' value='<?php echo $tpinglun[0]['p_title']?>' class='add_input' name='sub_name'/>
+						</td>
+				</tr>
+			
+				
+				
+					<tr>
+						<th></th>
+						<td>
+							<input type="submit" class="add_yes" value=""/>
+							<a href="__URL__/index" class="add_no"></a>
+							<input type='hidden' name='sub_title_s'/>
+						</td>
+					</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+</html>

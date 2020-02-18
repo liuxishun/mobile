@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>月嫂下户总结表查看</b></span>
+		</div>
+		<div class="con_box">
+		
+			<table class="add_table" id='table'>
+			<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>接入时情况：</h3></th>
+					<td></td>
+				</tr>
+			
+			
+				<tr>
+						<th>月龄：</th>
+						<td><?php echo '产后第'.$nurselog[0]['yueling'].'天';?></td>
+				</tr>
+				<tr>
+						<th>头围：</th>
+						<td><?php echo $nurselog[0]['touwei'].'cm';?></td>
+				</tr>
+				<tr>
+						<th>身长：</th>
+						<td><?php echo $nurselog[0]['shenchang'].'cm';?></td>
+				</tr>
+				<tr>
+						<th>体重：</th>
+						<td><?php echo $nurselog[0]['tizhong'].'KG';?></td>
+				</tr>
+				
+				<tr>
+						<th>黄疸：</th>
+						<td><?php if($nurselog[0]['huangdan']==0):?>
+							无
+							<?php elseif($nurselog[0]['huangdan']==1):?>
+							轻度
+							<?php elseif($nurselog[0]['huangdan']==2):?>
+							中度
+							<?php else:?>
+							重度
+							<?php endif?>
+							</td>
+				</tr>
+					<tr>
+						<th>皮肤：</th>
+						<td><?php if($nurselog[0]['pifu']==0):?>
+							无异常
+							<?php elseif($nurselog[0]['pifu']==1):?>
+							破溃
+							<?php else:?>
+							红疹
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>吃奶状况：</th>
+						<td><?php if($nurselog[0]['chinai']==1):?>
+							规律
+							<?php else:?>
+							不规律
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>吐奶/呛奶：</th>
+						<td><?php if($nurselog[0]['tunai']==0):?>
+							无
+							<?php elseif($nurselog[0]['tunai']==1):?>
+							偶尔
+							<?php else:?>
+							频繁
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>二便：</th>
+						<td><?php if($nurselog[0]['erbian']==1):?>
+							规律
+							<?php else:?>
+							不规律
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>睡眠：</th>
+						<td><?php if($nurselog[0]['shuimian']==1):?>
+							平稳规律
+							<?php else:?>
+							欠佳
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>脐部：</th>
+						<td><?php if($nurselog[0]['jibu']==0):?>
+							脐带未脱落
+							<?php elseif($nurselog[0]['jibu']==1):?>
+							脐带已脱落
+							<?php elseif($nurselog[0]['jibu']==2):?>
+							红肿
+							<?php elseif($nurselog[0]['jibu']==3):?>
+							有分泌物
+							<?php else:?>
+							无分泌物
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>臀部：</th>
+						<td><?php if($nurselog[0]['tunbu']==0):?>
+							无
+							<?php elseif($nurselog[0]['tunbu']==1):?>
+							轻度
+							<?php elseif($nurselog[0]['tunbu']==2):?>
+							中度
+							<?php else:?>
+							重度
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>过敏：</th>
+						<td><?php if($nurselog[0]['guomin']==1):?>
+							存在
+							<?php else:?>
+							不存在
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>亲子关系：</th>
+						<td><?php if($nurselog[0]['qinziguanxi']==0):?>
+							良好
+							<?php elseif($nurselog[0]['qinziguanxi']==1):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>听觉反应：</th>
+						<td><?php if($nurselog[0]['tingjue']==0):?>
+							良好
+							<?php elseif($nurselog[0]['tingjue']==1):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>视觉反应：</th>
+						<td><?php if($nurselog[0]['shijue']==0):?>
+							良好
+							<?php elseif($nurselog[0]['shijue']==1):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>触觉反应：</th>
+						<td><?php if($nurselog[0]['chujue']==0):?>
+							良好
+							<?php elseif($nurselog[0]['chujue']==1):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>活动能力：</th>
+						<td><?php if($nurselog[0]['huodong']==0):?>
+							良好
+							<?php elseif($nurselog[0]['huodong']==1):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>特殊症状：</th>
+						<td><?php if($nurselog[0]['teshu']==1):?>
+							有
+							
+							<?php else:?>
+							无
+							<?php endif?></td>
+				</tr>
+				
+		
+			<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>下户时情况：</h3></th>
+					<td></td>
+				</tr>
+			
+			
+				<tr>
+						<th>月龄：</th>
+						<td><?php echo '产后第'.$nurselog[1]['yueling'].'天';?></td>
+				</tr>
+				<tr>
+						<th>头围：</th>
+						<td><?php echo $nurselog[1]['touwei'].'cm';?></td>
+				</tr>
+				<tr>
+						<th>身长：</th>
+						<td><?php echo $nurselog[1]['shenchang'].'cm';?></td>
+				</tr>
+				<tr>
+						<th>体重：</th>
+						<td><?php echo $nurselog[1]['tizhong'].'KG';?></td>
+				</tr>
+				
+				<tr>
+						<th>黄疸：</th>
+						<td><?php if($nurselog[1]['huangdan']==0):?>
+							无
+							<?php elseif($nurselog[1]['huangdan']==1):?>
+							轻度
+							<?php elseif($nurselog[1]['huangdan']==2):?>
+							中度
+							<?php else:?>
+							重度
+							<?php endif?>
+							</td>
+				</tr>
+					<tr>
+						<th>皮肤：</th>
+						<td><?php if($nurselog[1]['pifu']==0):?>
+							无异常
+							<?php elseif($nurselog[1]['pifu']==1):?>
+							破溃
+							<?php else:?>
+							红疹
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>吃奶状况：</th>
+						<td><?php if($nurselog[1]['chinai']==1):?>
+							规律
+							<?php else:?>
+							不规律
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>吐奶/呛奶：</th>
+						<td><?php if($nurselog[1]['tunai']==0):?>
+							无
+							<?php elseif($nurselog[1]['tunai']==1):?>
+							偶尔
+							<?php else:?>
+							频繁
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>二便：</th>
+						<td><?php if($nurselog[1]['erbian']==1):?>
+							规律
+							<?php else:?>
+							不规律
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>睡眠：</th>
+						<td><?php if($nurselog[1]['shuimian']==1):?>
+							平稳规律
+							<?php else:?>
+							欠佳
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>脐部：</th>
+						<td><?php if($nurselog[1]['jibu']==0):?>
+							脐带未脱落
+							<?php elseif($nurselog[1]['jibu']==1):?>
+							脐带已脱落
+							<?php elseif($nurselog[1]['jibu']==2):?>
+							红肿
+							<?php elseif($nurselog[1]['jibu']==3):?>
+							有分泌物
+							<?php else:?>
+							无分泌物
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>臀部：</th>
+						<td><?php if($nurselog[1]['tunbu']==0):?>
+							无
+							<?php elseif($nurselog[1]['tunbu']==1):?>
+							轻度
+							<?php elseif($nurselog[1]['tunbu']==2):?>
+							中度
+							<?php else:?>
+							重度
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>过敏：</th>
+						<td><?php if($nurselog[1]['guomin']==1):?>
+							存在
+							<?php else:?>
+							不存在
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>亲子关系：</th>
+						<td><?php if($nurselog[1]['qinziguanxi']==0):?>
+							良好
+							<?php elseif($nurselog[1]['qinziguanxi']==1):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>听觉反应：</th>
+						<td><?php if($nurselog[1]['tingjue']==0):?>
+							良好
+							<?php elseif($nurselog[1]['tingjue']==1):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>视觉反应：</th>
+						<td><?php if($nurselog[1]['shijue']==0):?>
+							良好
+							<?php elseif($nurselog[1]['shijue']==1):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>触觉反应：</th>
+						<td><?php if($nurselog[1]['chujue']==0):?>
+							良好
+							<?php elseif($nurselog[1]['chujue']==1):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>活动能力：</th>
+						<td><?php if($nurselog[1]['huodong']==0):?>
+							良好
+							<?php elseif($nurselog[1]['huodong']==1):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>特殊症状：</th>
+						<td><?php if($nurselog[1]['teshu']==1):?>
+							有
+							
+							<?php else:?>
+							无
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>备注：</th>
+						<td><?php echo $nurselog[1]['beizhu'];?></td>
+				</tr>
+				<tr>
+						<th>母婴护理师签字：</th>
+						<td><?php echo $nurselog[1]['qianzi'];?></td>
+				</tr>
+				<tr>
+						<th>客户签字：</th>
+						<td><?php echo $nurselog[1]['kehuqianzi'];?></td>
+				</tr>
+				<tr>
+						<th>日期：</th>
+						<td><?php echo $nurselog[1]['riqi'];?></td>
+				</tr>
+			
+					<tr>
+						<th></th>
+						<td>
+						
+							<input type="button" class="add_yes" value="" id='button'/>
+							
+						</td>
+					</tr>
+			</table>
+			
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+document.getElementById('button').onclick=function(){
+	window.location.href='__URL__/index';
+}
+</script>
+</body>
+</html>

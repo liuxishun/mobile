@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>好孕妈妈</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/yquan/css/tan.css">
+        <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+        
+        function checkMobile() {
+        	var str = document.getElementById("shouji").value;
+        	var name = document.getElementById("name").value;
+        	if(name==""){
+                alert("姓名不能为空！");
+                return false;
+            }
+            if(str==""){
+                alert("手机号不能为空！");
+                return false;
+            }else{
+                var re = /^1\d{10}$/
+                if (re.test(str)) {
+                	return true;
+                } else {
+                    alert("手机号格式错误！");
+                    return false;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body style="background:#fff;">
+	<P class="tz1"><img src="__PUBLIC__/yquan/images/yemian1_01.png"></P>
+    <P class="tz1_p1"><span>200元</span>现金券</P>
+    <P class="tz1_p2">速来抢红包啦！名额有限，先到先得！</P>
+    <P class="tz1_p3">输入姓名+电话号码领取</P>
+    <form action="__URL__/quanxinxi1" method="post" onsubmit="return checkMobile()">
+    	<P class="tz1_p4"><input class="tz1_p4_i1" type="text" id="name" name="name" placeholder="姓名"><input class="tz1_p4_i2" type="text" id="shouji" name="shouji" placeholder="电话"></P>
+    	<P class="tz1_p5"><input type="submit" value="现在领取"></P>
+    </form>
+    <P class="tz1_p6">400-009-8566<br>www.mumway.com</P>
+    
+</body>
+</html>

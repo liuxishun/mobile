@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+      <div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>控制节点列表</b></span>
+		</div>
+		<!--<div class="web_tit">
+		    用户组：<select>
+			     
+			</select>
+		</div>-->
+
+        <div class="con_box">
+        <form action="__URL__/node_del" method="POST" id="sub">
+        <table  class="list_table">
+          <tr>
+			<th width="40">&nbsp;</th>
+			<th width="80">编号</th>
+            <th>名称</th>
+			<th>参数/规则</th>
+			<th>是否启用</th>
+            <th>备注</th>
+            <th width="180">基本操作</th>
+          </tr>
+
+          <foreach name="list" item="val">
+				<tr>
+					<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+					<td>{$val.id}</td>
+					<td class="td_left">{$val.title}</td>
+					<td class="td_left"><?php if($val['isexp'])echo '[正则]'; ?>{$val.name}</td>
+					<td>
+						<script>showRW({api:'__URL__/node_status/id/<?php echo $val['id']; ?>/status/', v:'<?php echo $val['status']; ?>', vs:[1, 0]})</script>
+					</td>
+					<td>{$val.remark}</td>
+					<td>
+						<a href="__URL__/node_edit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a> |
+						<a href="__URL__/node_del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a>
+					</td>
+				</tr>
+				<foreach name="val.mlist" item="val">
+						<tr>
+							<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+							<td>{$val.id}</td>
+							<td class="td_left">|---{$val.title}</td>
+							<td class="td_left"><?php if($val['isexp'])echo '[正则]'; ?>{$val.name}</td>
+							<td>
+								<script>showRW({api:'__URL__/node_status/id/<?php echo $val['id']; ?>/status/', v:'<?php echo $val['status']; ?>', vs:[1, 0]})</script>
+							</td>
+							<td>{$val.remark}</td>
+							<td>
+								<a href="__URL__/node_edit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a> |
+								<a href="__URL__/node_del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a>
+							</td>
+						</tr>
+						<foreach name="val.alist" item="val">
+								<tr>
+									<td><input type="checkbox" name="checkboxes[]" value="{$val.id}" ></td>
+									<td>{$val.id}</td>
+									<td class="td_left">|------{$val.title}</td>
+									<td class="td_left"><?php if($val['isexp'])echo '[正则]'; ?>{$val.name}</td>
+									<td>
+										<script>showRW({api:'__URL__/node_status/id/<?php echo $val['id']; ?>/status/', v:'<?php echo $val['status']; ?>', vs:[1, 0]})</script>
+									</td>
+									<td>{$val.remark}</td>
+									<td>
+										<a href="__URL__/node_edit/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>">编辑</a> |
+										<a href="__URL__/node_del/id/{$val.id}/listurl/<?php echo base64_encode(urlencode(__SELF__)); ?>" class="link-del">删除</a>
+									</td>
+								</tr>
+						 </foreach>
+				 </foreach>
+		 </foreach>
+          </table>
+		  <div class="mt_10 pl_10"><label><input type="checkbox" name="checkbox" onclick='checkAll(this)'/> 全选</label> &nbsp; <input type="button" onclick="delall(this)"  value="删除选中"></div>
+
+
+
+          </form>
+ </div>
+
+
+
+</div>
+</div>      
+</body>
+</html>

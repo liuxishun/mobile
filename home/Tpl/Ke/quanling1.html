@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/yquan/css/tan.css">
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+        <!-------------------百度统计------------------------->
+		<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+    
+</head>
+
+<body style="background:#f79646;">
+<section>
+	<P class="quan1"><img src="__PUBLIC__/yquan/images/yemian2_02.png"></P>
+    <div class="quan1_d">
+    	<P class="quan1_d_p1"><img src="__PUBLIC__/yquan/images/yemian21_02.png"></P>
+        <P class="quan1_d_p2">恭喜您获得</P>
+        <P class="quan1_d_p3">200元现金券</P>
+        <P class="quan1_d_p4"><span>使用说明</span></P>
+        <P class="quan1_d_p5">1.领取现金抵用券后会收到提示短信，购买课程出示短信凭证；<br>
+2.仅限8月17日当天使用购买精英母婴护理师课程；<br>
+3.活动解释权归好孕妈妈所有。</P>
+    </div>
+</section>    
+</body>
+</html>

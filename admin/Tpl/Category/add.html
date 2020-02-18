@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>食物发布</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__URL__/add_pro" method='POST' id='form'>
+			<table class="add_table" id='table'>
+				
+				<tr>
+						<th>增加分类：</th>
+						<td>
+						<input type='text' name="info[c_type_name]" value='' class='add_input' id='c_type_name'/>
+						</td>
+				</tr>
+				
+					<tr>
+						<th></th>
+						<td>
+							<input type="submit" class="add_yes" value=""/>
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+					</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+	
+	function Addtype(){
+		var c_type_name=document.getElementById('c_type_name');
+		if(c_type_name.value.replace(/( )/g,'')==''){
+			alert('分类名称不能为空！');
+			return;
+		}
+		
+	}
+</script>
+</html>

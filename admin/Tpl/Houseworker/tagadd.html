@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<?php $include=array('filespace'); ?>
+<include file="Inc:inc_head" />
+
+
+</head>
+
+<body>
+<div class="right">
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>标签添加</b></span>
+		</div>
+
+        <div class="con_box">
+			<form method="post" action="__URL__/addItem" id="form" name="form">
+			
+
+                <table class="add_table">
+					<tr>
+						<th>标签名称：</th>
+						<td><input type="text" name="name" class="add_input" value=""/></td>
+					</tr>
+					<tr>
+						<th>标签描述：</th>
+						<td><input type="text" name="desc" class="add_input" value=""/></td>
+					</tr>
+					  <tr>
+						<th>所属类别：</th>
+						<td>
+                            <select id="tid" name="type_id">
+                                <option value="">请选择</option>
+                                <?php
+                                    $hwtypes = M('hwtype')->select();
+                                ?>
+                                <foreach name="hwtypes" item="val">
+                                <option value="{$val.id}" <?php if($val['id']==$arr['hwtype_id'])echo 'selected'; ?>>{$val.name}</option>
+                                </foreach>
+                            </select>
+                            <a href="javascript:;" onclick="update_hwlevel_sel();">更新星级下拉列表</a>
+<script>
+function update_hwlevel_sel(){
+    var ctl_t=$('#tid');
+    if(ctl_t.val().length==0){
+        alert('请先选择类别');
+        $('#tid').eq(0).focus();
+        return;
+    }
+    $.get('__APP__/ajax/getHwlevels&id='+ctl_t.val(), function(d){
+        if(d.data && d.data.length>0){
+            var html='';
+            html = renderOptions('', d.data);
+            $('.hwlevel-sel').html('<select class="slt-input" data-name="info[hwlevel_id]">'+html+'</select>');
+        }
+    }, 'json')
+}
+</script>
+                        </td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>
+							<input type="submit" class="add_yes" value="" id='tijiao'/>
+							<a href="__URL__/taglists" class="add_no"></a>
+						</td>
+					</tr>
+                    
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+<?php $y=date('Y'); ?>
+$(function(){
+	$('[name="info[birthday]"]').datepicker({
+		yearRange: "{$y-100}:{$y}",
+        duration: '', 
+		dateFormat: 'yy-mm-dd',
+		regional:'zh-CN',
+        changeMonth: true,
+        changeYear: true
+	}).change(function() {
+	})
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>添加胎教</b></span>
+		</div>
+		<div class="con_box">
+		<form action="__URL__/saveItem" method='POST' id='form'>
+			<table class="add_table" id='table'>
+				<tr>
+						<th>胎教名称：</th>
+						<td><input type="text" name="m_title" class="add_input"/></td>
+				</tr>
+				<tr>
+						<th>是否启用：</th>
+						<td>
+						<input type='radio' value='1' name='enable_status' id='enable' checked/>
+						<label for="enable">启用</label>&nbsp;
+						<input type='radio' value='0' name='enable_status' id='disable'/>
+						<label for="disable">冻结</label>
+						</td>
+				</tr>
+				<tr>
+						<th>所处周期：</th>
+						
+						
+						<td>
+						第&nbsp;<input type='text' name='p_id' />&nbsp;周
+						</td>
+				</tr>
+				<tr>
+						<th>音乐作者：</th>
+						<td><input type="text" name="m_author" class="add_input"/></td>
+				</tr>
+				<tr>
+						<th>音乐截图：</th>
+						<td>
+						<input type="text" name="m_pic" class="add_input" data-preview="1" /> 
+						<a href="javascript:;" onclick="myfilespace({dirName:'music',clickFn:'m_pic', extraFileUploadParams:{width:600, height:600, forcecut:0}})">浏览</a>
+						</td>
+				</tr>
+				<tr>
+						<th>音乐URL地址：</th>
+						<td><input type="text" name="m_url" class="add_input"/></td>
+				</tr>
+					<tr>
+						<th></th>
+						<td>
+						
+							<input type="submit" class="add_yes" value="" />
+							<a href="__URL__/index" class="add_no"></a>
+						</td>
+					</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+
+</html>

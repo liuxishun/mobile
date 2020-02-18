@@ -1,0 +1,393 @@
+<?php
+class PackageAction extends BaseAction{
+	public function _initialize(){
+        parent::_initialize();
+
+    }
+
+	public  function   see()
+	{
+     $db=M('taocan');
+	 $arr=$db->select();
+	 $this->assign('arr',$arr);
+
+		$this->display();
+	}
+	public  function  info()
+	{
+		//查询用餐时段
+		$eat=D("eattime");
+		$res=$eat->select();
+		$this->assign("res",$res);
+        $db=D('food_catorgory');
+        //查询分类
+		$arr=$db->select();
+		$this->assign('arr',$arr);
+		//所属用户
+		$db1=D('member');
+		$arr2=$db1->select();
+		$this->assign('arr2',$arr2);
+	    //查询晚餐
+		//查询午餐
+		//查询加餐
+		$this->display();
+	}
+
+	public  function  add()
+	{
+	
+	    $foods=M('taocan');
+		$data['tian']=$_POST['tian'];
+		$data['zaocan']=implode(',',$_POST['zaocan']);
+		$data['wucan']=implode(',',$_POST['wucan']);
+		$data['wancan']=implode(',',$_POST['wancan']);
+		$data['jiacan']=implode(',',$_POST['jiacan']);
+		$data['descc']=$_POST['dess'];
+		$id=$foods->add($data);
+		if($id)
+		{
+		  $this->success('添加成功','__APP__/Package/see');
+		}
+	}
+
+	public  function biaoti()
+	{
+		//echo "<pre>";
+		//print_r($_POST);
+		$data['plan']=$_POST['title'];
+		$data['tian']=$_POST['belone_time'];
+		$data['users']=$_POST['uid'];
+		//print_r($data['users']);die;
+		$data['fooddesc']=$_POST['sm_intro'];
+		for($i=0;$i<count($_POST['quantity']);$i++){
+			//循环早餐
+			for($j=0;$j<count($_POST['quantity'][$i]);$j++){
+				if($i==0){
+					$data['zaocan'] .=$_POST['food'][$i][$j]."(".$_POST['quantity'][$i][$j].$_POST['unit'][$i][$j].'),';
+					
+				}
+				if($i==1){
+					$data['wucan'] .=$_POST['food'][$i][$j]."(".$_POST['quantity'][$i][$j].$_POST['unit'][$i][$j].'),';
+					
+				}
+				if($i==2){
+					$data['wancan'] .=$_POST['food'][$i][$j]."(".$_POST['quantity'][$i][$j].$_POST['unit'][$i][$j].'),';
+					
+				}
+				if($i==3){
+					$data['jiacan'] .=$_POST['food'][$i][$j]."(".$_POST['quantity'][$i][$j].$_POST['unit'][$i][$j].'),';
+					
+				}
+				
+			}
+		}
+		for($j=0;$j<count($_POST['cat_intro']);$j++){
+				if($j==0){
+					$data['zaocandesc'] =$_POST['cat_intro'][$j];
+				}
+				if($j==1){
+					$data['wucandesc'] =$_POST['cat_intro'][$j];
+				}
+				if($j==2){
+					$data['wancandesc']=$_POST['cat_intro'][$j];
+				}
+				if($j==3){
+					$data['jiacandesc']=$_POST['cat_intro'][$j];
+				}
+				
+		}
+		$data['zaocan']=substr($data['zaocan'], 0, -1) ;
+		$data['wucan']=substr($data['wucan'], 0, -1) ;
+		$data['wancan']=substr($data['wancan'], 0, -1) ;
+		$data['jiacan']=substr($data['jiacan'], 0, -1) ;
+		$db=M('taocan')->add($data);
+		//echo M('taocan')->getlastsql();
+		if($db){
+			$this->success('添加成功','__APP__/Package/see');
+		}	
+
+	}
+	/*
+Array
+(
+    [title] => 第一天
+    [belone_time] => 1
+    [uid] => 1
+    [category] => Array
+        (
+            [0] => 0
+            [1] => 1
+            [2] => 2
+            [3] => 3
+        )
+
+    [kw] => 
+    [quantity] => Array
+        (
+            [0] => Array
+                (
+                    [0] => 2
+                    [1] => 2
+                )
+
+            [1] => Array
+                (
+                    [0] => 3
+                    [1] => 3
+                )
+
+            [2] => Array
+                (
+                    [0] => 4
+                    [1] => 4
+                )
+
+            [3] => Array
+                (
+                    [0] => 5
+                    [1] => 5
+                )
+
+        )
+
+    [unit] => Array
+        (
+            [0] => Array
+                (
+                    [0] => 斤
+                    [1] => 斤
+                )
+
+            [1] => Array
+                (
+                    [0] => 斤
+                    [1] => 斤
+                )
+
+            [2] => Array
+                (
+                    [0] => 斤
+                    [1] => 斤
+                )
+
+            [3] => Array
+                (
+                    [0] => 斤
+                    [1] => 斤
+                )
+
+        )
+
+    [food] => Array
+        (
+            [0] => Array
+                (
+                    [0] => 玉米
+                    [1] => 红薯
+                )
+
+            [1] => Array
+                (
+                    [0] => 红薯
+                    [1] => 大米
+                )
+
+            [2] => Array
+                (
+                    [0] => 大米
+                    [1] => 大白菜
+                )
+
+            [3] => Array
+                (
+                    [0] => 玉米
+                    [1] => 123
+                )
+
+        )
+
+    [foodid] => Array
+        (
+            [0] => Array
+                (
+                    [0] => 4
+                    [1] => 3
+                )
+
+            [1] => Array
+                (
+                    [0] => 3
+                    [1] => 2
+                )
+
+            [2] => Array
+                (
+                    [0] => 2
+                    [1] => 1
+                )
+
+            [3] => Array
+                (
+                    [0] => 4
+                    [1] => 5
+                )
+
+        )
+
+    [cat_intro] => Array
+        (
+            [0] => aaaaaaaaaaaaaaa
+            [1] => aaaaaaaaaaaa
+            [2] => aaaaaaaaaaaa
+            [3] => saaaaaaaaaaaaaaaaaaa
+        )
+
+    [wj_id] => 
+)
+玉米2斤,红薯2斤,红薯3斤,大米3斤,大米4斤,大白菜4斤,玉米5斤,1235斤,
+
+	*/
+
+	public  function  getUid()
+	{
+		$db1=D('member');
+		$arr2=$db1->select();
+		$this->assign('arr2',$arr2);
+		$this->display();
+
+		
+	}
+
+
+
+
+ //单位管理
+public  function  add_dw()
+	{
+
+
+    if($this->_post())
+	{
+		 $db=D('danwei');
+     $data['name']=$_POST['name'];
+      $arr=$db->add($data);
+     if($arr)
+		{
+		 $this->success('添加成功','__APP__/package/lists_dw');
+		 }
+	 }else
+		{
+		 $this->display();
+		
+	
+		}
+	}
+
+ public  function  lists_dw()
+	{
+	 $db=D('danwei');
+	 $arr=$db->select();
+	 $this->assign('arr',$arr);
+	 $this->display();
+	}
+
+	public  function  del_dw()
+	{
+	 $db=D('danwei');
+	 $id=$this->_get('id');
+	 $arr=$db->where('id='.$id)->delete();
+	 if($arr)
+		{
+	     $this->success('删除成功','__APP__/package/lists_dw');
+	    }
+	
+	}
+
+	//查找食物
+	public function getFood() {	
+		$pagesize = $_GET['pagesize']? $_GET['pagesize']*1 : 15;
+        $pagesize = $pagesize<1? 1 : $pagesize;
+        $pagesize = $pagesize>100? 100 : $pagesize;
+        $page = $_GET['page']? $_GET['page']*1 : 1;
+        $db_pre = C('DB_PREFIX');
+		$condition = '1=1';
+		$cid =$_GET['cid'];
+		$this->assign('cid',$cid);
+		$tag = $_GET['tag'];
+		$this->assign('tag',$tag);
+		$kw = $_GET['kw'];
+		$this->assign('kw',$kw);
+		//查询单位
+		$$unitoption="";
+		$danwei=M("danwei")->select();
+		foreach ($danwei as $v) {
+			$unitoption .= '<option value="'.$v['name'].'">'.$v['name'].'</option>';
+		}
+
+		$this->assign("danwei",$unitoption);
+		$count = M('foods')->where($condition)->count();
+		$lists=M('foods')->where($condition)->order('id DESC')->limit($pagesize)->page($page)->select();
+		$this->assign("lists",$lists);
+		$this->assign('pager', array(
+            'pageSize' => $pagesize,
+            'count' => $count,
+            'currentPage' => $count==0? 0 : $page,
+            'pageCount' => ceil($count/$pagesize),
+        ));
+		$this->display();
+	 	/*$GET = $this->input->get(NULL, TRUE);
+		$pagesize = isset($GET['pagesize']) ? intval($GET['pagesize']) : 64;
+		$pagesize = $pagesize<1? 1 : $pagesize;
+        $pagesize = $pagesize>100? 100 : $pagesize;
+        $page = isset($GET['page']) ? intval($GET['page']) : 1;
+		
+		$cid = intval($_GET['cid']);
+		$this->db->like('cids','-1');
+		$this->db->or_like('cids',','.$cid.',');
+		$tag = $_GET['tag'];
+		$kw = $_GET['kw'];
+		$this->viewdata['tag'] = $tag;
+		$this->viewdata['kw'] = $kw;
+		if ($kw) {
+			$this->db->like('name',$kw);
+		}
+		if ($tag) {
+			$this->db->like('tagids',','.$tag);
+		}
+		$db = clone($this->db);
+		$this->db->select('id,name');
+		$this->viewdata['lists'] = $this->db->get('food',$pagesize, ($page-1)*$pagesize)->result();
+		$this->db = $db;
+		$count = $this->db->count_all_results('food');
+        $this->viewdata['pager'] = array(
+            'pageSize' => $pagesize,
+            'count' => $count,
+            'currentPage' => $count==0? 0 : $page,
+            'pageCount' => ceil($count/$pagesize),
+        );
+		$this->viewdata['cid'] = $cid;
+		$unit = $this->m_units->lists();
+		$unitoption = '';
+		foreach ($unit as $v) {
+			$unitoption .= '<option value="'.$v.'">'.$v.'</option>';
+		}
+		$this->viewdata['unit'] = $unitoption;
+		
+		$this->load->view('program/food',$this->viewdata);
+		*/
+	 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<?php $include = array('easyui', 'filespace'); ?>
+<include file="Inc:inc_head" />
+</head>
+<body>
+<div class='right'>
+	<div class="w810 l">
+	<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>月嫂护理日志查看</b></span>
+		</div>
+		<div class="con_box">
+		
+			<table class="add_table" id='table'>
+			<?php foreach($nurselog as $value){ ?>
+			<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>晨护：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>所属周期：</th>
+						<td><?php echo '第'.$value['period_state'].'天';?></td>
+				</tr>
+				<tr>
+						<th>体温：</th>
+						<td><?php echo $value['tiwen'];?></td>
+				</tr>
+				<tr>
+						<th>血压：</th>
+						<td><?php echo $value['xueya'];?></td>
+				</tr>
+				<tr>
+						<th>空腹体重：</th>
+						<td><?php echo $value['tizhong'].'KG';?></td>
+				</tr>
+				<tr>
+						<th>便秘：</th>
+						<td><?php if($value['bianmi']==1):?>
+							有
+							<?php else:?>
+							无
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>情绪：</th>
+						<td><?php if($value['qingxu']==0):?>
+							愉悦
+							<?php elseif($value['qingxu']==1):?>
+							一般
+							<?php else:?>
+							焦虑烦躁
+							<?php endif?>
+							</td>
+				</tr>
+					<tr>
+						<th>昨日睡眠状况：</th>
+						<td><?php if($value['shuimian']==0):?>
+							良好
+							<?php elseif($value['shuimian']==1):?>
+							差
+							<?php else:?>
+							较差
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>腹带：</th>
+						<td><?php if($value['fudai']==1):?>
+							操作
+							<?php else:?>
+							未操作
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>宫底按摩：</th>
+						<td><?php if($value['gongdianmo']==1):?>
+							操作
+							<?php else:?>
+							未操作
+							<?php endif?></td>
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>伤口情况：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>伤口情况：</th>
+						<td><?php if($value['shangkou']==0):?>
+							干燥
+							<?php elseif($value['shangkou']==1):?>
+							渗出
+							<?php elseif($value['shangkou']==2):?>
+							红肿
+							<?php elseif($value['shangkou']==3):?>
+							感染
+							<?php else:?>
+							其他
+							<?php endif?></td>
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>恶露：</h3></th>
+					<td></td>
+				</tr>
+					<tr>
+						<th>量：</th>
+						<td><?php if($value['eluliang']==0):?>
+							少
+							<?php elseif($value['eluliang']==1):?>
+							中
+							<?php else:?>
+							多
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>色：</th>
+						<td><?php if($value['eluse']==0):?>
+							鲜红
+							<?php elseif($value['eluse']==1):?>
+							暗红
+							<?php else:?>
+							淡红
+							<?php endif?></td>
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>子宫情况：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>子宫高度：</th>
+						<td><?php echo $value['gongdigaodu'];?></td>
+				</tr>
+					<tr>
+						<th>宫缩痛：</th>
+						<td><?php if($value['eluse']==1):?>
+							轻微
+							<?php elseif($value['eluse']==2):?>
+							剧烈
+							<?php else:?>
+							无
+							<?php endif?></td>
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>乳房情况：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>奶量：</th>
+						<td><?php if($value['nailiang']==1):?>
+							正常
+							<?php elseif($value['nailiang']==2):?>
+							减少
+							<?php else:?>
+							增加
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>乳腺发热：</th>
+						<td><?php if($value['ruxianfare']==1):?>
+							有
+							<?php else:?>
+							无
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>乳腺肿块：</th>
+						<td><?php if($value['ruxianzhongkuai']==1):?>
+							有
+							<?php else:?>
+							无
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>乳头皲裂：</th>
+						<td><?php if($value['rutoujunlie']==1):?>
+							有
+							<?php else:?>
+							无
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>处理方式：</th>
+						<td><?php echo $value['chulifangshi'];?></td>
+				</tr>
+				<tr>
+						<th>操作人：</th>
+						<td><?php echo $value['caozuoren'];?></td>
+				</tr>
+				<tr>
+						<th>其他：</th>
+						<td><?php echo $value['qita'];?></td>
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>月子餐情况：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>早餐时间：</th>
+						<td><?php echo $value['mshijian'];?></td>
+				</tr>
+				<tr>
+						<th>早餐进食量：</th>
+						<td><?php if($value['mjinshiliang']==1):?>
+							正常
+							<?php elseif($value['mjinshiliang']==2):?>
+							少
+							<?php else:?>
+							多
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>早餐食欲：</th>
+						<td><?php if($value['mshiyu']==1):?>
+							良好
+							<?php elseif($value['mshiyu']==2):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>早餐加餐时间：</th>
+						<td><?php echo $value['mjshijian'];?></td>
+				</tr>
+				<tr>
+						<th>早餐加餐进食量：</th>
+						<td><?php if($value['mjjinshiliang']==1):?>
+							正常
+							<?php elseif($value['mjjinshiliang']==2):?>
+							少
+							<?php else:?>
+							多
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>早餐加餐食欲：</th>
+						<td><?php if($value['mjshiyu']==1):?>
+							良好
+							<?php elseif($value['mjshiyu']==2):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+				
+				<tr>
+						<th>午餐时间：</th>
+						<td><?php echo $value['zshijian'];?></td>
+				</tr>
+				<tr>
+						<th>午餐进食量：</th>
+						<td><?php if($value['zjinshiliang']==1):?>
+							正常
+							<?php elseif($value['zjinshiliang']==2):?>
+							少
+							<?php else:?>
+							多
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>午餐食欲：</th>
+						<td><?php if($value['zshiyu']==1):?>
+							良好
+							<?php elseif($value['zshiyu']==2):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>午餐加餐时间：</th>
+						<td><?php echo $value['zjshijian'];?></td>
+				</tr>
+				<tr>
+						<th>午餐加餐进食量：</th>
+						<td><?php if($value['zjjinshiliang']==1):?>
+							正常
+							<?php elseif($value['zjjinshiliang']==2):?>
+							少
+							<?php else:?>
+							多
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>午餐加餐食欲：</th>
+						<td><?php if($value['zjshiyu']==1):?>
+							良好
+							<?php elseif($value['zjshiyu']==2):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+				
+				
+				<tr>
+						<th>晚餐时间：</th>
+						<td><?php echo $value['wshijian'];?></td>
+				</tr>
+				<tr>
+						<th>晚餐进食量：</th>
+						<td><?php if($value['wjinshiliang']==1):?>
+							正常
+							<?php elseif($value['wjinshiliang']==2):?>
+							少
+							<?php else:?>
+							多
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>晚餐食欲：</th>
+						<td><?php if($value['wshiyu']==1):?>
+							良好
+							<?php elseif($value['wshiyu']==2):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>晚餐加餐时间：</th>
+						<td><?php echo $value['wjshijian'];?></td>
+				</tr>
+				<tr>
+						<th>晚餐加餐进食量：</th>
+						<td><?php if($value['wjjinshiliang']==1):?>
+							正常
+							<?php elseif($value['wjjinshiliang']==2):?>
+							少
+							<?php else:?>
+							多
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>晚餐加餐食欲：</th>
+						<td><?php if($value['wjshiyu']==1):?>
+							良好
+							<?php elseif($value['wjshiyu']==2):?>
+							一般
+							<?php else:?>
+							差
+							<?php endif?></td>
+				</tr>
+				
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>用药状况：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>用药状况：</th>
+						<td><?php if($value['yongyaozhuangkuang']==1):?>
+							有
+							<?php else:?>
+							无
+							<?php endif?></td>
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>产褥操：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>产褥操：</th>
+						<td><?php if($value['chanrucao']==1):?>
+							带教
+							<?php elseif($value['chanrucao']==0):?>
+							未带教
+							<?php else:?>
+							拒绝
+							<?php endif?></td>
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>母乳喂养：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>哺乳姿势指导：</th>
+						<td><?php if($value['buruzhidao']==1):?>
+							是
+							<?php else:?>
+							否
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>哺乳协助：</th>
+						<td><?php if($value['buruxiezhu']==1):?>
+							是
+							<?php else:?>
+							否
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>排奶疏通：</th>
+						<td><?php if($value['painaishutong']==1):?>
+							是
+							<?php else:?>
+							否
+							<?php endif?></td>
+				</tr>
+				<tr>
+						<th>乳房护理：</th>
+						<td><?php if($value['rufanghuli']==0):?>
+							热敷
+							<?php elseif($value['rufanghuli']==1):?>
+							按摩
+							<?php else:?>
+							药敷
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>母乳喂养次数：</th>
+						<td><?php echo $value['weiyangcishu'].'次';?></td>
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>养生饮：</h3></th>
+					<td></td>
+				</tr>
+					<tr>
+						<th>养生饮：</th>
+						<td><?php if($value['yangshengyin']==1):?>
+							引用
+							<?php else:?>
+							未引用
+							<?php endif?></td>
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>水果餐：</h3></th>
+					<td></td>
+				</tr>
+					<tr>
+						<th>水果餐：</th>
+						<td><?php if($value['shuiguocan']==1):?>
+							食用
+							<?php else:?>
+							未食用
+							<?php endif?></td>
+				</tr>
+				<tr style='background:none repeat scroll 0 0 #F0F0F0'>
+					<th><h3>心理疏导：</h3></th>
+					<td></td>
+				</tr>
+				<tr>
+						<th>心理疏导：</th>
+						<td><?php if($value['xinlishudao']==1):?>
+							有
+							<?php else:?>
+							无
+							<?php endif?></td>
+				</tr>
+					<tr>
+						<th>客户签字：</th>
+						<td><?php echo $value['qianzi'];?></td>
+				</tr>
+					<tr>
+						<th>观察与护理重点：</th>
+						<td><?php echo $value['hulizhongdian'];?></td>
+				</tr>
+					<tr>
+						<th>特殊情况记录：</th>
+						<td><?php echo $value['teshujilu'];?></td>
+				</tr>
+					<tr>
+						<th>客户评价：</th>
+						<td><?php echo $value['kehupingjia'];?></td>
+				</tr>
+			<?php } ?>	
+					<tr>
+						<th></th>
+						<td>
+						
+							<input type="button" class="add_yes" value="" id='button'/>
+							
+						</td>
+					</tr>
+			</table>
+			
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+document.getElementById('button').onclick=function(){
+	window.location.href='__URL__/index';
+}
+</script>
+</body>
+</html>

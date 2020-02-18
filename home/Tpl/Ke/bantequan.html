@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/ke/wode/css/style.css">
+        <!-------------------百度统计------------------------->
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b7af4d25c353148d']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+  <script type='text/javascript' src='https://assets.growingio.com/sdk/wx/vds-wx-plugin.js'></script>
+
+    <!-------------------百度统计------------------------->	
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' ,minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">')
+            } else {
+                document.write('<meta name="viewport" content="width=640, initial-scale= ' + phoneScale + ' , target-densitydpi=device-dpi">')
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">')
+        }
+    </script>
+    <script src="__PUBLIC__/ke/wode/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+		$(function(){
+			$('.top_choice li:last').css('borderRight',0);
+			$('.choose_con>li:last a').css('borderRight',0);
+			$('.choose_con>li').click(function(e) {
+                $(this).addClass('current').siblings().removeClass('current');
+            });
+						
+			
+		});
+
+    </script>
+    
+</head>
+
+<body style="background-color: #fff; " >
+    <section class="section" >
+        <P class="kcjl_p1"><img src="__PUBLIC__/ke/wode/img/kcjl_01.png"></P>
+        <div class="kcjl_d1">
+        	<div class="kcjl_d1_d">
+            	<P class="kcjl_d1_p1"><img src="__PUBLIC__/ke/wode/img/kcjl_04.png">特权名称</P>
+                <P class="kcjl_d1_p2"><a href="#">课程奖励</a></P>
+            </div>
+        </div>
+        <div class="kcjl_d1">
+        	<div class="kcjl_d1_d">
+            	<P class="kcjl_d1_p1"><img src="__PUBLIC__/ke/wode/img/kcjl_07.png">特权介绍</P>
+                <ul class="kcjl_d1_ul">
+                	<li><a href="#"><span>500元全场通用学习券1张</span><span class="kcjl_d1_ul_s2">（限自己）</span></a></li>
+                    <li><a href="#"><span>5元直播券100张</span><span class="kcjl_d1_ul_s2">（可送人）</span></a></li>
+                    <li><a href="#"><span>50元套餐券20张</span><span class="kcjl_d1_ul_s2">（可送人）</span></a></li>
+                    <li><a href="#"><span>100元面授学习券20张</span><span class="kcjl_d1_ul_s2">（可送人）</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

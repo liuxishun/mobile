@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<?php $include=array('filespace'); ?>
+<include file="Inc:inc_head" />
+
+</head>
+
+<body>
+<div class="right">
+	<div class="w810 l">
+		<div class="add_tit cl">
+			<span class="l">位置：<a href="__APP__/Index/right">管理平台</a><b>套餐订单编辑</b></span>
+		</div>
+
+        <div class="con_box">
+			<form method="post" action="__SELF__" id="form" name="form">
+				<table class="add_table">
+					<tr>
+						<th>服务：</th>
+						<td>{$arr.service_name}</td>
+					</tr>
+					<tr>
+						<th>用户：</th>
+						<td>
+                            <?php
+								$u_row = M('member')->find($arr['u_id']*1);
+							?>
+							{$u_row.mobile} - {$u_row.truename} - {$u_row.nickname}
+                        </td>
+					</tr>
+					<tr>
+						<th>有效期：</th>
+						<td>
+                            <?php echo date('Y-m-d H:i', $arr['start_time']); ?> - <?php echo date('Y-m-d H:i', $arr['end_time']); ?>
+                        </td>
+					</tr>
+
+                    <tr>
+						<th>价格：</th>
+						<td>{$arr.price}</td>
+					</tr>
+
+					<tr>
+						<th>状态：</th>
+						<td>
+							<?php echo D('admin://Member')->mainprj_order_status_arr[$arr['status']]; ?>
+						</td>
+					</tr>
+					
+
+					<tr>
+						<th></th>
+						<td>
+							<input type="hidden" name="id" value="{$arr.id}"/>
+							<input type="hidden" name="listurl" value="{$listurl}"/>
+							<a href="javascript:;" onclick="document.form.submit();"class="add_yes"></a>
+							<a href="__URL__/lists" class="add_no"></a>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>

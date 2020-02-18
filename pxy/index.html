@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>培训报价</title>
+	<link rel="stylesheet" type="text/css" href="css1/style.css">
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/Adaptive.js"></script>
+</head>
+<body>
+	<!--
+	<header id="headerCon">
+		<a class="returnHome" href="#">< 首页</a>
+		<img style="margin-top: 15px;" src="images/logo2.png">
+	</header>
+-->
+<footer id="footerCon" style="display:none;">
+	<ul>
+		<li><a href="https://www.sobot.com/chat/h5/index.html?sysNum=8b78fa06c8d349ce8556b8d7d4cc01cc">在线咨询</a></li>
+		<li><a href="tel:18548916310">电话咨询</a></li>
+		<li><a class="red" href="#modes">立即申请</a></li>
+	</ul>
+</footer>
+
+	<!-- 
+	<div class="FiexdCon">
+		<div class="FiexdFormCon">
+			<div class="head">请选择您要预测的职业</div>
+			<ul class="for">
+				<li>
+					<select name="addressz">
+						<option value="北京">北京</option> 
+						<option value="天津">天津</option> 
+						<option value="青岛">青岛</option> 
+						<option value="广州">广州</option> 
+						<option value="深圳">深圳</option> 
+						<option value="长沙">长沙</option> 
+						<option value="太原">太原</option> 
+						<option value="福州">福州</option>
+						<option value="武汉">武汉</option>
+					</select>
+				</li>
+				<li>
+					<select name="coursez">
+						<option value="母婴护理师（月嫂）">母婴护理师（月嫂）</option>
+						<option value="育婴师">育婴师</option>
+						<option value="催乳师">催乳师</option>
+						<option value="小儿推拿师">小儿推拿师</option>
+						<option value="早教师">早教师</option>
+					</select>
+				</li>
+				<li><input type="text" name="shoujiz" placeholder="请输入您的手机号"></li>
+				<li><button type="button" onclick="addjz()">马上预测</button></li>
+			</ul>
+		</div>
+	</div>
+-->
+<section class="MaxCon">
+	<div class="ImgModoCon">
+		<img src="images/img_01.jpg">
+
+		<div class="rollCon" id="sollecon">
+			<div class="con">
+				<div>刘福庆18年3月毕业<span>工资7000元</span>订单排到19年3月</div>
+				<div>张红喜16年4月毕业<span>工资10500元</span>订单排到19年6月</div>
+				<div>李小青17年6月毕业<span>工资8000元</span>订单排到19年2月</div>
+				<div>史芹芹17年3月毕业<span>工资9000元</span>订单排到19年3月</div>
+				<div>刘倩铭16年10月毕业<span>工资12000元</span>订单排到19年4月</div>
+			</div>
+		</div>
+	</div>
+	<div class="ImgModoCon" id="modes" style="height: 930px; background: #fff;">
+		<img src="images/img_02.jpg">
+		<ul class="formCon">
+			<li>
+				<select name="address">
+					<option value="0">请选择城市</option>
+					<option value="北京">北京</option> 
+					<option value="天津">天津</option> 
+					<option value="青岛">青岛</option> 
+					<option value="广州">广州</option> 
+					<option value="深圳">深圳</option> 
+					<option value="长沙">长沙</option> 
+					<option value="太原">太原</option> 
+					<option value="福州">福州</option>
+					<option value="武汉">武汉</option>
+					<option value="昆明">昆明</option>
+					<option value="成都">成都</option>
+					<option value="杭州">杭州</option>
+					<option value="厦门">厦门</option>
+					<option value="西安">西安</option>
+					<option value="重庆">重庆</option>
+					<option value="南京">南京</option>
+					<option value="大同">大同</option>
+					<option value="沈阳">沈阳</option>
+					<option value="哈尔滨">哈尔滨</option>
+					<option value="石家庄">石家庄</option>
+					<option value="郑州">郑州</option>
+					<option value="邯郸">邯郸</option>
+					<option value="苏州">苏州</option>
+					<option value="合肥">合肥</option>
+					<option value="南昌">南昌</option>
+					
+				</select>
+			</li>
+
+			<li>
+				<select name="course">
+					<option value="母婴护理师（月嫂）">母婴护理师（月嫂）</option>
+					<option value="育婴师">育婴师</option>
+					<option value="催乳师">催乳师</option>
+					<option value="小儿推拿师">小儿推拿师</option>
+					<option value="早教师">早教师</option>
+					<option value="产后修复师">产后修复师</option>
+				</select>
+			</li>
+
+			<li>
+				<input type="text" name="shouji" placeholder="请输入您的手机号码">
+			</li>
+			<li>
+				<div style="float: left;line-height: 82px;font-size: 32px;color: #666;
+				padding-left: 10px;">您查询的培训价格为:
+			</div>
+
+			<img style="display: block;float: left;" src="images/images/gif.gif">
+			<div style="float: left;line-height: 82px;font-size: 32px;color: #666;
+			padding-left: 10px;">元
+		</div>
+		<div class="clear"></div>
+	</li>
+	<li>
+		<button type="button" onclick="add()">点击查询价格</button>
+	</li>
+</ul>
+</div>
+<div class="ImgModoCon"><img src="images/img_04.jpg"></div>
+<div class="ImgModoCon"><img src="images/img_06.jpg"></div>
+<div class="ImgModoCon"><img src="images/img_08.jpg"></div>
+<div class="ImgModoCon AuntListCn" style="height: 1325px; overflow: hidden;">
+	<img src="images/img_10.jpg">
+	<ul class="AuntList">
+		<li><img src="images/images/list_02.jpg"><a href="#modes">点击报名</a></li>
+		<li><img src="images/images/list_03.jpg"><a href="#modes">点击报名</a></li>
+		<li><img src="images/images/list_04.jpg"><a href="#modes">点击报名</a></li>
+		<li style="display: none;"><img src="images/images/list_05.jpg"><a href="#modes">点击报名</a></li>
+		<li style="display: none;"><img src="images/images/list_06.jpg"><a href="#modes">点击报名</a></li>
+		<li style="display: none;"><img src="images/images/list_07.jpg"><a href="#modes">点击报名</a></li>
+		<div class="onMore" style="text-align: center;color: #666;line-height: 80px;font-size: 26px;">查看更多</div>
+	</ul>
+</div>
+		<!-- <div class="ImgModoCon" style="height:90px;">
+			<div class="btnCon" style="top:0;">
+				<a href="javascript:void(0);" id="showFiexdCon">
+					点击测测你毕业后的薪水
+					<img src="images/click.gif">
+				</a>
+			</div>
+		</div>
+	-->	
+	<div class="ImgModoCon" style="margin-bottom: 0">
+		<img src="images/img_12.jpg">
+	</div>
+
+	<div class="ImgModoCon">
+		<img src="images/csbj.png">
+		<div class="gifCno"><img src="images/number.gif"></div>
+		<ul class="formConSt2">
+			<li>
+				<select name="addressz">
+					<option value="0">请选择城市</option>
+					<option value="北京">北京</option> 
+					<option value="天津">天津</option> 
+					<option value="青岛">青岛</option> 
+					<option value="广州">广州</option> 
+					<option value="深圳">深圳</option> 
+					<option value="长沙">长沙</option> 
+					<option value="太原">太原</option> 
+					<option value="福州">福州</option>
+					<option value="武汉">武汉</option>
+					<option value="昆明">昆明</option>
+					<option value="成都">成都</option>
+					<option value="杭州">杭州</option>
+					<option value="厦门">厦门</option>
+					<option value="西安">西安</option>
+					<option value="重庆">重庆</option>
+					<option value="南京">南京</option>
+					<option value="大同">大同</option>
+					<option value="沈阳">沈阳</option>
+					<option value="哈尔滨">哈尔滨</option>
+				</select>
+			</li>
+			<li>
+				<select name="coursez">
+					<option value="母婴护理师（月嫂）">母婴护理师（月嫂）</option>
+					<option value="育婴师">育婴师</option>
+					<option value="催乳师">催乳师</option>
+					<option value="小儿推拿师">小儿推拿师</option>
+					<option value="早教师">早教师</option>
+					<option value="产后修复师">产后修复师</option>
+				</select>
+			</li>
+			<li><input type="text" name="shoujiz" placeholder="请输入电话："></li>
+
+			<li style="margin-top: 30px;">
+				<div class="btnSty2" onclick="addjz()"></div>
+			</li>
+		</ul>
+	</div>
+
+	<div style="height: 70px;"></div>
+
+
+</section>
+
+
+<script type="text/javascript">
+
+	$(function() {
+
+		$('.onMore').click(function(event) {
+			$(this).hide()
+			$('.AuntList > li').show()
+			$('.AuntListCn').height('auto')
+
+
+		});
+
+		$('#showFiexdCon').click(function(event) {
+			/* Act on the event */
+			$('.FiexdCon').show();
+		});
+		if(location.href.indexOf("jr") != -1){
+			$("#footerCon ul").html('<li style="width: 50%;"><a href="tel:15910433315">电话咨询</a></li><li style="width: 50%;"><a class="red" href="#modes">立即申请</a></li>');
+		}
+		$("#footerCon").show();
+		ht = [];
+		var date = AddMouth(3);
+		ht.push('<div>刘福庆18年3月毕业<span>工资7000元</span>订单排到'+date.year+'年'+date.month+'月</div>');
+		date = AddMouth(5);
+		ht.push('<div>张红喜16年4月毕业<span>工资10500元</span>订单排到'+date.year+'年'+date.month+'月</div>');
+		date = AddMouth(3);
+		ht.push('<div>李小青17年6月毕业<span>工资8000元</span>订单排到'+date.year+'年'+date.month+'月</div>');
+		date = AddMouth(6);
+		ht.push('<div>史芹芹17年3月毕业<span>工资9000元</span>订单排到'+date.year+'年'+date.month+'月</div>');
+		date = AddMouth(4);
+		ht.push('<div>刘倩铭16年10月毕业<span>工资12000元</span>订单排到'+date.year+'年'+date.month+'月</div>');
+		$("#sollecon .con").html(ht.join(" "));
+
+	});
+	//num为增加的月份
+	function AddMouth(num){
+        var monthnum = parseInt(num);
+        var date = new Date();
+        var year = parseInt(date.getFullYear().toString().substr(2, 2));
+        var month = parseInt(date.getMonth()) + 1;
+        if (month + monthnum > 12){
+            var newyear = year + 1;
+            var newmonth = month + monthnum - 12;
+        }else{
+            var newyear = year
+            var newmonth = month + monthnum;
+        }
+        return {"year":newyear,"month":newmonth};
+    }
+
+	function startmarquee(lh, speed, delay) {  
+		var t;  
+		var oHeight = 55;/** div的高度 **/　  
+		var p = false;  
+		var o = document.getElementById("sollecon");  
+		var preTop = 0;  
+		o.scrollTop = 0;  
+		function start() {  
+			t = setInterval(scrolling, speed);  
+			o.scrollTop += 1;  
+		}  
+		function scrolling() {  
+			if (o.scrollTop % lh != 0  
+				&& o.scrollTop % (o.scrollHeight - oHeight - 1) != 0) {  
+				preTop = o.scrollTop;  
+			o.scrollTop += 1;  
+			if (preTop >= o.scrollHeight || preTop == o.scrollTop) {  
+				o.scrollTop = 0;  
+			}  
+		} else {  
+			clearInterval(t);  
+			setTimeout(start, delay);  
+		}  
+	}  
+	setTimeout(start, delay);  
+}  
+startmarquee(55, 50, 55);
+
+//报价
+function add(){
+	var address = $("[name=address]").val();
+	var course = $("[name=course]").val();
+	var phone = $("[name=shouji]").val();
+	if(address == 0){
+		alert("请选择城市");
+		return false;
+	}
+	if(!(/^1\d{10}$/.test(phone))){
+		alert("手机号码有误，请重填");
+		return false;
+	}
+	var dt = {
+		"name":name,
+		"phone":phone,
+		"job_description":course,
+		"work_description":'报价',
+		"expect_city":address,
+		"channel_url":location.href
+	}
+	sendAjax(dt);
+}
+//预测
+function addjz(){
+	var address = $("[name=addressz]").val();
+	var course = $("[name=coursez]").val();
+	var phone = $("[name=shoujiz]").val();
+	if(address == 0){ 
+		alert("请选择城市");  
+		return false;
+	}
+	if(!(/^1\d{10}$/.test(phone))){ 
+		alert("手机号码有误，请重填");  
+		return false;
+	}
+	var dt = {
+		"name":name,
+		"phone":phone,
+		"job_description":course,
+		"work_description":'预测职业',
+		"expect_city":address,
+		"channel_url":location.href
+	}
+	sendAjax(dt);
+}
+//发送请求
+function sendAjax(dt){
+	$.ajax({
+		url:"http://oa.fanqieguanjia.com/index/master/auntOperation",
+		data:{'row':dt},
+		type:"post",
+		success:function(msg){
+			alert('您已申请成功，我们会有专业的培训老师给您做详细介绍，请注意接听电话，感谢您的信任！');
+		}
+	});
+}
+
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?004f3cd5a1adc69b2e905e4cbde1b07c";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

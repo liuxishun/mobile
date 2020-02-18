@@ -1,0 +1,102 @@
+<script type="text/javascript" src="__PUBLIC__/index/js/jquery-1.8.2.min.js"></script>
+<link rel="stylesheet" href="http://lib.sinaapp.com/js/jquery-ui/1.8.9/themes/sunny/jquery-ui.css" type="text/css"/>
+
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery-ui/1.8.9/jquery-ui.min.js"></script>
+
+<style type="text/css">
+					.bank_1 *{
+						list-style: none;
+
+					}
+					.bank_1 li{
+						margin-top: 10px;
+					}
+					.bank_1 li span{
+						display: inline-block;
+						width: 100px;
+						margin-right: 8px;
+						text-align: right;
+						color: #666666;
+						font-size: 14px;
+						line-height: 30px;
+					}
+					.bank_1 li input{
+						width: 150px;
+						height: 30px;
+						border: 1px solid #999;
+						text-indent: 15px;
+						font-size: 14px;
+						color: #999;
+						line-height: 30px;
+					}
+					.index_distan1_formbotton{
+						padding-left: 100px;
+						padding-top: 15px;
+						padding-bottom: 15px;
+
+					}
+					.index_distan1_formbotton input{
+						width: 80px;
+						height: 30px;
+						border-radius: 3px;
+						background-color: #64a407;
+						color: #fff;
+						border: 0;
+						font-weight: bold;
+						box-shadow: 0 0 17px #fff inset;
+						
+					}
+				</style>
+
+<div class="index_distan">
+					<div class="index_distan1" id="xian_3">
+						<form class="index_distan1_form"  action="__URL__/work_add_pro" method="post">
+							<ul class="bank_1">
+								<li><span>开始时间:</span><input type="text"  name="info[start_time]" value="{$list.start_time}"></li>
+								<li><span>结束时间:</span><input type="text" name="info[end_time]" value="{$list.end_time}"></li>
+								<li><span>工作地点:</span><input type="text"  name="info[work_adress]" value="{$list.work_adress}"></li>
+								<li><span>工做内容:</span><input type="text" name="info[work_content]" value="{$list.work_content}"></li>
+								<li><span>工资:</span><input type="text" name="info[work_money]" value="{$list.work_money}"></li>
+								<input type="hidden" name="f_id" value="{$list.id}"> 
+								<input type="hidden" name ="info[houser_id]"  value='{$a_id.id}'>
+							</ul>
+							<div class="index_distan1_formbotton">
+								<input type="submit" value='确认'>
+								
+							</div>
+						</form>
+					</div>
+				</div>
+	
+				<script type="text/javascript">
+
+
+<?php $y=date('Y'); ?>
+$(function(){
+	$('[name="info[start_time]"]').datepicker({
+		yearRange: "{$y-100}:{$y}",
+        duration: '', 
+		dateFormat: 'yy-mm-dd',
+		regional:'zh-CN',
+        changeMonth: true,
+        //changeYear: true
+	}).change(function() {
+	});
+	$('[name="info[end_time]"]').datepicker({
+		yearRange: "{$y-100}:{$y}",
+        duration: '', 
+		dateFormat: 'yy-mm-dd',
+		regional:'zh-CN',
+        changeMonth: true,
+        //changeYear: true
+	}).change(function() {
+	});
+
+
+
+
+
+});
+
+
+				</script>

@@ -1,0 +1,464 @@
+@import url(public.css);
+@import "http://at.alicdn.com/t/font_ptjigxn10zt9y66r.css";
+.clearfloat:after {
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height: 0; }
+
+.clearfloat {
+  zoom: 1; }
+
+@keyframes mybackground {
+  0% {
+    background-color: #ffa3a3; }
+  60% {
+    background-color: #ffa3a3; }
+  70% {
+    background-color: #fc4141; }
+  80% {
+    background-color: #ffa3a3; }
+  90% {
+    background-color: #fc4141; }
+  100% {
+    background-color: #ffa3a3; } }
+.MaxCon {
+  width: 750px;
+  height: 100%;
+  position: relative; }
+
+div.videoCn {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0;
+  height: 410px;
+  overflow: hidden; }
+  div.videoCn div.banner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 0; }
+    div.videoCn div.banner div.men {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.3); }
+    div.videoCn div.banner div.timeCn {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      padding-top: 150px;
+      text-align: center; }
+      div.videoCn div.banner div.timeCn span {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 40px; }
+      div.videoCn div.banner div.timeCn span.ind {
+        border: 1px solid #fff;
+        background-color: rgba(0, 0, 0, 0.3); }
+    div.videoCn div.banner div.dist {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 78px;
+      background-color: rgba(0, 0, 0, 0.3);
+      font-size: 26px;
+      color: #fff;
+      padding: 0 20px;
+      text-align: left;
+      line-height: 78px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      word-break: break-all;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical; }
+      div.videoCn div.banner div.dist span {
+        font-weight: bold; }
+
+div.chatCon {
+  position: absolute;
+  top: 410px;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+  div.chatCon div.head {
+    width: 100%;
+    height: 90px;
+    font-size: 30px;
+    color: #e66a52;
+    font-weight: bold;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #e1e1e1;
+    line-height: 94px;
+    text-align: center; }
+  div.chatCon div.chatList {
+    position: absolute;
+    top: 96px;
+    left: 0;
+    right: 0px;
+    bottom: 99px;
+    background-color: #fff;
+    overflow-y: auto;
+    border-bottom: 1px solid #e1e1e1; }
+    div.chatCon div.chatList > ul {
+      padding: 18px; }
+      div.chatCon div.chatList > ul > li {
+        width: 100%;
+        zoom: 1; }
+        div.chatCon div.chatList > ul > li:after {
+          display: block;
+          clear: both;
+          content: "";
+          visibility: hidden;
+          height: 0; }
+        div.chatCon div.chatList > ul > li div.iconC {
+          width: 85px;
+          height: 85px;
+          border-radius: 10px;
+          overflow: hidden;
+          float: left; }
+          div.chatCon div.chatList > ul > li div.iconC > img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px; }
+        div.chatCon div.chatList > ul > li div.Rn {
+          width: 610px;
+          float: right; }
+          div.chatCon div.chatList > ul > li div.Rn div.title {
+            line-height: 36px; }
+            div.chatCon div.chatList > ul > li div.Rn div.title > span.name {
+              font-size: 24px;
+              color: #999; }
+            div.chatCon div.chatList > ul > li div.Rn div.title > span.time {
+              margin-left: 30px;
+              font-size: 22px;
+              color: #cccbcb; }
+        div.chatCon div.chatList > ul > li div.Rn div.info {
+            display: inline-block;
+            padding: 18px;
+            border-radius: 12px;
+            background-color: #f4f4f4;
+            border: 1px solid #e1e1e1;
+            color: #333;
+            position: relative;
+            font-size: 30px;
+            max-width: 100%; }
+		div.chatCon div.chatList > ul > li div.Rn div.info:after {
+			position: absolute;
+			top: 20px;
+			left: -7px;
+			content: '';
+			border-top: inherit;
+			border-left: inherit;
+			border-right: none;
+			border-bottom: none;
+			width: 10px;
+			height: 18px;
+			background-color: inherit;
+			transform: skewX(30deg);
+		}
+			  
+	div.infos {
+		margin-top: 10px;
+		display: inline-block;
+		padding: 18px;
+		border-radius: 0px 12px 12px  12px ;
+		background-color: #FF7F50;
+		border: 1px solid #ef735b;
+		color: #FFFFFF;
+		position: relative;
+		font-size: 30px;
+		max-width: 100%; }
+	div.infos:after {
+		position: absolute;
+		top: -8px;
+		left: -1px;
+		content: '';
+		border-top: inherit;
+		border-left: inherit;
+		border-right: none;
+		border-bottom: none;
+		width: 12px;
+		height: 12px;
+		background-color: inherit;
+		transform: skewY(45deg); }
+	div.infos  span{
+		font-size: 25px;color: #f4f4f4;
+	}
+
+div.bottomCn {
+  width: 100%;
+  height: 98px;
+  background-color: #f4f4f4;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 12px 20px; }
+  div.bottomCn input {
+    width: 556px;
+    height: 72px;
+    font-size: 28px;
+    color: #333;
+    border-radius: 10px;
+    border: 1px solid #e1e1e1;
+    padding: 0 10px; }
+  div.bottomCn button {
+    border: none;
+    font-size: 28px;
+    color: #333;
+    height: 72px;
+    background-color: #f4f4f4;
+    margin-left: 20px; }
+
+div.subscription {
+  width: 150px;
+  position: absolute;
+  bottom: 120px;
+  right: 20px;
+  z-index: 9; }
+  div.subscription div.imgC {
+    width: 113px;
+    height: 113px;
+    border-radius: 10px;
+    border: 3px solid #e66a52;
+    margin: 0 auto; }
+    div.subscription div.imgC > img {
+      width: 100%;
+      height: 100%; }
+  div.subscription p {
+    margin-top: 10px;
+    font-size: 24px;
+    color: #e66a52;
+    text-align: center; }
+
+div.courseInfo {
+  position: absolute;
+  top: 377px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background-color: #fff; }
+  div.courseInfo div.conline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 98px;
+    overflow-y: auto; }
+  div.courseInfo div.tit {
+    zoom: 1;
+    position: relative;
+    padding: 27px;
+    border: 1px solid #e1e1e1; }
+    div.courseInfo div.tit:after {
+      display: block;
+      clear: both;
+      content: "";
+      visibility: hidden;
+      height: 0; }
+    div.courseInfo div.tit div.close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #f4f4f4;
+      text-align: center;
+      line-height: 38px; }
+      div.courseInfo div.tit div.close i {
+        font-size: 22px;
+        color: #666; }
+    div.courseInfo div.tit div.imgC {
+      float: left;
+      width: 135px;
+      height: 135px;
+      border-radius: 10px;
+      overflow: hidden; }
+      div.courseInfo div.tit div.imgC > img {
+        width: 100%;
+        height: 100%; }
+    div.courseInfo div.tit div.Rn {
+      float: right;
+      width: 520px; }
+      div.courseInfo div.tit div.Rn div.title {
+        font-size: 28px;
+        font-weight: bold;
+        line-height: 60px; }
+      div.courseInfo div.tit div.Rn div.price {
+        margin-top: 10px;
+        font-size: 28px;
+        color: #e66a52; }
+  div.courseInfo div.form {
+    width: 100%;
+    padding: 20px 30px;
+    border-bottom: 1px solid #e1e1e1; }
+    div.courseInfo div.form div.line {
+      width: 100%; }
+      div.courseInfo div.form div.line span {
+        display: inline-block;
+        width: 100px;
+        height: 78px;
+        line-height: 78px;
+        color: #333;
+        font-size: 28px; }
+      div.courseInfo div.form div.line input {
+        width: 575px;
+        height: 78px;
+        border-radius: 10px;
+        border: none;
+        color: #333;
+        font-size: 28px;
+        background-color: #f4f4f4;
+        padding: 0 15px; }
+    div.courseInfo div.form div.line:nth-child(2) {
+      margin-top: 20px; }
+  div.courseInfo div.word {
+    width: 100%;
+    padding: 26px;
+    zoom: 1; }
+    div.courseInfo div.word:after {
+      display: block;
+      clear: both;
+      content: "";
+      visibility: hidden;
+      height: 0; }
+    div.courseInfo div.word h3 {
+      width: 100%;
+      float: left;
+      font-size: 26px;
+      font-weight: bold; }
+    div.courseInfo div.word div.duan {
+      width: 100%;
+      float: left;
+      margin-top: 30px; }
+    div.courseInfo div.word p {
+      width: 100%;
+      float: left;
+      font-size: 26px;
+      color: #666;
+      line-height: 46px; }
+  div.courseInfo div.butCon {
+    width: 100%;
+    height: 97px;
+    position: absolute;
+    bottom: 0;
+    left: 0; }
+    div.courseInfo div.butCon a {
+      display: block;
+      background-color: #e66a52;
+      width: 100%;
+      height: 100%;
+      color: #fff;
+      font-size: 30px;
+      text-align: center;
+      line-height: 97px; }
+
+/*# sourceMappingURL=style.css.map */
+
+
+/* 登录样式*/
+		div.hongbao {
+		  position: absolute;
+		  top: 20px;
+		  right: 20px;
+		  z-index: 8; }
+		.pubFiexdCn {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  bottom: 0;
+		  z-index: 999;
+		  background-color: rgba(0, 0, 0, 0.5);
+		  display: none; }
+		.pubFiexdCn span.close {
+			position: absolute;
+			bottom: 100px;
+			left: 50%;
+			line-height: 76px;
+			width: 80px;
+			height: 80px;
+			margin-left: -40px;
+			text-align: center; }
+		.pubFiexdCn span.close i {
+		    font-size: 80px;
+		    color: #fff; }
+		  
+		 section.Login {
+	  		padding-top: 90px; }
+	     section.Login form {
+	    	padding: 0 28px; }
+	     section.Login form ul {
+	        width: 100%; }
+	     section.Login form ul > li {
+	        padding-top: 54px;
+	        border-bottom: 1px solid #e1e1e1;
+	        position: relative; }
+	     section.Login form ul > li input {
+	          width: 100%;
+	          height: 76px;
+	          border: none;
+	          font-size: 28px;
+	          padding-left: 160px; }
+	     section.Login form ul > li span.yanz {
+	          position: absolute;
+	          bottom: 30px;
+	          color: #f85f48;
+	          font-size: 24px;
+	          right: 30px; }
+	     section.Login form ul > li div.name {
+	          width: 120px;
+	          height: 40px;
+	          font-size: 28px;
+	          border-right: 1px solid #e1e1e1;
+	          color: #333;
+	          position: absolute;
+	          bottom: 18px;
+	          left: 20px; }
+	     section.Login form ul > li button {
+	          width: 100%;
+	          height: 85px;
+	          border: none;
+	          background: linear-gradient(to left, #fa8437, #f85f48);
+	          color: #fff;
+	          font-size: 30px;
+	          border-radius: 15px; }
+			  
+.xuanfu{
+	right: 0;
+	position: fixed;
+	bottom: 150px;//这里换成top:0;就悬浮在头部
+	width: 100%;
+	z-index: 100;
+	color: #FF7F50;
+	background-color: #f4f4f4;
+	font-size: 35px;
+	height: 70px;
+	width:200px;
+	border-radius: 50px 0px 0px 50px;
+	text-align: center;
+	display: box;
+	box-pack:center;
+	box-orient:vertical;
+	display: -webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-orient:vertical
+	
+}

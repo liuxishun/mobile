@@ -1,0 +1,32 @@
+
+共有 <?php echo $pager['count'] ?> 个记录 <?php echo $pager['currentPage'] ?>/<?php echo $pager['pageCount'] ?>(<?php echo $pager['pageSize'] ?>)页 
+
+<?php if ($pager['currentPage'] == 1): ?>
+<font style="color:#888;">[首页]</font>
+<?php else: ?>
+<a href="<?php echo $Xpage_baseurl ?>&page=1">[首页]</a>
+<?php endif; ?>
+
+<?php if ($pager['currentPage']-1<1): ?>
+<font style="color:#888;">[上页]</font>
+<?php else: ?>
+<a href="<?php echo $Xpage_baseurl ?>&page=<?php echo $pager['currentPage']-1 ?>">[上页]</a>
+<?php endif; ?>
+
+&nbsp;<font style="color:red;">[<?php echo $pager['currentPage'] ?>]</font>&nbsp;
+
+<?php if ($pager['currentPage'] == $pager['pageCount']): ?>
+<font style="color:#888;">[下页]</font>
+<?php else: ?>
+<a href="<?php echo $Xpage_baseurl ?>&page=<?php echo $pager['currentPage']+1 ?>">[下页]</a>
+<?php endif; ?>
+
+<?php if ($pager['pageCount'] == $pager['currentPage']): ?>
+<font style="color:#888;">[尾页]</font>
+<?php else: ?>
+<a href="<?php echo $Xpage_baseurl ?>&page=<?php echo $pager['pageCount'] ?>">[尾页]</a>
+<?php endif; ?>
+
+<input type=text id="_PGNumber" class="iptA" size="3" value="<?php echo $pager['currentPage'] ?>" onmouseover="this.focus();this.select()" name="PGNumber" /> 
+每页<input type=text id="_PGSize" class="iptA" size="3" value="<?php echo $pager['pageSize'] ?>" onmouseover="this.focus();this.select()" name="PGSize" />条
+<input type="button" id="button1" name="button1" class="btnA" style="border:1px solid #BABABA; padding-left:4; padding-right:4; padding-top:1; padding-bottom:1; background-color:#F5F5F5" value=" GO " onclick="if(document.getElementById('_PGNumber').value>0 && document.getElementById('_PGNumber').value<='<?php echo $pager['pageCount'] ?>'*1){window.location='<?php echo $Xpage_baseurl ?>&page='+document.getElementById('_PGNumber').value+'&pagesize='+document.getElementById('_PGSize').value}" onmouseover="this.focus()" onfocus="this.blur()" />

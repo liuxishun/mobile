@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>视频直播</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/Adaptive.js"></script>
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="js/weixin.js"></script>
+	<script type="text/javascript">
+		if(getUrlParam("source")){
+			sessionStorage.mm_herlive_source = getUrlParam("source");//来源
+		}
+		var openid = 'oO3bqspDQBCdscwX57a92L-KWLn8';//用户标识
+		//openid = getUrlParam('openid');//用户标识
+		if(!openid){
+			window.location.href="http://m.mumway.com/wxys/herliveLogin.php?id="+getUrlParam('id');
+		}
+		var urlid = '136';//视频id
+    	$(function(){
+    		diaoaj();//微信分享
+			getVideo();//视频
+			//绑定支付显示页面
+			$(".subscription").click(function(){
+				$(".courseInfo").show();
+			});
+			//点击支付关闭按钮
+			$(".close").click(function(){
+				$(".courseInfo").hide();//支付关闭按钮
+				$('.pubFiexdCn').hide();//小助手
+			});
+			
+        });
+		//获取url中的参数
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return decodeURI(r[2]); return null; //返回参数值
+        }
+    </script>
+</head>
+<body style="display:none;">
+	
+	<section class="MaxCon" style="display:none;">
+		<div class="videoCn">
+		
+			<div class="banner">
+				<!-- <div class="hongbao" style="display:none;"><img src="images/hongbtn.gif"></div> -->
+				<img src="images/banner.jpg" id="banner_img">
+				<img id="bf_button" style="width:130px; height:130px; position:absolute; left:50%; top:100px; margin-left:-65px;" src="http://m.mumway.com/Public/ke/img/bo.png">
+				<div class="timeCn">
+					<span class="ind" id="day">00</span>
+					<span class="text">天</span>
+					<span class="ind"  id="when">0</span>
+					<span class="text">时</span>
+					<span class="ind" id="points">0</span>
+					<span class="text">分</span>
+					<span class="ind" id="seconds">0</span>
+					<span class="text">秒</span>
+				</div>
+				<div class="men" id="banner">
+					<!-- <iframe style="display:none; margin-left:-8px; margin-top:-8px; " id="iframeZhibo" name="iframeZhibo" src="http://live.ceecloud.cn/embed/545696884/true" width="765px" height="100%" frameborder="0" scrolling="no" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe> -->
+				</div>
+				<div class="dist">
+					<marquee><span id="announcement">公告：前方公告高能，请注意躲避！阿萨达达达萨达萨达达...</span></marquee>
+				</div>
+			</div>
+		</div>
+		<div class="chatCon">
+			<div class="head">互动问答区</div>
+			<div class="chatList">
+				<ul id="comments">
+					<li style="display:none">
+						<div class="iconC"><img src="images/12435.jpeg"></div>
+						<div class="Rn">
+							<div class="title">
+								<span class="name">hoahoaho</span>
+								<span class="time">2017-08-21 14:14:14</span>
+							</div>
+							<div class="info">
+								1354656767i7676567865
+							</div>
+						</div>
+					</li>
+				</ul>	
+			</div>
+		</div>
+
+		<div class="bottomCn">
+			<input type="text" name="content" id="content" placeholder="写留言...">
+			<button type="button" onclick="send()">发布留言</button>
+		</div>
+
+		<div class="subscription" style="display:none">
+			<div class="imgC"><img src="images/12435.jpeg"></div>
+			<p>点击订阅课程</p>
+		</div>
+
+		<div class="courseInfo"  style="display:none">
+			<div class="conline">
+				<div class="tit">
+					<div class="imgC"><img src="images/12435.jpeg"></div>
+					<div class="Rn">
+						<div class="title">《124354678》</div>
+						<div class="price">￥ 199/年</div>
+					</div>
+					<div class="close"><i class="iconfont">&#xe603;</i></div>
+				</div>
+
+				<div class="form">
+					<div class="line">
+						<span class="tit">姓名</span>
+						<input type="hidden" name="id" id="id">
+						<input type="text" name="name" id="name" placeholder="购买前请输入姓名">
+					</div>
+					<div class="line">
+						<span class="tit">手机号</span>
+						<input type="text" name="phone" id="phone" placeholder="购买前请输入手机号码">
+					</div>
+				</div>
+
+				<div class="word">
+					<h3>内容介绍</h3>
+					<div class="duan">
+						<p>新生儿降临人世，面对的是生活环境和生活方式的巨大变化胎儿在妈妈子宫内环境温暖，温度适宜，不论氧或营养均依赖母体由胎盘输入，代谢产物亦是经母体排出。所以在胎儿阶段，有的器官很少维持</p>
+					</div>
+					<div class="duan">
+						<p>1、新生儿健康成长护理系列</p>
+						<p>2、新生儿营养要素均衡护理系列</p>
+						<p>3、新生儿强健体魄运动护理系列</p>
+						<p>4、打牢成长基础护理系列</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="butCon">
+				<a href="javascript:void(0)" onclick="pay()">立即购买</a>
+			</div>
+
+		</div>
+	</section>
+	
+	<div class="pubFiexdCn" style="display:none;"><img src="images/alert.png"><span class="close"><i class="iconfont">&#xe603;</i></span></div><!--小秘书-->
+	<div id="assets" style="display:none;padding: 20px 0; position: fixed;top: 0;bottom: 0;left: 0;right: 0;text-align: right;background-color: rgba(0,0,0,0.5);"><img alt="" src="images/assets.png"></div><!--提示分享图片-->
+		
+	<section class="Login" style="display:none;">
+		<form action="">
+			<ul>
+				<li>
+					<div class="name">姓名</div>
+					<input type="text" name="name" id="names" placeholder="请输入姓名">
+				</li>
+				<li>
+					<div class="name">手机号</div>
+					<input type="number" name="phone" id="phones" placeholder="请输入手机号码">
+					<span class="yanz" onclick="sendCode()">发送验证码</span>
+				</li>
+				<li>
+					<div class="name">验证码</div>
+					<input type="number" name="code" id="code" placeholder="请输入收到的验证码">
+				</li>
+				<li style="border-bottom: none;">
+					<button type="button" onclick="login()">登录</button>
+				</li>
+			</ul>
+		</form>
+	</section>
+	
+<script type="text/javascript">
+	var yanz = '11';//验证码
+	var clock = '';//验证码定时器
+	var nums = 60;//验证码
+	var baseUrl = 'http://oa.fanqieguanjia.com/';
+	var video = '';
+	var phone = '';
+	var vtitle = '';//视频标题
+	//登录
+	function login(){
+		var phone= $("#phones").val();
+		phone = $("#phones").val();
+		var name= $("#names").val();
+		if(name == ''){
+			alert("请输入姓名");
+			return false;
+		}
+		var code= $("#code").val();
+		if(!(/^1\d{10}$/.test(phone))){
+			alert("请输入正确手机号码");
+			return false;
+		}
+		if(yanz != code){
+			alert("请输入验证码错误");
+			return false;
+		}
+		var dt = {};
+		dt.name = name;
+		dt.phone = phone;
+		dt.openid = openid;
+		dt.vtitle = vtitle;
+		dt.source = sessionStorage.mm_herlive_source;//来源
+		console.log(dt);
+		$.ajax({
+			url:baseUrl+"index/Herlive/login",
+			data:dt,
+			type:"post",
+			success:function(msg){
+				if(Boolean(msg.success)){
+					videoPlay();//登录成功播放视频
+				}else{
+					alert('登录失败！');
+				}
+			}
+		});
+	}
+	//验证码
+	function sendCode(){
+		var phone= $("#phones").val();
+		if((/^1\d{10}$/.test(phone))){
+			$('.yanz').removeAttr('onclick').text(nums+'秒');
+			//定时
+			clock = setInterval(function(){
+				 nums--;
+				 if(nums > 0){
+				  $('.yanz').text(nums+'秒');
+				 }else{
+				  clearInterval(clock); //清除js定时器
+				  $('.yanz').attr('onclick','sendCode()').text('重新发送');
+				  nums = 60; //重置时间
+				}
+			}, 1000); //一秒执行一次
+			$.ajax({
+				url:baseUrl+"index/Sms/getVerificationCode",
+				data:{"phone":phone},
+				type:"get",
+				success:function(msg){
+					if(Boolean(msg.success)){
+						yanz = msg.code;
+					}else{
+						alert('获取验证码失败！');
+					}
+				}
+			});
+		}else{
+			alert("请输入手机号码");
+		}
+	}
+	
+	//显示播放视频
+	function videoPlay(){
+		var phomes = "15210107155,13150033234,18207801310,15159398655,18045437757,13834616298,15313482185,18511314196,18859301636";
+		if(urlid == 134 && phomes.indexOf(phone) < 0){
+			alert("您没有报名成功，暂时无法观看");
+			return false;
+		}
+		if(video.indexOf("p.bokecc.com") >= 0){//cc视频
+			//video = 'https://p.bokecc.com/player?vid=AFF3C467020443569C33DC5901307461&siteid=D3EEE7CD051FA897&autoStart=false&width=640&height=480&playerid=B3D0EF60D7A1798D&playertype=1';
+			video = video.replace('width=640', 'width=750').replace('height=480', 'height=420');
+			video = video.substring(video.indexOf("https"), video.indexOf("e=1") + 3);
+			//console.log(url);
+			var dom = document.getElementById("banner");
+			var sc = document.createElement("script");
+			sc.setAttribute("type", "text/javascript");
+			sc.setAttribute("src", video);
+			dom.innerHTML="";
+			dom.appendChild(sc);
+			$("#banner").unbind( "click" )
+		}else{//云见视频
+			$('.banner').html('<iframe style="margin-left:-8px; margin-top:-8px; " id="iframeZhibo" src="'+video+'" width="765px" height="100%" frameborder="0" scrolling="no" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>');//视频
+		}
+		$("#banner_img").hide();
+		$(".MaxCon").show();
+		$(".Login").hide();
+	}
+	//获取助教老师
+	function getPicture(){
+		 $.ajax({
+			url:baseUrl+"index/Herlive/getPicture",
+			type:"get",
+			data:{"openid":openid},
+			success:function(msg){
+				$('.pubFiexdCn').show().find("img").attr("src", baseUrl+msg.picture);
+			}
+		})
+	}
+	//分享回调
+	function share(){
+		 $.ajax({
+			url:baseUrl+"index/Herlive/updateSharePlay",
+			type:"post",
+			data:{"vid":urlid,"openid":openid},
+			success:function(msg){
+				isShare();
+			}
+		});
+	}
+	//是否显示红包
+	function isShare(){
+		$('.hongbao').click(function(){
+			getPicture();
+		}).show();
+		$('.close').click(function(){
+			$('.pubFiexdCn').hide();//小助手
+			$(".courseInfo").hide();//支付关闭按钮
+		});
+	}
+	
+	//播放按键
+	function play(){
+		$.ajax({
+			url:baseUrl+"index/Herlive/validationLogin",
+			data:{"openid":openid},
+			type:"get",
+			async: false,
+			success:function(msg){
+				if(Boolean(msg.success)){
+					phone = msg.phone;
+					videoPlay();
+				}else{
+					$(".MaxCon").hide();
+					$(".Login").show();
+				}
+			}
+		});
+	}
+
+	//获取视频
+	function getVideo(){
+		if(getUrlParam('id') != null){
+			urlid = getUrlParam('id');
+		}
+		$.ajax({
+			url:"http://m.mumway.com/index.php/ke/getVideo",
+			type:"get",
+			data:{"id":urlid, "openid":openid},
+			success:function(msg){
+				console.log(msg);
+				if(msg.code == 0){
+					return ;
+				}
+				urlid = msg.id;//设置视频id
+				video = msg.url;
+				vtitle = msg.title;
+				$("#banner_img").attr('src', "http://my.mumway.com/"+msg.pic);
+				
+				/*
+				if(msg.isshare == 1){
+					isShare();//是否显示红包
+				}
+				if(Boolean(msg.ista)){
+					getPicture();//是否显示助教老师
+				}
+				$("#iframeZhibo").attr('src', msg.url);
+				$("#id").val(msg.course.id);//设置购买课程
+				$(".title").text(msg.course.name);//设置购买课程名称
+				$(".imgC img").attr('src', baseUrl+msg.course.icon);//设置图片
+				$(".price").text('￥ '+msg.course.price+'/年');
+				$(".word").html('<h3>内容介绍</h3><p>'+msg.course.content+'<p>');
+				*/
+				var time2="2017/08/22 17:26:00";
+				time2 = msg.start_time.replace(/-/g,"/");
+				var dr1 = new Date(time2);
+				var dr=new Date();
+				var n=parseInt((dr1 - dr)/1000);
+				tick(n);//计时
+				announcement();//公告
+				comments(true);//评论
+				$(".MaxCon").show();
+				$('body').show();
+				Share = {
+			            title: msg.fen_title,
+			            link: 'http://m.mumway.com/199zb/index.html?id='+urlid,
+			            desc: msg.fen_desc,
+			            imgUrl: 'http://bjm.mumway.com/'+msg.fen_pic,
+			            type: 'link',
+			            dataUrl: '',
+			            success: function () { 
+			            		share();
+			                    console.log('分享ok');
+			            },
+			            cancel: function () { 
+			                  // 用户取消分享后执行的回调函数
+			                  console.log('分享null');
+			            }
+			      };
+			}
+		})
+	}
+	//直播到计时
+	function tick(n) {
+		if(n<=0){
+			clearInterval(tick())
+			$(".timeCn").hide();
+			//绑定直播按钮，显示直播
+			$(".men").click(function(){
+				play();
+			});
+			return;
+		}
+		var tian_show=parseInt(n/86400);  <!--天数-->
+		if(tian_show < 10) tian_show = "0"+tian_show;
+		var tian=n%86400;  <!--天数余数-->
+		var shi_show=parseInt(tian/3600); <!--小时-->
+		if(shi_show < 10) shi_show = "0"+shi_show;
+		var shi=tian%3600; <!--小时余数-->
+		var fen_show=parseInt(shi/60);<!--分数-->
+		if(fen_show < 10) fen_show = "0"+fen_show;
+		var fen=shi%60;<!--分数余数-->
+		var miao_show=parseInt(fen/1);<!--秒数-->
+		if(miao_show < 10) miao_show = "0"+miao_show;
+	   
+		$("#day").text(tian_show);
+		$("#when").text(shi_show);
+		$("#points").text(fen_show);
+		$("#seconds").text(miao_show);
+		n--;
+		setTimeout("tick("+n+")", 1000);
+	}
+	//公告
+	function announcement(){
+		 $.ajax({
+			url:"http://m.mumway.com/index.php/ke/ggajax",
+			type:"post",
+			data:{"id":urlid},
+			success:function(msg){
+				$("#announcement").html(msg);
+			}
+		});
+		setTimeout("announcement()",60000);
+	}
+	
+	//评论
+	function comments(bl){
+		var url = 'http://m.mumway.com/index.php/ke/getComments/urlid/'+urlid;
+		$.get(url,function(data){
+			var comments = '';
+			$.each(data, function(k, v){
+				comments += '<li>';
+				comments += 		'<div class="iconC"><img src="'+v.headimgurl+'"></div>';
+				comments += 		'<div class="Rn">';
+				comments += 			'<div class="title">';
+				comments += 				'<span class="name">'+v.nickname+'</span>';
+				comments += 				'<span class="time">'+v.time+'</span>';
+				comments += 			'</div>';
+				comments += 			'<div class="info">'+v.contents+'</div>';
+				comments += 		'</div>';
+				comments += 	'</li>';
+			});
+			$('#comments').html(comments);
+		});
+		if(bl){//判断是否启动定时器
+			setTimeout("comments(true)",5000);
+		}
+	}
+	
+	//发送评论
+	function send(){
+		var dt = {};
+		dt.openid = openid;
+		dt.urlid = urlid;//视频id
+		dt.h_id = 0;//用户id
+		var content = $('#content').val();
+		dt.contents = content;
+		if (content.replace(/(^\s*)|(\s*$)/g,"")==""){
+		    alert('留言不能为空，请输入');
+		}else{
+			var url = 'http://m.mumway.com/index.php/ke/pinglun';
+			$.post(url,dt,function(dd){
+				$('#content').val('');
+				comments(false);//刷新评论
+	    		if(!dd){
+	    			alert("发送失败！");
+	    		}
+	    	});
+		}
+	}
+	
+	//生成订单
+	function pay(){
+		var name = $("#name").val();
+		var phone = $("#phone").val();
+		if(name == ''){
+			alert("请输入姓名");
+			return false;
+		}
+		if(!(/^1\d{10}$/.test(phone))){
+			alert("请输入正确的手机号码");
+			return false;
+		}
+		var id = $("#id").val();
+		window.location.href="http://m.mumway.com/demo2/herlivePay.php?id="+id+"&phone="+phone+"&name="+name;
+	}
+	
+</script>
+</body>
+</html>
